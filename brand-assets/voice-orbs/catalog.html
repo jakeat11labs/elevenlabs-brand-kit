@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ElevenLabs Voice Orbs</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+      background: #111;
+      color: #F5F3F1;
+      padding: 40px;
+    }
+
+    a { color: #F5F3F1; }
+
+    .breadcrumb {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 24px;
+    }
+    .breadcrumb a {
+      color: #888;
+      text-decoration: none;
+    }
+    .breadcrumb a:hover { color: #F5F3F1; }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .section-desc {
+      color: #666;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    .section {
+      margin-bottom: 48px;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-left: 10px;
+    }
+    .status.ready {
+      background: #0a2a0a;
+      color: #4ade80;
+      border: 1px solid #1a3a1a;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      border: 1px solid #222;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #1a1a1a;
+    }
+
+    .card .preview {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      border-bottom: 1px solid #222;
+      overflow: hidden;
+    }
+
+    .card .preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .card .info {
+      padding: 14px;
+    }
+
+    .card {
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .card:hover {
+      border-color: #444;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .card .info {
+      position: relative;
+    }
+
+    .card .info .name {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 4px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+
+    .card .info .meta {
+      font-size: 12px;
+      color: #555;
+    }
+
+    .card .copy-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: #2a2a2a;
+      border: 1px solid #444;
+      color: #888;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+    .card:hover .copy-btn { opacity: 1; }
+    .card .copy-btn:hover { background: #444; color: #F5F3F1; }
+
+    .copied-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #2a2a2a;
+      color: #F5F3F1;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      opacity: 0;
+      transition: opacity 0.2s;
+      pointer-events: none;
+      border: 1px solid #444;
+      z-index: 100;
+      max-width: 600px;
+    }
+    .copied-toast.show { opacity: 1; }
+
+    .figma-ref {
+      margin-top: 32px;
+      padding: 16px;
+      background: #1a1a1a;
+      border: 1px solid #222;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #666;
+    }
+    .figma-ref code {
+      color: #888;
+      background: #222;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <p class="breadcrumb"><a href="../index.html">Brand Assets</a> / Voice Orbs</p>
+  <h1>ElevenLabs Voice Orbs</h1>
+  <p class="subtitle">8 textured orb visuals - the signature ElevenLabs visual element. All 1174x1038px JPGs on black backgrounds.</p>
+
+  <div class="section">
+    <h2>Voice Orbs <span class="status ready">8 Files</span></h2>
+    <p class="section-desc">Metallic radial sheen spheres. Use as animated accent elements in compositions. Black background works with mix-blend-mode: screen to composite on any background.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="preview"><img src="orb-teal-on-black.jpg" alt="Teal orb"></div>
+        <div class="info">
+          <div class="name">orb-teal-on-black.jpg</div>
+          <div class="meta">1174x1038 - Teal</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="preview"><img src="orb-purple-blue-on-black.jpg" alt="Purple-blue orb"></div>
+        <div class="info">
+          <div class="name">orb-purple-blue-on-black.jpg</div>
+          <div class="meta">1174x1038 - Purple-blue</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="preview"><img src="orb-pink-on-black.jpg" alt="Pink orb"></div>
+        <div class="info">
+          <div class="name">orb-pink-on-black.jpg</div>
+          <div class="meta">1174x1038 - Pink</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="preview"><img src="orb-coral-on-black.jpg" alt="Coral orb"></div>
+        <div class="info">
+          <div class="name">orb-coral-on-black.jpg</div>
+          <div class="meta">1174x1038 - Coral</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="preview"><img src="orb-green-on-black.jpg" alt="Green orb"></div>
+        <div class="info">
+          <div class="name">orb-green-on-black.jpg</div>
+          <div class="meta">1174x1038 - Green</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="preview"><img src="orb-gold-on-black.jpg" alt="Gold orb"></div>
+        <div class="info">
+          <div class="name">orb-gold-on-black.jpg</div>
+          <div class="meta">1174x1038 - Gold</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="preview"><img src="orb-hotpink-on-black.jpg" alt="Hot pink orb"></div>
+        <div class="info">
+          <div class="name">orb-hotpink-on-black.jpg</div>
+          <div class="meta">1174x1038 - Hot pink</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="preview"><img src="orb-lavender-on-black.jpg" alt="Lavender orb"></div>
+        <div class="info">
+          <div class="name">orb-lavender-on-black.jpg</div>
+          <div class="meta">1174x1038 - Lavender</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="figma-ref">
+    <strong>Figma source (for future re-pulls at higher quality):</strong><br><br>
+    <code>section id="3:6207" name="Voice_Orbs"</code> - Standard orbs (black background)<br>
+    <code>section id="2014:1493" name="Voice_Orbs"</code> - Additional variants<br>
+    <code>section id="2014:1580" name="Voice_Orbs"</code> - More variants<br>
+    <code>section id="2020:5337" name="Voice_Orbs_transparent_bg"</code> - Transparent background set<br><br>
+    <strong>Remotion usage:</strong> <code>staticFile('brand-assets/voice-orbs/orb-teal-on-black.jpg')</code><br>
+    <strong>Compositing tip:</strong> Use <code>mix-blend-mode: screen</code> or <code>lighten</code> to knock out the black background.
+  </div>
+  <div class="copied-toast" id="toast"></div>
+
+  <script>
+    const BASEPATH = 'brand-assets/voice-orbs/';
+    const toast = document.getElementById('toast');
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toast._t);
+      toast._t = setTimeout(() => toast.classList.remove('show'), 1800);
+    }
+
+    document.querySelectorAll('.card').forEach(card => {
+      const nameEl = card.querySelector('.info .name');
+      if (!nameEl) return;
+      const fullPath = BASEPATH + nameEl.textContent.trim();
+
+      const btn = document.createElement('button');
+      btn.className = 'copy-btn';
+      btn.textContent = 'Copy ID';
+      btn.onclick = (e) => { e.stopPropagation(); copyPath(fullPath); };
+      card.querySelector('.info').appendChild(btn);
+
+      card.onclick = () => copyPath(fullPath);
+    });
+
+    function copyPath(path) {
+      navigator.clipboard.writeText(path).then(() => {
+        showToast('Copied: ' + path);
+      });
+    }
+  </script>
+</body>
+</html>

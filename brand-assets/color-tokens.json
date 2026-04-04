@@ -1,0 +1,52 @@
+{
+  "source": "Echo Design System + Brand Kit + Agents Master Pitch deck analysis",
+  "note": "Hex values from brand kit and pitch deck CSS. Token names from Echo Design System Figma library.",
+
+  "brand": {
+    "GRAPHITE": "#1E1916",
+    "OFF_WHITE": "#FAFAFA",
+    "CREAM": "#F5F3F1",
+    "LIGHT_GRAY": "#E0DEDC",
+    "MID_GRAY": "#999999",
+    "DARK_GRAY": "#555555",
+    "WHITE": "#FFFFFF",
+    "BLACK": "#000000",
+    "NEAR_BLACK": "#151515"
+  },
+
+  "pitch_deck_colors": {
+    "card_fill": "#F5F3F1",
+    "primary_text": "#151515",
+    "secondary_text": "#666666",
+    "tertiary_text": "#949494",
+    "border_light": "#D8D8D8",
+    "background_dark": "#151515"
+  },
+
+  "echo_design_system_tokens": {
+    "static": {
+      "color/static/solid/white": "#FFFFFF",
+      "color/static/solid/black": "#000000",
+      "color/static/alpha/white-alpha-10": "rgba(255,255,255,0.10)",
+      "color/static/alpha/white-alpha-20": "rgba(255,255,255,0.20)",
+      "color/static/alpha/white-alpha-40": "rgba(255,255,255,0.40)",
+      "color/static/alpha/white-alpha-60": "rgba(255,255,255,0.60)",
+      "color/static/alpha/white-alpha-80": "rgba(255,255,255,0.80)",
+      "color/static/alpha/black-alpha-20": "rgba(0,0,0,0.20)",
+      "color/static/alpha/black-alpha-40": "rgba(0,0,0,0.40)",
+      "color/static/alpha/black-alpha-60": "rgba(0,0,0,0.60)",
+      "color/static/alpha/black-alpha-80": "rgba(0,0,0,0.80)"
+    },
+    "semantic": {
+      "color/dark/Solid/red/200-900": "Available in Echo — exact hex values require library file access",
+      "color/dark/alpha/red/100-800": "Available in Echo — exact hex values require library file access",
+      "Overlay": "Semi-transparent overlay scrim color (Design System Consolidation)"
+    }
+  },
+
+  "figma_sources": {
+    "echo_library_key": "lk-6312ad2f8c882e5dd25ff27d662ac247369e4b2be81dc4ebf8384213428e0c99404c13b2b23b557ddf09021f9b5ddf2f3c6396a069dcf9c29728a25f44d268ab",
+    "variable_collection": "global",
+    "variable_set_key": "9c6a876f4ba31908e808be67b3713c3cf2aa67a1"
+  }
+}

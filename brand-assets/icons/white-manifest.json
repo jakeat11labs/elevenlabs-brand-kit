@@ -1,0 +1,782 @@
+[
+  {
+    "idx": 0,
+    "file": "000-camera-icon.png",
+    "originalName": "Camera Icon",
+    "cleanName": "camera-icon"
+  },
+  {
+    "idx": 1,
+    "file": "001-checkmark-icon.png",
+    "originalName": "Checkmark Icon",
+    "cleanName": "checkmark-icon"
+  },
+  {
+    "idx": 2,
+    "file": "002-circle.png",
+    "originalName": "Circle",
+    "cleanName": "circle"
+  },
+  {
+    "idx": 3,
+    "file": "003-icon-background-1.png",
+    "originalName": "Icon Background-1",
+    "cleanName": "icon-background-1"
+  },
+  {
+    "idx": 4,
+    "file": "004-icon-background.png",
+    "originalName": "Icon Background",
+    "cleanName": "icon-background"
+  },
+  {
+    "idx": 5,
+    "file": "005-icon-outline-1.png",
+    "originalName": "Icon Outline-1",
+    "cleanName": "icon-outline-1"
+  },
+  {
+    "idx": 6,
+    "file": "006-icon-outline-2.png",
+    "originalName": "Icon Outline-2",
+    "cleanName": "icon-outline-2"
+  },
+  {
+    "idx": 7,
+    "file": "007-icon-outline.png",
+    "originalName": "Icon Outline",
+    "cleanName": "icon-outline"
+  },
+  {
+    "idx": 8,
+    "file": "008-icon-shape-1.png",
+    "originalName": "Icon Shape-1",
+    "cleanName": "icon-shape-1"
+  },
+  {
+    "idx": 9,
+    "file": "009-icon-shape-10.png",
+    "originalName": "Icon Shape-10",
+    "cleanName": "icon-shape-10"
+  },
+  {
+    "idx": 10,
+    "file": "010-icon-shape-11.png",
+    "originalName": "Icon Shape-11",
+    "cleanName": "icon-shape-11"
+  },
+  {
+    "idx": 11,
+    "file": "011-icon-shape-12.png",
+    "originalName": "Icon Shape-12",
+    "cleanName": "icon-shape-12"
+  },
+  {
+    "idx": 12,
+    "file": "012-icon-shape-13.png",
+    "originalName": "Icon Shape-13",
+    "cleanName": "icon-shape-13"
+  },
+  {
+    "idx": 13,
+    "file": "013-icon-shape-14.png",
+    "originalName": "Icon Shape-14",
+    "cleanName": "icon-shape-14"
+  },
+  {
+    "idx": 14,
+    "file": "014-icon-shape-15.png",
+    "originalName": "Icon Shape-15",
+    "cleanName": "icon-shape-15"
+  },
+  {
+    "idx": 15,
+    "file": "015-icon-shape-2.png",
+    "originalName": "Icon Shape-2",
+    "cleanName": "icon-shape-2"
+  },
+  {
+    "idx": 16,
+    "file": "016-icon-shape-3.png",
+    "originalName": "Icon Shape-3",
+    "cleanName": "icon-shape-3"
+  },
+  {
+    "idx": 17,
+    "file": "017-icon-shape-4.png",
+    "originalName": "Icon Shape-4",
+    "cleanName": "icon-shape-4"
+  },
+  {
+    "idx": 18,
+    "file": "018-icon-shape-5.png",
+    "originalName": "Icon Shape-5",
+    "cleanName": "icon-shape-5"
+  },
+  {
+    "idx": 19,
+    "file": "019-icon-shape-6.png",
+    "originalName": "Icon Shape-6",
+    "cleanName": "icon-shape-6"
+  },
+  {
+    "idx": 20,
+    "file": "020-icon-shape-7.png",
+    "originalName": "Icon Shape-7",
+    "cleanName": "icon-shape-7"
+  },
+  {
+    "idx": 21,
+    "file": "021-icon-shape-8.png",
+    "originalName": "Icon Shape-8",
+    "cleanName": "icon-shape-8"
+  },
+  {
+    "idx": 22,
+    "file": "022-icon-shape-9.png",
+    "originalName": "Icon Shape-9",
+    "cleanName": "icon-shape-9"
+  },
+  {
+    "idx": 23,
+    "file": "023-icon-shape.png",
+    "originalName": "Icon Shape",
+    "cleanName": "icon-shape"
+  },
+  {
+    "idx": 24,
+    "file": "024-icon-1.png",
+    "originalName": "Icon-1",
+    "cleanName": "icon-1"
+  },
+  {
+    "idx": 25,
+    "file": "025-icon-10.png",
+    "originalName": "Icon-10",
+    "cleanName": "icon-10"
+  },
+  {
+    "idx": 26,
+    "file": "026-icon-11.png",
+    "originalName": "Icon-11",
+    "cleanName": "icon-11"
+  },
+  {
+    "idx": 27,
+    "file": "027-icon-12.png",
+    "originalName": "Icon-12",
+    "cleanName": "icon-12"
+  },
+  {
+    "idx": 28,
+    "file": "028-icon-13.png",
+    "originalName": "Icon-13",
+    "cleanName": "icon-13"
+  },
+  {
+    "idx": 29,
+    "file": "029-icon-14.png",
+    "originalName": "Icon-14",
+    "cleanName": "icon-14"
+  },
+  {
+    "idx": 30,
+    "file": "030-icon-15.png",
+    "originalName": "Icon-15",
+    "cleanName": "icon-15"
+  },
+  {
+    "idx": 31,
+    "file": "031-icon-16.png",
+    "originalName": "Icon-16",
+    "cleanName": "icon-16"
+  },
+  {
+    "idx": 32,
+    "file": "032-icon-17.png",
+    "originalName": "Icon-17",
+    "cleanName": "icon-17"
+  },
+  {
+    "idx": 33,
+    "file": "033-icon-18.png",
+    "originalName": "Icon-18",
+    "cleanName": "icon-18"
+  },
+  {
+    "idx": 34,
+    "file": "034-icon-19.png",
+    "originalName": "Icon-19",
+    "cleanName": "icon-19"
+  },
+  {
+    "idx": 35,
+    "file": "035-icon-2.png",
+    "originalName": "Icon-2",
+    "cleanName": "icon-2"
+  },
+  {
+    "idx": 36,
+    "file": "036-icon-20.png",
+    "originalName": "Icon-20",
+    "cleanName": "icon-20"
+  },
+  {
+    "idx": 37,
+    "file": "037-icon-21.png",
+    "originalName": "Icon-21",
+    "cleanName": "icon-21"
+  },
+  {
+    "idx": 38,
+    "file": "038-icon-22.png",
+    "originalName": "Icon-22",
+    "cleanName": "icon-22"
+  },
+  {
+    "idx": 39,
+    "file": "039-icon-23.png",
+    "originalName": "Icon-23",
+    "cleanName": "icon-23"
+  },
+  {
+    "idx": 40,
+    "file": "040-icon-24.png",
+    "originalName": "Icon-24",
+    "cleanName": "icon-24"
+  },
+  {
+    "idx": 41,
+    "file": "041-icon-25.png",
+    "originalName": "Icon-25",
+    "cleanName": "icon-25"
+  },
+  {
+    "idx": 42,
+    "file": "042-icon-26.png",
+    "originalName": "Icon-26",
+    "cleanName": "icon-26"
+  },
+  {
+    "idx": 43,
+    "file": "043-icon-27.png",
+    "originalName": "Icon-27",
+    "cleanName": "icon-27"
+  },
+  {
+    "idx": 44,
+    "file": "044-icon-28.png",
+    "originalName": "Icon-28",
+    "cleanName": "icon-28"
+  },
+  {
+    "idx": 45,
+    "file": "045-icon-29.png",
+    "originalName": "Icon-29",
+    "cleanName": "icon-29"
+  },
+  {
+    "idx": 46,
+    "file": "046-icon-3.png",
+    "originalName": "Icon-3",
+    "cleanName": "icon-3"
+  },
+  {
+    "idx": 47,
+    "file": "047-icon-30.png",
+    "originalName": "Icon-30",
+    "cleanName": "icon-30"
+  },
+  {
+    "idx": 48,
+    "file": "048-icon-31.png",
+    "originalName": "Icon-31",
+    "cleanName": "icon-31"
+  },
+  {
+    "idx": 49,
+    "file": "049-icon-32.png",
+    "originalName": "Icon-32",
+    "cleanName": "icon-32"
+  },
+  {
+    "idx": 50,
+    "file": "050-icon-33.png",
+    "originalName": "Icon-33",
+    "cleanName": "icon-33"
+  },
+  {
+    "idx": 51,
+    "file": "051-icon-34.png",
+    "originalName": "Icon-34",
+    "cleanName": "icon-34"
+  },
+  {
+    "idx": 52,
+    "file": "052-icon-35.png",
+    "originalName": "Icon-35",
+    "cleanName": "icon-35"
+  },
+  {
+    "idx": 53,
+    "file": "053-icon-36.png",
+    "originalName": "Icon-36",
+    "cleanName": "icon-36"
+  },
+  {
+    "idx": 54,
+    "file": "054-icon-37.png",
+    "originalName": "Icon-37",
+    "cleanName": "icon-37"
+  },
+  {
+    "idx": 55,
+    "file": "055-icon-38.png",
+    "originalName": "Icon-38",
+    "cleanName": "icon-38"
+  },
+  {
+    "idx": 56,
+    "file": "056-icon-39.png",
+    "originalName": "Icon-39",
+    "cleanName": "icon-39"
+  },
+  {
+    "idx": 57,
+    "file": "057-icon-4.png",
+    "originalName": "Icon-4",
+    "cleanName": "icon-4"
+  },
+  {
+    "idx": 58,
+    "file": "058-icon-40.png",
+    "originalName": "Icon-40",
+    "cleanName": "icon-40"
+  },
+  {
+    "idx": 59,
+    "file": "059-icon-41.png",
+    "originalName": "Icon-41",
+    "cleanName": "icon-41"
+  },
+  {
+    "idx": 60,
+    "file": "060-icon-42.png",
+    "originalName": "Icon-42",
+    "cleanName": "icon-42"
+  },
+  {
+    "idx": 61,
+    "file": "061-icon-43.png",
+    "originalName": "Icon-43",
+    "cleanName": "icon-43"
+  },
+  {
+    "idx": 62,
+    "file": "062-icon-44.png",
+    "originalName": "Icon-44",
+    "cleanName": "icon-44"
+  },
+  {
+    "idx": 63,
+    "file": "063-icon-45.png",
+    "originalName": "Icon-45",
+    "cleanName": "icon-45"
+  },
+  {
+    "idx": 64,
+    "file": "064-icon-46.png",
+    "originalName": "Icon-46",
+    "cleanName": "icon-46"
+  },
+  {
+    "idx": 65,
+    "file": "065-icon-47.png",
+    "originalName": "Icon-47",
+    "cleanName": "icon-47"
+  },
+  {
+    "idx": 66,
+    "file": "066-icon-48.png",
+    "originalName": "Icon-48",
+    "cleanName": "icon-48"
+  },
+  {
+    "idx": 67,
+    "file": "067-icon-49.png",
+    "originalName": "Icon-49",
+    "cleanName": "icon-49"
+  },
+  {
+    "idx": 68,
+    "file": "068-icon-5.png",
+    "originalName": "Icon-5",
+    "cleanName": "icon-5"
+  },
+  {
+    "idx": 69,
+    "file": "069-icon-50.png",
+    "originalName": "Icon-50",
+    "cleanName": "icon-50"
+  },
+  {
+    "idx": 70,
+    "file": "070-icon-51.png",
+    "originalName": "Icon-51",
+    "cleanName": "icon-51"
+  },
+  {
+    "idx": 71,
+    "file": "071-icon-52.png",
+    "originalName": "Icon-52",
+    "cleanName": "icon-52"
+  },
+  {
+    "idx": 72,
+    "file": "072-icon-53.png",
+    "originalName": "Icon-53",
+    "cleanName": "icon-53"
+  },
+  {
+    "idx": 73,
+    "file": "073-icon-54.png",
+    "originalName": "Icon-54",
+    "cleanName": "icon-54"
+  },
+  {
+    "idx": 74,
+    "file": "074-icon-55.png",
+    "originalName": "Icon-55",
+    "cleanName": "icon-55"
+  },
+  {
+    "idx": 75,
+    "file": "075-icon-56.png",
+    "originalName": "Icon-56",
+    "cleanName": "icon-56"
+  },
+  {
+    "idx": 76,
+    "file": "076-icon-57.png",
+    "originalName": "Icon-57",
+    "cleanName": "icon-57"
+  },
+  {
+    "idx": 77,
+    "file": "077-icon-58.png",
+    "originalName": "Icon-58",
+    "cleanName": "icon-58"
+  },
+  {
+    "idx": 78,
+    "file": "078-icon-59.png",
+    "originalName": "Icon-59",
+    "cleanName": "icon-59"
+  },
+  {
+    "idx": 79,
+    "file": "079-icon-6.png",
+    "originalName": "Icon-6",
+    "cleanName": "icon-6"
+  },
+  {
+    "idx": 80,
+    "file": "080-icon-60.png",
+    "originalName": "Icon-60",
+    "cleanName": "icon-60"
+  },
+  {
+    "idx": 81,
+    "file": "081-icon-61.png",
+    "originalName": "Icon-61",
+    "cleanName": "icon-61"
+  },
+  {
+    "idx": 82,
+    "file": "082-icon-62.png",
+    "originalName": "Icon-62",
+    "cleanName": "icon-62"
+  },
+  {
+    "idx": 83,
+    "file": "083-icon-63.png",
+    "originalName": "Icon-63",
+    "cleanName": "icon-63"
+  },
+  {
+    "idx": 84,
+    "file": "084-icon-64.png",
+    "originalName": "Icon-64",
+    "cleanName": "icon-64"
+  },
+  {
+    "idx": 85,
+    "file": "085-icon-65.png",
+    "originalName": "Icon-65",
+    "cleanName": "icon-65"
+  },
+  {
+    "idx": 86,
+    "file": "086-icon-66.png",
+    "originalName": "Icon-66",
+    "cleanName": "icon-66"
+  },
+  {
+    "idx": 87,
+    "file": "087-icon-67.png",
+    "originalName": "Icon-67",
+    "cleanName": "icon-67"
+  },
+  {
+    "idx": 88,
+    "file": "088-icon-68.png",
+    "originalName": "Icon-68",
+    "cleanName": "icon-68"
+  },
+  {
+    "idx": 89,
+    "file": "089-icon-69.png",
+    "originalName": "Icon-69",
+    "cleanName": "icon-69"
+  },
+  {
+    "idx": 90,
+    "file": "090-icon-7.png",
+    "originalName": "Icon-7",
+    "cleanName": "icon-7"
+  },
+  {
+    "idx": 91,
+    "file": "091-icon-70.png",
+    "originalName": "Icon-70",
+    "cleanName": "icon-70"
+  },
+  {
+    "idx": 92,
+    "file": "092-icon-71.png",
+    "originalName": "Icon-71",
+    "cleanName": "icon-71"
+  },
+  {
+    "idx": 93,
+    "file": "093-icon-72.png",
+    "originalName": "Icon-72",
+    "cleanName": "icon-72"
+  },
+  {
+    "idx": 94,
+    "file": "094-icon-73.png",
+    "originalName": "Icon-73",
+    "cleanName": "icon-73"
+  },
+  {
+    "idx": 95,
+    "file": "095-icon-8.png",
+    "originalName": "Icon-8",
+    "cleanName": "icon-8"
+  },
+  {
+    "idx": 96,
+    "file": "096-icon-9.png",
+    "originalName": "Icon-9",
+    "cleanName": "icon-9"
+  },
+  {
+    "idx": 97,
+    "file": "097-icon.png",
+    "originalName": "Icon",
+    "cleanName": "icon"
+  },
+  {
+    "idx": 98,
+    "file": "098-play-icon.png",
+    "originalName": "Play Icon",
+    "cleanName": "play-icon"
+  },
+  {
+    "idx": 99,
+    "file": "099-warning-icon.png",
+    "originalName": "Warning Icon",
+    "cleanName": "warning-icon"
+  },
+  {
+    "idx": 100,
+    "file": "100-alignment-left-bar.png",
+    "originalName": "alignment-left-bar",
+    "cleanName": "alignment-left-bar"
+  },
+  {
+    "idx": 101,
+    "file": "101-animation.png",
+    "originalName": "animation",
+    "cleanName": "animation"
+  },
+  {
+    "idx": 102,
+    "file": "102-arrow-top-bottom-sort-1-switch-vertical.png",
+    "originalName": "arrow-top-bottom, sort 1, switch vertical",
+    "cleanName": "arrow-top-bottom-sort-1-switch-vertical"
+  },
+  {
+    "idx": 103,
+    "file": "103-arrows-repeat-repost.png",
+    "originalName": "arrows-repeat, repost",
+    "cleanName": "arrows-repeat-repost"
+  },
+  {
+    "idx": 104,
+    "file": "104-bezier-vector-nodes.png",
+    "originalName": "bezier, vector, nodes",
+    "cleanName": "bezier-vector-nodes"
+  },
+  {
+    "idx": 105,
+    "file": "105-book-guide-info-faq.png",
+    "originalName": "book, guide, info, faq",
+    "cleanName": "book-guide-info-faq"
+  },
+  {
+    "idx": 106,
+    "file": "106-brain-2-ai-thinking-database-ki.png",
+    "originalName": "brain-2, ai, thinking, database, ki",
+    "cleanName": "brain-2-ai-thinking-database-ki"
+  },
+  {
+    "idx": 107,
+    "file": "107-calendar-1-date.png",
+    "originalName": "calendar-1, date",
+    "cleanName": "calendar-1-date"
+  },
+  {
+    "idx": 108,
+    "file": "108-calendar-check-date-check.png",
+    "originalName": "calendar-check, date-check",
+    "cleanName": "calendar-check-date-check"
+  },
+  {
+    "idx": 109,
+    "file": "109-calendar-clock-4.png",
+    "originalName": "calendar-clock-4",
+    "cleanName": "calendar-clock-4"
+  },
+  {
+    "idx": 110,
+    "file": "110-call-phone.png",
+    "originalName": "call, phone",
+    "cleanName": "call-phone"
+  },
+  {
+    "idx": 111,
+    "file": "111-call-incoming-phone.png",
+    "originalName": "call-incoming, phone",
+    "cleanName": "call-incoming-phone"
+  },
+  {
+    "idx": 112,
+    "file": "112-coins-add.png",
+    "originalName": "coins-add",
+    "cleanName": "coins-add"
+  },
+  {
+    "idx": 113,
+    "file": "113-diamond-pro-premium.png",
+    "originalName": "diamond, pro, premium",
+    "cleanName": "diamond-pro-premium"
+  },
+  {
+    "idx": 114,
+    "file": "114-explosion-boom-bang-pop.png",
+    "originalName": "explosion, boom, bang, pop",
+    "cleanName": "explosion-boom-bang-pop"
+  },
+  {
+    "idx": 115,
+    "file": "115-files-documents.png",
+    "originalName": "files, documents",
+    "cleanName": "files-documents"
+  },
+  {
+    "idx": 116,
+    "file": "116-finger-print-1-touch-id.png",
+    "originalName": "finger-print-1, touch-id",
+    "cleanName": "finger-print-1-touch-id"
+  },
+  {
+    "idx": 117,
+    "file": "117-gamepad-controls-left-joystick.png",
+    "originalName": "gamepad-controls-left, joystick",
+    "cleanName": "gamepad-controls-left-joystick"
+  },
+  {
+    "idx": 118,
+    "file": "118-group-1-users.png",
+    "originalName": "group-1, users",
+    "cleanName": "group-1-users"
+  },
+  {
+    "idx": 119,
+    "file": "119-minimize-45-arrow-shrink.png",
+    "originalName": "minimize-45, arrow, shrink",
+    "cleanName": "minimize-45-arrow-shrink"
+  },
+  {
+    "idx": 120,
+    "file": "120-paperclip-3-attachment.png",
+    "originalName": "paperclip-3, attachment",
+    "cleanName": "paperclip-3-attachment"
+  },
+  {
+    "idx": 121,
+    "file": "121-people-circle-user-circle-avatar-profile.png",
+    "originalName": "people-circle, user-circle,avatar,profile",
+    "cleanName": "people-circle-user-circle-avatar-profile"
+  },
+  {
+    "idx": 122,
+    "file": "122-search-menu-list-search.png",
+    "originalName": "search-menu,list-search",
+    "cleanName": "search-menu-list-search"
+  },
+  {
+    "idx": 123,
+    "file": "123-subscription-tick-1-verify.png",
+    "originalName": "subscription-tick-1,verify",
+    "cleanName": "subscription-tick-1-verify"
+  },
+  {
+    "idx": 124,
+    "file": "124-text-indicator.png",
+    "originalName": "text-indicator",
+    "cleanName": "text-indicator"
+  },
+  {
+    "idx": 125,
+    "file": "125-thumb-up-curved.png",
+    "originalName": "thumb-up-curved",
+    "cleanName": "thumb-up-curved"
+  },
+  {
+    "idx": 126,
+    "file": "126-vector.png",
+    "originalName": "vector",
+    "cleanName": "vector"
+  },
+  {
+    "idx": 127,
+    "file": "127-video-on-cam-on.png",
+    "originalName": "video-on, cam-on",
+    "cleanName": "video-on-cam-on"
+  },
+  {
+    "idx": 128,
+    "file": "128-window-app-browser-app-desktop.png",
+    "originalName": "window-app, browser, app, desktop",
+    "cleanName": "window-app-browser-app-desktop"
+  },
+  {
+    "idx": 129,
+    "file": "129-zap-lightning-flash-thunder.png",
+    "originalName": "zap, lightning, flash, thunder",
+    "cleanName": "zap-lightning-flash-thunder"
+  }
+]

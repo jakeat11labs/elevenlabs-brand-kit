@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ElevenLabs Chladni Close-Up Backgrounds</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+      background: #111;
+      color: #F5F3F1;
+      padding: 40px;
+    }
+
+    a { color: #F5F3F1; }
+
+    .breadcrumb {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 24px;
+    }
+    .breadcrumb a {
+      color: #888;
+      text-decoration: none;
+    }
+    .breadcrumb a:hover { color: #F5F3F1; }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 16px;
+      max-width: 720px;
+      line-height: 1.5;
+    }
+
+    .compositing-note {
+      margin-bottom: 40px;
+      padding: 16px;
+      background: #1a1a1a;
+      border: 1px solid #222;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #888;
+      line-height: 1.6;
+    }
+    .compositing-note strong {
+      color: #F5F3F1;
+    }
+    .compositing-note code {
+      color: #4ade80;
+      background: #222;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-left: 10px;
+    }
+    .status.ready {
+      background: #0a2a0a;
+      color: #4ade80;
+      border: 1px solid #1a3a1a;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #F5F3F1;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .card {
+      border: 1px solid #222;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #1a1a1a;
+    }
+
+    .card .preview {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid #222;
+      overflow: hidden;
+    }
+
+    .card .preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card .info {
+      padding: 14px;
+    }
+
+    .card {
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .card:hover {
+      border-color: #444;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .card .info {
+      position: relative;
+    }
+
+    .card .info .name {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 4px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      word-break: break-all;
+    }
+
+    .card .info .meta {
+      font-size: 12px;
+      color: #555;
+    }
+
+    .card .copy-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: #2a2a2a;
+      border: 1px solid #444;
+      color: #888;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+    .card:hover .copy-btn { opacity: 1; }
+    .card .copy-btn:hover { background: #444; color: #F5F3F1; }
+
+    .copied-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #2a2a2a;
+      color: #F5F3F1;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      opacity: 0;
+      transition: opacity 0.2s;
+      pointer-events: none;
+      border: 1px solid #444;
+      z-index: 100;
+      max-width: 600px;
+    }
+    .copied-toast.show { opacity: 1; }
+
+    .figma-ref {
+      margin-top: 32px;
+      padding: 16px;
+      background: #1a1a1a;
+      border: 1px solid #222;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #666;
+    }
+    .figma-ref code {
+      color: #888;
+      background: #222;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <p class="breadcrumb"><a href="../../index.html">Brand Assets</a> / <a href="../catalog.html">Backgrounds</a> / Chladni Close-Up</p>
+  <h1>Chladni Close-Up Backgrounds <span class="status ready">15 Files</span></h1>
+  <p class="subtitle">Base image layers from the Brand Design System Figma file. These are landscape and nature photography used as the foundation for the Chladni Close-Up background treatment.</p>
+
+  <div class="compositing-note">
+    <strong>Compositing pipeline:</strong> These images are BASE LAYERS, not final backgrounds. In Remotion, composite them as follows:<br><br>
+    1. Base image layer (this file) - full bleed, <code>object-fit: cover</code><br>
+    2. Apply blur - <code>backdrop-filter: blur(80px)</code> or <code>filter: blur(80px)</code><br>
+    3. Noise overlay - <code>noise-texture.jpg</code> with <code>mix-blend-mode: overlay</code> at <code>opacity: 0.8</code><br>
+    4. Optional: Chladni SVG curve overlay on top<br><br>
+    <strong>Shared texture files:</strong> <code>backgrounds/noise-texture.jpg</code> and <code>backgrounds/seamless-texture.jpg</code>
+  </div>
+
+  <h2>All Close-Up Backgrounds</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="preview"><img src="closeup-01-red-rock-blue-sky.jpg" alt="Red rock blue sky"></div>
+      <div class="info">
+        <div class="name">closeup-01-red-rock-blue-sky.jpg</div>
+        <div class="meta">JPG - Red rock with blue sky</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="preview"><img src="closeup-02-blue-coral-splash.jpg" alt="Blue coral splash"></div>
+      <div class="info">
+        <div class="name">closeup-02-blue-coral-splash.jpg</div>
+        <div class="meta">JPG - Blue coral splash</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="preview"><img src="closeup-03-blue-mountain-orange.jpg" alt="Blue mountain orange"></div>
+      <div class="info">
+        <div class="name">closeup-03-blue-mountain-orange.jpg</div>
+        <div class="meta">JPG - Blue mountain with orange</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="preview"><img src="closeup-04-blue-peach-dunes.jpg" alt="Blue peach dunes"></div>
+      <div class="info">
+        <div class="name">closeup-04-blue-peach-dunes.jpg</div>
+        <div class="meta">JPG - Blue-peach dunes</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="preview"><img src="closeup-05-green-leaves.jpg" alt="Green leaves"></div>
+      <div class="info">
+        <div class="name">closeup-05-green-leaves.jpg</div>
+        <div class="meta">JPG - Green leaves</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="preview"><img src="closeup-06-warm-abstract.jpg" alt="Warm abstract"></div>
+      <div class="info">
+        <div class="name">closeup-06-warm-abstract.jpg</div>
+        <div class="meta">JPG - Warm abstract</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="preview"><img src="closeup-07-pink-teal-blend.jpg" alt="Pink teal blend"></div>
+      <div class="info">
+        <div class="name">closeup-07-pink-teal-blend.jpg</div>
+        <div class="meta">JPG - Pink-teal blend</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="preview"><img src="closeup-08-dreamy-clouds.jpg" alt="Dreamy clouds"></div>
+      <div class="info">
+        <div class="name">closeup-08-dreamy-clouds.jpg</div>
+        <div class="meta">JPG - Dreamy clouds</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="preview"><img src="closeup-09-water-splash-blue.jpg" alt="Water splash blue"></div>
+      <div class="info">
+        <div class="name">closeup-09-water-splash-blue.jpg</div>
+        <div class="meta">JPG - Water splash blue</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="preview"><img src="closeup-10-mountains-motion.jpg" alt="Mountains motion"></div>
+      <div class="info">
+        <div class="name">closeup-10-mountains-motion.jpg</div>
+        <div class="meta">JPG - Mountains in motion</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="preview"><img src="closeup-11-flowers-blur-warm.jpg" alt="Flowers blur warm"></div>
+      <div class="info">
+        <div class="name">closeup-11-flowers-blur-warm.jpg</div>
+        <div class="meta">JPG - Flowers blur warm</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="preview"><img src="closeup-12-flowers-purple-pink.jpg" alt="Flowers purple pink"></div>
+      <div class="info">
+        <div class="name">closeup-12-flowers-purple-pink.jpg</div>
+        <div class="meta">JPG - Flowers purple-pink</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="preview"><img src="closeup-13-blue-purple-portrait.jpg" alt="Blue purple portrait"></div>
+      <div class="info">
+        <div class="name">closeup-13-blue-purple-portrait.jpg</div>
+        <div class="meta">JPG - Blue-purple portrait</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="preview"><img src="closeup-14-blue-red-portrait.jpg" alt="Blue red portrait"></div>
+      <div class="info">
+        <div class="name">closeup-14-blue-red-portrait.jpg</div>
+        <div class="meta">JPG - Blue-red portrait</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="preview"><img src="closeup-15-landscape-green.jpg" alt="Landscape green"></div>
+      <div class="info">
+        <div class="name">closeup-15-landscape-green.jpg</div>
+        <div class="meta">JPG - Landscape green</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="figma-ref">
+    <strong>Figma source:</strong><br><br>
+    <code>Brand Design System file: XMegCFgEe0wVDrj5iecjwy</code> - Chladni Close-Up Backgrounds section<br><br>
+    <strong>Remotion usage:</strong><br>
+    <code>staticFile('brand-assets/backgrounds/chladni-closeup/closeup-01-red-rock-blue-sky.jpg')</code><br><br>
+    <strong>Compositing textures:</strong><br>
+    <code>staticFile('brand-assets/backgrounds/noise-texture.jpg')</code> - overlay at 80% opacity<br>
+    <code>staticFile('brand-assets/backgrounds/seamless-texture.jpg')</code> - soft-light blend
+  </div>
+  <div class="copied-toast" id="toast"></div>
+
+  <script>
+    const BASEPATH = 'brand-assets/backgrounds/chladni-closeup/';
+    const toast = document.getElementById('toast');
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toast._t);
+      toast._t = setTimeout(() => toast.classList.remove('show'), 1800);
+    }
+
+    document.querySelectorAll('.card').forEach(card => {
+      const nameEl = card.querySelector('.info .name');
+      if (!nameEl) return;
+      const fullPath = BASEPATH + nameEl.textContent.trim();
+
+      const btn = document.createElement('button');
+      btn.className = 'copy-btn';
+      btn.textContent = 'Copy ID';
+      btn.onclick = (e) => { e.stopPropagation(); copyPath(fullPath); };
+      card.querySelector('.info').appendChild(btn);
+
+      card.onclick = () => copyPath(fullPath);
+    });
+
+    function copyPath(path) {
+      navigator.clipboard.writeText(path).then(() => {
+        showToast('Copied: ' + path);
+      });
+    }
+  </script>
+</body>
+</html>

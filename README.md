@@ -39,11 +39,7 @@ claude --plugin-dir ./elevenlabs-academy-plugin
 
 ## Brand Assets
 
-Brand assets (backgrounds, icons, voice orbs) are stored separately to keep the plugin lightweight:
-
-**Asset repo:** [github.com/jakerains/elevenlabs-academy-assets](https://github.com/jakerains/elevenlabs-academy-assets)
-
-The `asset-setup` skill handles downloading these automatically.
+Brand assets (backgrounds, icons, voice orbs, ~260MB) are included directly in this repo under `brand-assets/`. The `asset-setup` skill copies them into your Remotion project's `public/brand-assets/` directory.
 
 ## V2 Design System
 

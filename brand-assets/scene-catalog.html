@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Remotion Scene Catalog — V1 vs V2 + New Scenes</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: #ccc; padding: 40px; }
+  h1 { color: #fff; font-size: 32px; font-weight: 300; letter-spacing: -0.02em; margin-bottom: 8px; }
+  .subtitle { color: #666; font-size: 14px; margin-bottom: 40px; }
+  .mode-filter { display: flex; gap: 12px; margin-bottom: 32px; position: sticky; top: 0; z-index: 100; background: #0a0a0a; padding: 16px 0; flex-wrap: wrap; }
+  .mode-filter button { background: #1a1a1a; border: 1px solid #333; color: #999; padding: 8px 20px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.2s; }
+  .mode-filter button:hover { border-color: #555; color: #fff; }
+  .mode-filter button.active { background: #F5F3F1; color: #1E1916; border-color: #F5F3F1; }
+  .mode-filter button.new-btn.active { background: #f97316; color: #fff; border-color: #f97316; }
+  .section-title { color: #fff; font-size: 20px; font-weight: 600; margin: 40px 0 8px; padding-top: 20px; border-top: 1px solid #222; }
+  .section-desc { color: #666; font-size: 13px; margin-bottom: 24px; }
+  .scene-row { display: flex; gap: 24px; margin-bottom: 48px; align-items: flex-start; }
+  .scene-info { width: 200px; flex-shrink: 0; padding-top: 8px; }
+  .scene-name { color: #fff; font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .scene-mode { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 8px; border-radius: 4px; display: inline-block; margin-bottom: 4px; }
+  .scene-mode.hero { background: rgba(59,130,246,0.2); color: #60a5fa; }
+  .scene-mode.content { background: rgba(34,197,94,0.2); color: #4ade80; }
+  .scene-mode.either { background: rgba(234,179,8,0.2); color: #facc15; }
+  .scene-tag { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; padding: 2px 6px; border-radius: 3px; display: inline-block; margin-bottom: 8px; background: rgba(249,115,22,0.2); color: #fb923c; }
+  .scene-desc-text { color: #666; font-size: 11px; line-height: 1.5; }
+  .scene-source { color: #555; font-size: 10px; margin-top: 4px; font-style: italic; }
+  .frames { display: flex; gap: 16px; flex: 1; }
+  .frame-wrap { flex: 1; }
+  .frame-label { color: #555; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; text-align: center; }
+  .frame {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #222;
+  }
+  /* ===== V1 FRAME STYLES ===== */
+  .v1 { background: #FAFAFA; padding: 20px 28px; display: flex; flex-direction: column; }
+  .v1.dark { background: #1E1916; }
+  .v1 .lbl { font-size: 5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 3px; }
+  .v1 .ttl { font-size: 14px; font-weight: 300; color: #1E1916; letter-spacing: -0.02em; margin-bottom: 4px; }
+  .v1.dark .ttl { color: #FAFAFA; }
+  .v1 .div { width: 100%; height: 1px; background: #E0DEDC; margin-bottom: 8px; }
+  .v1.dark .div { background: rgba(255,255,255,0.1); }
+  .v1 .cards { display: flex; gap: 6px; flex: 1; }
+  .v1 .card { flex: 1; background: #F5F3F1; border: 1px solid #E0DEDC; border-radius: 4px; padding: 8px; position: relative; display: flex; flex-direction: column; justify-content: flex-end; }
+  .v1.dark .card { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.12); }
+  .v1 .card .num { position: absolute; top: 4px; right: 6px; font-size: 24px; font-weight: 300; color: #E0DEDC; line-height: 1; }
+  .v1.dark .card .num { color: rgba(255,255,255,0.08); }
+  .v1 .card .ct { font-size: 6px; font-weight: 400; color: #1E1916; margin-bottom: 2px; }
+  .v1.dark .card .ct { color: #fff; }
+  .v1 .card .cd { font-size: 4px; color: #555; line-height: 1.4; }
+  .v1.dark .card .cd { color: #999; }
+  .v1 .wm { position: absolute; bottom: 6px; right: 8px; font-size: 6px; font-weight: 700; color: #1E1916; opacity: 0.15; letter-spacing: 1px; }
+  .v1.dark .wm { color: #fff; opacity: 0.15; }
+  .v1 .split { display: flex; flex: 1; gap: 0; }
+  .v1 .split-left { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-right: 12px; }
+  .v1 .split-right { width: 42%; background: #F5F3F1; border-radius: 0; position: relative; overflow: hidden; }
+  .v1 .split-right .cover { position: absolute; inset: 0; background: linear-gradient(135deg, #ddd, #bbb); opacity: 0.15; filter: grayscale(100%); }
+  .v1 .centered { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .v1 .rows { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+  .v1 .row { display: flex; align-items: center; gap: 8px; background: #F5F3F1; border: 1px solid #E0DEDC; border-radius: 4px; padding: 6px 8px; }
+  .v1.dark .row { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.12); }
+  .v1 .row .dot { width: 6px; height: 6px; border-radius: 50%; border: 1px solid #1E1916; flex-shrink: 0; }
+  .v1.dark .row .dot { border-color: rgba(255,255,255,0.3); }
+  .v1 .row .rt { font-size: 5px; font-weight: 400; color: #1E1916; }
+  .v1.dark .row .rt { color: #fff; }
+  .v1 .hero-num { font-size: 40px; font-weight: 300; color: #1E1916; letter-spacing: -0.03em; }
+  .v1.dark .hero-num { color: #fff; }
+  .v1 .hero-sub { font-size: 6px; color: #999; margin-top: 4px; }
+  .v1 .bars { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+  .v1 .bar-row { display: flex; align-items: center; gap: 6px; }
+  .v1 .bar-label { font-size: 4px; color: #1E1916; width: 30px; text-align: right; }
+  .v1 .bar { height: 3px; background: #E0DEDC; border-radius: 1px; flex: 1; position: relative; }
+  .v1 .bar-fill { height: 100%; background: #1E1916; border-radius: 1px; }
+
+  /* ===== V2 FRAME STYLES ===== */
+  .v2 { padding: 20px 28px; display: flex; flex-direction: column; position: relative; }
+  .v2 .bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0a2e1f 0%, #0d4a3a 20%, #1a6b5a 35%, #0e5a6e 50%, #1a4f7a 65%, #0d3b5e 80%, #0a2a40 100%); }
+  .v2 .bg.warm { background: linear-gradient(135deg, #3d1c1c 0%, #6b3030 25%, #8a4040 40%, #5a3a6a 60%, #3a2a5a 80%, #2a1a3a 100%); }
+  .v2 .bg.blue { background: linear-gradient(135deg, #0a1a2e 0%, #1a3a5e 30%, #2a5a7e 50%, #1a4a6e 70%, #0a2a4e 100%); }
+  .v2 .bg.teal { background: linear-gradient(135deg, #0a2a2a 0%, #1a4a3a 30%, #0a3a4a 60%, #1a3a5a 100%); }
+  .v2 .bg.coral { background: linear-gradient(135deg, #4a1a1a 0%, #7a3030 25%, #9a5050 40%, #7a4a3a 60%, #5a3a2a 100%); }
+  .v2 .bg.purple { background: linear-gradient(135deg, #1a0a2e 0%, #2a1a4a 25%, #3a2a5e 40%, #4a3a6e 60%, #2a1a4a 100%); }
+  .v2 .bg-blur { position: absolute; inset: 0; backdrop-filter: blur(2px); background: rgba(0,0,0,0.12); }
+  .v2 .noise { position: absolute; inset: 0; opacity: 0.05; mix-blend-mode: overlay; background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); pointer-events: none; }
+  .v2 > *:not(.bg):not(.bg-blur):not(.noise) { position: relative; z-index: 1; }
+  .v2 .lbl { font-size: 5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 3px; }
+  .v2 .ttl { font-size: 14px; font-weight: 300; color: #fff; letter-spacing: -0.02em; margin-bottom: 4px; }
+  .v2 .div { width: 100%; height: 1px; background: rgba(255,255,255,0.12); margin-bottom: 8px; }
+  .v2 .cards { display: flex; gap: 6px; flex: 1; }
+  .v2 .card { flex: 1; background: rgba(245,243,241,0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; padding: 8px; position: relative; display: flex; flex-direction: column; justify-content: flex-end; box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .v2 .card .num { position: absolute; top: 4px; right: 6px; font-size: 24px; font-weight: 300; color: rgba(30,25,22,0.06); line-height: 1; }
+  .v2 .card .ct { font-size: 6px; font-weight: 500; color: #151515; margin-bottom: 2px; }
+  .v2 .card .cd { font-size: 4px; color: #666; line-height: 1.4; }
+  .v2 .wm { position: absolute; bottom: 6px; right: 8px; font-size: 6px; font-weight: 700; color: #fff; opacity: 0.25; letter-spacing: 1px; z-index: 1; }
+  .v2 .split { display: flex; flex: 1; gap: 0; }
+  .v2 .split-left { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-right: 12px; }
+  .v2 .centered { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .v2 .sub { font-size: 6px; color: rgba(255,255,255,0.6); margin-top: 4px; }
+  .v2 .rows { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+  .v2 .row { display: flex; align-items: center; gap: 8px; background: rgba(245,243,241,0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; padding: 6px 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .v2 .row .dot { width: 6px; height: 6px; border-radius: 50%; border: 1px solid rgba(30,25,22,0.3); flex-shrink: 0; }
+  .v2 .row .rt { font-size: 5px; font-weight: 400; color: #151515; }
+  .v2 .hero-num { font-size: 40px; font-weight: 300; color: #fff; letter-spacing: -0.03em; }
+  .v2 .hero-sub { font-size: 6px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+  .v2 .accent { width: 40px; height: 2px; background: rgba(255,255,255,0.5); margin: 4px 0; }
+  .v2-content { background: #FAFAFA; padding: 20px 28px; display: flex; flex-direction: column; }
+  .v2 .panels { display: flex; gap: 6px; flex: 1; }
+  .v2 .panel { flex: 1; background: rgba(245,243,241,0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; padding: 10px 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .v2 .panel .pnum { font-size: 28px; font-weight: 300; color: rgba(30,25,22,0.06); margin-bottom: 2px; }
+  .v2 .panel .pword { font-size: 10px; font-weight: 300; color: #151515; margin-bottom: 3px; }
+  .v2 .panel .pdesc { font-size: 4px; color: #666; line-height: 1.4; }
+
+  /* ===== NEW SCENE SPECIFIC STYLES ===== */
+  /* Chat bubbles */
+  .bubble-row { display: flex; gap: 6px; margin-bottom: 4px; align-items: flex-start; }
+  .bubble-row.right { flex-direction: row-reverse; }
+  .bubble-avatar { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 5px; font-weight: 600; }
+  .bubble { padding: 4px 6px; border-radius: 4px; font-size: 4.5px; line-height: 1.4; max-width: 75%; }
+  .bubble-caller { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.9); }
+  .bubble-agent { background: rgba(245,243,241,0.88); color: #151515; }
+  .emotion-tag { font-size: 4px; font-weight: 600; padding: 1px 4px; border-radius: 3px; display: inline-block; margin-top: 2px; }
+  .emotion-tag.frustrated { background: rgba(239,68,68,0.2); color: #ef4444; }
+  .emotion-tag.empathetic { background: rgba(59,130,246,0.2); color: #60a5fa; }
+  .emotion-tag.calm { background: rgba(34,197,94,0.2); color: #4ade80; }
+
+  /* Agenda grid */
+  .agenda-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; flex: 1; }
+  .agenda-item { background: rgba(245,243,241,0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; padding: 6px 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .agenda-num { font-size: 4px; font-weight: 600; color: rgba(30,25,22,0.3); margin-bottom: 1px; }
+  .agenda-text { font-size: 5px; font-weight: 400; color: #151515; }
+
+  /* Stats mosaic */
+  .stat-mosaic { display: flex; gap: 8px; margin-bottom: 6px; }
+  .stat-block { text-align: center; }
+  .stat-big { font-size: 16px; font-weight: 300; color: #fff; letter-spacing: -0.02em; }
+  .stat-label { font-size: 4px; color: rgba(255,255,255,0.5); margin-top: 1px; }
+  .logo-wall { display: flex; gap: 4px; flex-wrap: wrap; justify-content: center; }
+  .logo-pill { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); border-radius: 3px; padding: 3px 6px; font-size: 4px; color: rgba(255,255,255,0.5); }
+
+  /* Voice qualities radial */
+  .radial-wrap { position: relative; flex: 1; display: flex; align-items: center; justify-content: center; }
+  .radial-center { width: 40px; height: 40px; border-radius: 50%; background: rgba(245,243,241,0.15); border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; }
+  .radial-word { position: absolute; font-size: 5px; font-weight: 400; color: rgba(255,255,255,0.7); }
+
+  /* Integration columns */
+  .int-cols { display: flex; gap: 4px; flex: 1; }
+  .int-col { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+  .int-col-title { font-size: 4px; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; text-align: center; }
+  .int-logo { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.08); border-radius: 3px; padding: 3px 4px; font-size: 4px; color: rgba(255,255,255,0.6); text-align: center; }
+
+  /* Enterprise grid */
+  .ent-cols { display: flex; gap: 4px; flex: 1; }
+  .ent-col { flex: 1; background: rgba(245,243,241,0.08); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; padding: 6px 4px; }
+  .ent-col-title { font-size: 5px; font-weight: 600; color: #fff; margin-bottom: 4px; text-align: center; }
+  .ent-col-sub { font-size: 3.5px; color: rgba(255,255,255,0.4); margin-bottom: 3px; text-align: center; }
+  .ent-item { font-size: 3.5px; color: rgba(255,255,255,0.6); padding: 1px 0; border-top: 1px solid rgba(255,255,255,0.05); }
+
+  /* Pipeline flow */
+  .pipeline { display: flex; align-items: center; gap: 2px; flex: 1; padding: 0 8px; }
+  .pipe-node { background: rgba(245,243,241,0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; padding: 6px 4px; text-align: center; flex: 1; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .pipe-node .ct { font-size: 5px; font-weight: 500; color: #151515; }
+  .pipe-node .cd { font-size: 3.5px; color: #666; }
+  .pipe-arrow { color: rgba(255,255,255,0.3); font-size: 8px; flex-shrink: 0; }
+  .pipe-branch { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; }
+  .pipe-tag { font-size: 3.5px; color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.06); padding: 2px 4px; border-radius: 2px; }
+
+  /* Compliance badges */
+  .badge-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; flex: 1; }
+  .badge-item { background: rgba(245,243,241,0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; padding: 6px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .badge-icon { font-size: 10px; margin-bottom: 2px; }
+  .badge-name { font-size: 5px; font-weight: 600; color: #151515; }
+  .badge-sub { font-size: 3.5px; color: #666; }
+
+  /* Comparison table */
+  .comp-table { display: grid; grid-template-columns: 80px repeat(3, 1fr); gap: 2px; flex: 1; }
+  .comp-header { font-size: 4.5px; font-weight: 600; color: #151515; padding: 4px; background: rgba(245,243,241,0.88); border-radius: 3px; text-align: center; }
+  .comp-row-label { font-size: 4px; font-weight: 500; color: rgba(255,255,255,0.6); padding: 4px; display: flex; align-items: center; }
+  .comp-cell { font-size: 4px; color: #666; padding: 4px; background: rgba(245,243,241,0.88); border-radius: 2px; text-align: center; display: flex; align-items: center; justify-content: center; }
+  .comp-check { color: #4ade80; font-weight: 700; }
+  .comp-x { color: #ef4444; font-weight: 700; }
+
+  /* Six pillar grid */
+  .six-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; flex: 1; }
+  .six-item { background: rgba(245,243,241,0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; padding: 6px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .six-img { height: 18px; background: rgba(30,25,22,0.04); border-radius: 2px; margin-bottom: 3px; display: flex; align-items: center; justify-content: center; font-size: 8px; color: rgba(30,25,22,0.15); }
+  .six-text { font-size: 5px; font-weight: 500; color: #151515; }
+
+  /* Two screenshots */
+  .two-ss { display: flex; gap: 6px; flex: 1; }
+  .ss-frame { flex: 1; background: rgba(30,25,22,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 5px; color: rgba(255,255,255,0.3); }
+
+  /* VS comparison */
+  .vs-layout { display: flex; flex: 1; gap: 0; }
+  .vs-side { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px; }
+  .vs-divider { width: 1px; background: rgba(255,255,255,0.15); position: relative; display: flex; align-items: center; }
+  .vs-badge { position: absolute; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 5px; font-weight: 700; color: #fff; }
+  .vs-title { font-size: 7px; font-weight: 500; color: #fff; margin-bottom: 4px; text-align: center; }
+  .vs-point { font-size: 4px; color: rgba(255,255,255,0.6); margin: 1px 0; text-align: center; }
+  .vs-point.good { color: #4ade80; }
+  .vs-point.bad { color: #ef4444; }
+
+  /* Use case card */
+  .uc-sections { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+  .uc-section { background: rgba(245,243,241,0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; padding: 6px 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .uc-section-label { font-size: 3.5px; font-weight: 600; color: rgba(30,25,22,0.4); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1px; }
+  .uc-section-text { font-size: 4.5px; color: #151515; line-height: 1.4; }
+
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<h1>Remotion Scene Catalog — V1 vs V2 + New Scenes</h1>
+<p class="subtitle">44 scene components: 30 existing (V1 → V2 upgrade) + 14 new layouts from ElevenLabs pitch decks</p>
+
+<div class="mode-filter">
+  <button class="active" onclick="filter('all')">All (44)</button>
+  <button onclick="filter('hero')">Hero (17)</button>
+  <button onclick="filter('content')">Content (10)</button>
+  <button onclick="filter('either')">Either (3)</button>
+  <button class="new-btn" onclick="filter('new')">New Scenes (14)</button>
+</div>
+
+<!-- ============ HERO SCENES ============ -->
+<div class="section-title">Hero Mode — Gradient Background Upgrade</div>
+<p class="section-desc">These scenes get the biggest visual transformation. Flat monochrome becomes atmospheric branded gradients.</p>
+
+<!-- WaveformScene -->
+<div class="scene-row" data-mode="hero">
+  <div class="scene-info">
+    <div class="scene-name">WaveformScene</div>
+    <span class="scene-mode hero">Hero</span>
+    <div class="scene-desc-text">Title card / cold open. Split layout with logo, title, cover image. First thing learners see.</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V1</div><div class="frame v1"><div class="split"><div class="split-left"><div class="lbl">II ELEVENLABS</div><div style="height:4px"></div><div class="ttl">Welcome to<br>ElevenLabs</div><div style="width:60px;height:2px;background:#1E1916;margin:4px 0"></div><div class="cd" style="font-size:5px;color:#555">ElevenLabs Academy — Module 1</div></div><div class="split-right"><div class="cover"></div></div></div><div class="wm">II</div></div></div>
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg teal"></div><div class="bg-blur"></div><div class="noise"></div><div class="split"><div class="split-left"><div class="lbl">II ELEVENLABS</div><div style="height:4px"></div><div class="ttl">Welcome to<br>ElevenLabs</div><div class="accent"></div><div style="font-size:5px;color:rgba(255,255,255,0.7)">ElevenLabs Academy — Module 1</div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- TitleScene -->
+<div class="scene-row" data-mode="hero">
+  <div class="scene-info">
+    <div class="scene-name">TitleScene</div>
+    <span class="scene-mode hero">Hero</span>
+    <div class="scene-desc-text">Module/lesson opener. Logo, label, large title, module breadcrumb.</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V1</div><div class="frame v1"><div class="split"><div class="split-left"><div class="lbl">THE PLATFORM</div><div class="ttl" style="font-size:16px">The Agents<br>Platform</div><div style="width:40px;height:2px;background:#1E1916;margin:4px 0"></div><div class="cd" style="font-size:5px;color:#555">Module 1 — Lesson 2</div></div><div class="split-right"><div class="cover"></div></div></div><div class="wm">II</div></div></div>
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg"></div><div class="bg-blur"></div><div class="noise"></div><div class="split"><div class="split-left"><div class="lbl">THE PLATFORM</div><div class="ttl" style="font-size:16px">The Agents<br>Platform</div><div class="accent"></div><div style="font-size:5px;color:rgba(255,255,255,0.7)">Module 1 — Lesson 2</div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- OutroScene -->
+<div class="scene-row" data-mode="hero">
+  <div class="scene-info">
+    <div class="scene-name">OutroScene</div>
+    <span class="scene-mode hero">Hero</span>
+    <div class="scene-desc-text">End card. "Up Next" with next lesson info. Different bg than title for variety.</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V1</div><div class="frame v1"><div class="split"><div class="split-left"><div class="lbl">UP NEXT</div><div style="height:4px"></div><div class="ttl" style="font-size:12px">Lesson 1.3</div><div style="font-size:5px;color:#555">Build Your First Agent</div><div style="width:40px;height:2px;background:#1E1916;margin:4px 0"></div></div><div class="split-right"><div class="cover"></div></div></div><div class="wm">II</div></div></div>
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg blue"></div><div class="bg-blur"></div><div class="noise"></div><div class="split"><div class="split-left"><div class="lbl">UP NEXT</div><div style="height:4px"></div><div class="ttl" style="font-size:12px">Lesson 1.3</div><div style="font-size:5px;color:rgba(255,255,255,0.7)">Build Your First Agent</div><div class="accent"></div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- WelcomeCard -->
+<div class="scene-row" data-mode="hero">
+  <div class="scene-info">
+    <div class="scene-name">WelcomeCard</div>
+    <span class="scene-mode hero">Hero</span>
+    <div class="scene-desc-text">Centered hero statement. Big text, minimal elements.</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V1</div><div class="frame v1"><div class="centered"><div class="ttl" style="font-size:18px">Welcome to<br>ElevenLabs Academy</div><div style="width:50px;height:2px;background:#1E1916;margin:6px auto"></div><div class="cd" style="font-size:5px;color:#999;margin-top:4px">Your path to certification</div></div><div class="wm">II</div></div></div>
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg warm"></div><div class="bg-blur"></div><div class="noise"></div><div class="centered"><div class="ttl" style="font-size:18px">Welcome to<br>ElevenLabs Academy</div><div class="accent" style="margin:6px auto"></div><div class="sub">Your path to certification</div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- TextRevealScene -->
+<div class="scene-row" data-mode="hero">
+  <div class="scene-info">
+    <div class="scene-name">TextRevealScene</div>
+    <span class="scene-mode hero">Hero</span>
+    <div class="scene-desc-text">Header + three content cards. Reference scene for pillars, features, categories.</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V1</div><div class="frame v1"><div class="lbl">THE VOICE</div><div class="ttl" style="font-size:12px">The Most Natural Interface</div><div class="div"></div><div class="cards"><div class="card"><div class="num">01</div><div class="ct">Before screens.</div><div class="cd">The most natural interface</div></div><div class="card"><div class="num">02</div><div class="ct">Before keyboards.</div><div class="cd">The fastest path from intent</div></div><div class="card"><div class="num">03</div><div class="ct">And now it scales.</div><div class="cd">AI voice at every channel</div></div></div><div class="wm">II</div></div></div>
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg teal"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">THE VOICE</div><div class="ttl" style="font-size:12px">The Most Natural Interface</div><div class="div"></div><div class="cards"><div class="card"><div class="num">01</div><div class="ct">Before screens.</div><div class="cd">The most natural interface</div></div><div class="card"><div class="num">02</div><div class="ct">Before keyboards.</div><div class="cd">The fastest path from intent</div></div><div class="card"><div class="num">03</div><div class="ct">And now it scales.</div><div class="cd">AI voice at every channel</div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- LearnBuildProve -->
+<div class="scene-row" data-mode="hero">
+  <div class="scene-info">
+    <div class="scene-name">LearnBuildProve</div>
+    <span class="scene-mode hero">Hero</span>
+    <div class="scene-desc-text">Methodology hero. Three tall panels: LEARN, BUILD, PROVE.</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V1</div><div class="frame v1"><div class="lbl">THE METHOD</div><div class="ttl" style="font-size:11px;margin-bottom:6px">How You'll Get Certified</div><div class="div"></div><div class="cards"><div class="card" style="text-align:center;justify-content:center;padding:10px"><div class="num" style="font-size:28px;position:static;color:#E0DEDC">01</div><div class="ct" style="font-size:9px">LEARN</div><div class="cd">Concepts, demos</div></div><div class="card" style="text-align:center;justify-content:center;padding:10px"><div class="num" style="font-size:28px;position:static;color:#E0DEDC">02</div><div class="ct" style="font-size:9px">BUILD</div><div class="cd">Hands-on practice</div></div><div class="card" style="text-align:center;justify-content:center;padding:10px"><div class="num" style="font-size:28px;position:static;color:#E0DEDC">03</div><div class="ct" style="font-size:9px">PROVE</div><div class="cd">Module quiz, cert</div></div></div><div class="wm">II</div></div></div>
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">THE METHOD</div><div class="ttl" style="font-size:11px;margin-bottom:6px">How You'll Get Certified</div><div class="div"></div><div class="panels"><div class="panel"><div class="pnum">01</div><div class="pword">LEARN</div><div class="pdesc">Concepts, demos</div></div><div class="panel"><div class="pnum">02</div><div class="pword">BUILD</div><div class="pdesc">Hands-on practice</div></div><div class="panel"><div class="pnum">03</div><div class="pword">PROVE</div><div class="pdesc">Module quiz, cert</div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- OriginStory -->
+<div class="scene-row" data-mode="hero">
+  <div class="scene-info">
+    <div class="scene-name">OriginStory</div>
+    <span class="scene-mode hero">Hero</span>
+    <div class="scene-desc-text">Brand narrative. Full-width text on gradient replaces split layout.</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V1</div><div class="frame v1"><div class="split"><div class="split-left"><div class="lbl">THE ORIGIN</div><div class="ttl" style="font-size:14px">A Research Company<br>Built for Voice</div><div style="width:50px;height:2px;background:#1E1916;margin:4px 0"></div><div class="cd" style="font-size:5px;color:#555">That research became a platform</div></div><div class="split-right"><div class="cover"></div></div></div><div class="wm">II</div></div></div>
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg warm"></div><div class="bg-blur"></div><div class="noise"></div><div class="centered" style="align-items:flex-start;text-align:left"><div class="lbl">THE ORIGIN</div><div class="ttl" style="font-size:14px">A Research Company<br>Built for Voice</div><div class="accent"></div><div style="font-size:5px;color:rgba(255,255,255,0.7)">That research became a platform</div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- PlatformEvolution -->
+<div class="scene-row" data-mode="hero">
+  <div class="scene-info">
+    <div class="scene-name">PlatformEvolution</div>
+    <span class="scene-mode hero">Hero</span>
+    <div class="scene-desc-text">Three-step flow with arrows. Research → Platform → Agents.</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V1</div><div class="frame v1"><div class="lbl">THE JOURNEY</div><div class="ttl" style="font-size:11px;margin-bottom:6px">Research → Platform → Agents</div><div class="div"></div><div class="cards"><div class="card" style="text-align:center;padding:8px"><div class="ct" style="font-size:7px">Research</div><div class="cd">Voice AI</div></div><div style="display:flex;align-items:center;color:#E0DEDC;font-size:10px;padding:0 2px">→</div><div class="card" style="text-align:center;padding:8px"><div class="ct" style="font-size:7px">Platform</div><div class="cd">TTS, STT</div></div><div style="display:flex;align-items:center;color:#E0DEDC;font-size:10px;padding:0 2px">→</div><div class="card" style="text-align:center;padding:8px"><div class="ct" style="font-size:7px">Agents</div><div class="cd">Conv AI</div></div></div><div class="wm">II</div></div></div>
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg blue"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">THE JOURNEY</div><div class="ttl" style="font-size:11px;margin-bottom:6px">Research → Platform → Agents</div><div class="div"></div><div class="cards"><div class="card" style="text-align:center;padding:8px"><div class="ct" style="font-size:7px">Research</div><div class="cd">Voice AI</div></div><div style="display:flex;align-items:center;color:rgba(255,255,255,0.3);font-size:10px;padding:0 2px">→</div><div class="card" style="text-align:center;padding:8px"><div class="ct" style="font-size:7px">Platform</div><div class="cd">TTS, STT</div></div><div style="display:flex;align-items:center;color:rgba(255,255,255,0.3);font-size:10px;padding:0 2px">→</div><div class="card" style="text-align:center;padding:8px"><div class="ct" style="font-size:7px">Agents</div><div class="cd">Conv AI</div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- OneLinerScene -->
+<div class="scene-row" data-mode="hero">
+  <div class="scene-info">
+    <div class="scene-name">OneLinerScene</div>
+    <span class="scene-mode hero">Hero</span>
+    <div class="scene-desc-text">Mission statement. Was already dark in v1 - now gradient replaces flat GRAPHITE.</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V1</div><div class="frame v1 dark"><div class="centered"><div class="lbl" style="color:#999">THE MISSION</div><div style="width:30px;height:1px;background:rgba(255,255,255,0.2);margin:4px auto"></div><div class="ttl" style="font-size:11px;color:#FAFAFA">Every interaction with a person<br>is an opportunity</div></div><div class="wm">II</div></div></div>
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg teal"></div><div class="bg-blur"></div><div class="noise"></div><div class="centered"><div class="lbl">THE MISSION</div><div class="accent" style="margin:4px auto"></div><div class="ttl" style="font-size:11px">Every interaction with a person<br>is an opportunity</div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- AgentArchitectureScene -->
+<div class="scene-row" data-mode="hero">
+  <div class="scene-info">
+    <div class="scene-name">AgentArchitecture</div>
+    <span class="scene-mode hero">Hero</span>
+    <div class="scene-desc-text">4-node architecture row. STT → LLM → TTS → Turn-taking.</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V1</div><div class="frame v1 dark"><div class="lbl" style="color:#999">ARCHITECTURE</div><div class="ttl" style="font-size:11px;color:#fff;margin-bottom:6px">The Voice Engine</div><div class="div" style="background:rgba(255,255,255,0.1)"></div><div class="cards"><div class="card"><div class="ct">STT</div><div class="cd">Speech to Text</div></div><div class="card"><div class="ct">LLM</div><div class="cd">Language Model</div></div><div class="card"><div class="ct">TTS</div><div class="cd">Text to Speech</div></div><div class="card"><div class="ct">VAD</div><div class="cd">Turn-Taking</div></div></div><div class="wm">II</div></div></div>
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">ARCHITECTURE</div><div class="ttl" style="font-size:11px;margin-bottom:6px">The Voice Engine</div><div class="div"></div><div class="cards"><div class="card"><div class="ct">STT</div><div class="cd">Speech to Text</div></div><div class="card"><div class="ct">LLM</div><div class="cd">Language Model</div></div><div class="card"><div class="ct">TTS</div><div class="cd">Text to Speech</div></div><div class="card"><div class="ct">VAD</div><div class="cd">Turn-Taking</div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- StatReveal -->
+<div class="scene-row" data-mode="either">
+  <div class="scene-info">
+    <div class="scene-name">StatReveal</div>
+    <span class="scene-mode either">Either</span>
+    <div class="scene-desc-text">Big centered number. Has darkMode prop. Dark = Hero gradient, Light = Content.</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V1 (dark)</div><div class="frame v1 dark"><div class="centered"><div class="hero-num">4M+</div><div class="hero-sub" style="color:#999">agents built on the platform</div></div><div class="wm">II</div></div></div>
+    <div class="frame-wrap"><div class="frame-label">V2 (hero)</div><div class="frame v2"><div class="bg blue"></div><div class="bg-blur"></div><div class="noise"></div><div class="centered"><div class="hero-num">4M+</div><div class="hero-sub">agents built on the platform</div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- SplitComparison -->
+<div class="scene-row" data-mode="either">
+  <div class="scene-info">
+    <div class="scene-name">SplitComparison</div>
+    <span class="scene-mode either">Either</span>
+    <div class="scene-desc-text">Two equal panels with header. Before/after, left/right compare.</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V1</div><div class="frame v1"><div class="lbl">COMPARISON</div><div class="ttl" style="font-size:11px;margin-bottom:6px">Before and After</div><div class="div"></div><div class="cards"><div class="card" style="padding:8px"><div class="ct">Traditional IVR</div><div class="cd">Rigid menus, slow resolution</div></div><div class="card" style="padding:8px"><div class="ct">Voice Agent</div><div class="cd">Natural conversation, instant</div></div></div><div class="wm">II</div></div></div>
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">COMPARISON</div><div class="ttl" style="font-size:11px;margin-bottom:6px">Before and After</div><div class="div"></div><div class="cards"><div class="card" style="padding:8px"><div class="ct">Traditional IVR</div><div class="cd">Rigid menus, slow resolution</div></div><div class="card" style="padding:8px"><div class="ct">Voice Agent</div><div class="cd">Natural conversation, instant</div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- CharacterReveal -->
+<div class="scene-row" data-mode="either">
+  <div class="scene-info">
+    <div class="scene-name">CharacterReveal</div>
+    <span class="scene-mode either">Either</span>
+    <div class="scene-desc-text">Typewriter text with cursor. Good for mission statements and key phrases.</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V1 (dark)</div><div class="frame v1 dark"><div class="centered"><div class="ttl" style="font-size:14px;color:#fff">The most natural<br>interface we've<br>ever had_</div></div><div class="wm">II</div></div></div>
+    <div class="frame-wrap"><div class="frame-label">V2 (hero)</div><div class="frame v2"><div class="bg warm"></div><div class="bg-blur"></div><div class="noise"></div><div class="centered"><div class="ttl" style="font-size:14px">The most natural<br>interface we've<br>ever had_</div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- ============ CONTENT SCENES ============ -->
+<div class="section-title">Content Mode — No Visual Changes</div>
+<p class="section-desc">These stay on OFF_WHITE backgrounds. Optimized for readability and detail - gradient would hurt scannability.</p>
+
+<!-- TimelineV4 -->
+<div class="scene-row" data-mode="content">
+  <div class="scene-info">
+    <div class="scene-name">TimelineV4</div>
+    <span class="scene-mode content">Content</span>
+    <div class="scene-desc-text">Module map. 2-column grid of all 8 modules. Unchanged in v2.</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V1 = V2</div><div class="frame v1"><div class="lbl">YOUR PATH</div><div class="ttl" style="font-size:11px;margin-bottom:6px">8 Modules to Certification</div><div class="div"></div><div style="display:flex;gap:4px;flex:1"><div class="card" style="padding:6px"><div class="ct" style="font-size:5px">M1 Platform</div></div><div class="card" style="padding:6px"><div class="ct" style="font-size:5px">M2 Voice & AI</div></div><div class="card" style="padding:6px"><div class="ct" style="font-size:5px">M3 Prompts</div></div><div class="card" style="padding:6px"><div class="ct" style="font-size:5px">M4 Knowledge</div></div></div><div style="display:flex;gap:4px;flex:1;margin-top:4px"><div class="card" style="padding:6px"><div class="ct" style="font-size:5px">M5 Advanced</div></div><div class="card" style="padding:6px"><div class="ct" style="font-size:5px">M6 Deploy</div></div><div class="card" style="padding:6px"><div class="ct" style="font-size:5px">M7 Testing</div></div><div class="card" style="padding:6px"><div class="ct" style="font-size:5px">M8 Production</div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- ConversationLoop -->
+<div class="scene-row" data-mode="content">
+  <div class="scene-info">
+    <div class="scene-name">ConversationLoop</div>
+    <span class="scene-mode content">Content</span>
+    <div class="scene-desc-text">4 connected rows showing the conversational AI loop. Unchanged.</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V1 = V2</div><div class="frame v1"><div class="lbl">THE LOOP</div><div class="ttl" style="font-size:11px;margin-bottom:6px">How Agents Converse</div><div class="div"></div><div class="rows"><div class="row"><div class="dot"></div><div class="rt">Listen — Speech Recognition (STT)</div></div><div class="row"><div class="dot"></div><div class="rt">Think — Language Model (LLM)</div></div><div class="row"><div class="dot"></div><div class="rt">Speak — Text to Speech (TTS)</div></div><div class="row"><div class="dot"></div><div class="rt">Manage — Turn-Taking (VAD)</div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- FoundationDiagram -->
+<div class="scene-row" data-mode="content">
+  <div class="scene-info">
+    <div class="scene-name">FoundationDiagram</div>
+    <span class="scene-mode content">Content</span>
+    <div class="scene-desc-text">Stacked rows with connector line. Architecture layers. Unchanged.</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V1 = V2</div><div class="frame v1"><div class="lbl">ARCHITECTURE</div><div class="ttl" style="font-size:11px;margin-bottom:6px">Platform Foundation</div><div class="div"></div><div class="rows"><div class="row"><div class="dot"></div><div class="rt">Voice Engine — TTS, STT, VAD</div></div><div class="row"><div class="dot"></div><div class="rt">Intelligence — LLM, RAG, Tools</div></div><div class="row"><div class="dot"></div><div class="rt">Deployment — Phone, Web, Mobile</div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- CapabilityMapScene -->
+<div class="scene-row" data-mode="content">
+  <div class="scene-info">
+    <div class="scene-name">CapabilityMap</div>
+    <span class="scene-mode content">Content</span>
+    <div class="scene-desc-text">Capability list with animated progress bars. Data-heavy. Unchanged.</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V1 = V2</div><div class="frame v1"><div class="lbl">CAPABILITIES</div><div class="ttl" style="font-size:11px;margin-bottom:6px">What You Can Build</div><div class="div"></div><div class="bars"><div class="bar-row"><div class="bar-label">Latency</div><div class="bar"><div class="bar-fill" style="width:90%"></div></div></div><div class="bar-row"><div class="bar-label">Voices</div><div class="bar"><div class="bar-fill" style="width:95%"></div></div></div><div class="bar-row"><div class="bar-label">Languages</div><div class="bar"><div class="bar-fill" style="width:85%"></div></div></div><div class="bar-row"><div class="bar-label">Integrations</div><div class="bar"><div class="bar-fill" style="width:75%"></div></div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- RecapGrid -->
+<div class="scene-row" data-mode="content">
+  <div class="scene-info">
+    <div class="scene-name">RecapGrid</div>
+    <span class="scene-mode content">Content</span>
+    <div class="scene-desc-text">Summary cards with sequential highlight pulse. Key takeaways. Unchanged.</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V1 = V2</div><div class="frame v1"><div class="lbl">KEY TAKEAWAYS</div><div class="ttl" style="font-size:11px;margin-bottom:6px">What You Learned</div><div class="div"></div><div class="cards"><div class="card" style="border-color:#1E1916;border-width:2px"><div class="num">01</div><div class="ct">Platform orientation</div><div class="cd">Where everything lives</div></div><div class="card"><div class="num">02</div><div class="ct">First agent built</div><div class="cd">Working in 30 minutes</div></div><div class="card"><div class="num">03</div><div class="ct">Test & iterate</div><div class="cd">Conversation simulator</div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- DecisionMatrix -->
+<div class="scene-row" data-mode="content">
+  <div class="scene-info">
+    <div class="scene-name">DecisionMatrix</div>
+    <span class="scene-mode content">Content</span>
+    <div class="scene-desc-text">Three-column decision flow. Complex content. Unchanged.</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V1 = V2</div><div class="frame v1"><div class="lbl">DECISION GUIDE</div><div class="ttl" style="font-size:11px;margin-bottom:6px">Which Approach?</div><div class="div"></div><div class="cards"><div class="card" style="padding:8px"><div class="ct">Option A</div><div class="cd">Pre-built agent template</div></div><div class="card" style="padding:8px"><div class="ct">Option B</div><div class="cd">Custom from scratch</div></div><div class="card" style="padding:8px"><div class="ct">Option C</div><div class="cd">API-first integration</div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- FourGridCards -->
+<div class="scene-row" data-mode="content">
+  <div class="scene-info">
+    <div class="scene-name">FourGridCards</div>
+    <span class="scene-mode content">Content</span>
+    <div class="scene-desc-text">2x2 grid of numbered cards. Features, categories. Unchanged.</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V1 = V2</div><div class="frame v1"><div class="lbl">FEATURES</div><div class="ttl" style="font-size:11px;margin-bottom:6px">Four Key Capabilities</div><div class="div"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;flex:1"><div class="card"><div class="num">01</div><div class="ct">Research</div><div class="cd">Proprietary models</div></div><div class="card"><div class="num">02</div><div class="ct">Natural</div><div class="cd">Sub-second latency</div></div><div class="card"><div class="num">03</div><div class="ct">Enterprise</div><div class="cd">SOC2, HIPAA</div></div><div class="card"><div class="num">04</div><div class="ct">Omnichannel</div><div class="cd">Voice, chat, email</div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- QuoteCard -->
+<div class="scene-row" data-mode="content">
+  <div class="scene-info">
+    <div class="scene-name">QuoteCard</div>
+    <span class="scene-mode content">Content</span>
+    <div class="scene-desc-text">Large centered quote with decorative mark and attribution. Unchanged.</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V1 = V2</div><div class="frame v1"><div class="centered"><div style="font-size:24px;color:#E0DEDC;font-weight:300;line-height:1">"</div><div class="ttl" style="font-size:10px;font-style:italic">The best interface<br>is a conversation.</div><div style="width:30px;height:1px;background:#E0DEDC;margin:6px auto"></div><div class="cd" style="font-size:5px;color:#999">— ElevenLabs</div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- NumberedSteps -->
+<div class="scene-row" data-mode="content">
+  <div class="scene-info">
+    <div class="scene-name">NumberedSteps</div>
+    <span class="scene-mode content">Content</span>
+    <div class="scene-desc-text">Vertical step sequence with connecting line. Process walkthrough. Unchanged.</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V1 = V2</div><div class="frame v1"><div class="lbl">SETUP</div><div class="ttl" style="font-size:11px;margin-bottom:6px">Getting Started</div><div class="div"></div><div class="rows"><div class="row"><div class="dot" style="background:#1E1916"></div><div class="rt">1. Create your agent</div></div><div class="row"><div class="dot" style="background:#1E1916"></div><div class="rt">2. Configure the LLM</div></div><div class="row"><div class="dot" style="background:#1E1916"></div><div class="rt">3. Add knowledge base</div></div><div class="row"><div class="dot" style="background:#1E1916"></div><div class="rt">4. Test & deploy</div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+
+<!-- ============ NEW SCENES FROM DECKS ============ -->
+<div class="section-title" style="border-top: 2px solid #f97316; padding-top: 24px;">New Scenes — From ElevenLabs Pitch Decks</div>
+<p class="section-desc">14 new layout patterns extracted from the Agents Master Pitch, Use Case Library, Product Marketing, and Presentation Template decks.</p>
+
+<!-- 1. AgendaScene -->
+<div class="scene-row" data-mode="new">
+  <div class="scene-info">
+    <div class="scene-name">AgendaScene</div>
+    <span class="scene-mode hero">Hero</span>
+    <span class="scene-tag">New</span>
+    <div class="scene-desc-text">Module table of contents. 2x4 numbered grid of section titles. "Here's what we'll cover."</div>
+    <div class="scene-source">Source: Template s5-6, Master s2</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg teal"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">MODULE 1</div><div class="ttl" style="font-size:11px;margin-bottom:6px">What You'll Learn</div><div class="div"></div><div class="agenda-grid"><div class="agenda-item"><div class="agenda-num">01</div><div class="agenda-text">Welcome to ElevenLabs</div></div><div class="agenda-item"><div class="agenda-num">02</div><div class="agenda-text">The Agents Platform</div></div><div class="agenda-item"><div class="agenda-num">03</div><div class="agenda-text">Build Your First Agent</div></div><div class="agenda-item"><div class="agenda-num">04</div><div class="agenda-text">Test, Refine & Share</div></div><div class="agenda-item"><div class="agenda-num">05</div><div class="agenda-text">Module Quiz</div></div><div class="agenda-item"><div class="agenda-num">06</div><div class="agenda-text">Practice Checkpoint</div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- 2. CredibilityWallScene -->
+<div class="scene-row" data-mode="new">
+  <div class="scene-info">
+    <div class="scene-name">CredibilityWall</div>
+    <span class="scene-mode hero">Hero</span>
+    <span class="scene-tag">New</span>
+    <div class="scene-desc-text">Stats mosaic + logo wall. Big numbers (40M+ users, $11B, 75% Fortune 500) with partner logos.</div>
+    <div class="scene-source">Source: Master s4, UCL s3</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg blue"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">BY THE NUMBERS</div><div class="ttl" style="font-size:11px;margin-bottom:6px">The Leader in AI Audio</div><div class="div"></div><div class="stat-mosaic"><div class="stat-block"><div class="stat-big">40M+</div><div class="stat-label">users globally</div></div><div class="stat-block"><div class="stat-big">$11B</div><div class="stat-label">valuation</div></div><div class="stat-block"><div class="stat-big">75%</div><div class="stat-label">Fortune 500</div></div></div><div class="logo-wall"><div class="logo-pill">a16z</div><div class="logo-pill">Sequoia</div><div class="logo-pill">Nat Friedman</div><div class="logo-pill">SV Angel</div><div class="logo-pill">Salesforce</div><div class="logo-pill">Deutsche Telekom</div><div class="logo-pill">HubSpot</div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- 3. ConversationTranscriptScene -->
+<div class="scene-row" data-mode="new">
+  <div class="scene-info">
+    <div class="scene-name">ConversationTranscript</div>
+    <span class="scene-mode hero">Hero</span>
+    <span class="scene-tag">New</span>
+    <div class="scene-desc-text">Chat bubble dialog with emotion tags. Shows real caller ↔ agent conversations. Perfect for demos.</div>
+    <div class="scene-source">Source: Master s12</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">AGENT IN ACTION</div><div class="ttl" style="font-size:10px;margin-bottom:6px">AI That Adapts to Emotion</div><div class="div"></div><div style="flex:1;display:flex;flex-direction:column;gap:3px;justify-content:center"><div class="bubble-row"><div class="bubble-avatar" style="background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.5)">C</div><div><div class="bubble bubble-caller">I need this package today. It's for an important meeting.</div><div class="emotion-tag frustrated">frustrated</div></div></div><div class="bubble-row right"><div class="bubble-avatar" style="background:rgba(245,243,241,0.88);color:#151515">A</div><div><div class="bubble bubble-agent">I completely understand the urgency. Let me check what I can do right now.</div><div class="emotion-tag empathetic" style="float:right">empathetic</div></div></div><div class="bubble-row"><div class="bubble-avatar" style="background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.5)">C</div><div><div class="bubble bubble-caller">OK, what are the options?</div><div class="emotion-tag calm">calm</div></div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- 4. VoiceQualitiesScene -->
+<div class="scene-row" data-mode="new">
+  <div class="scene-info">
+    <div class="scene-name">VoiceQualities</div>
+    <span class="scene-mode hero">Hero</span>
+    <span class="scene-tag">New</span>
+    <div class="scene-desc-text">Radial word cloud of voice attributes orbiting a center element. Pauses, Inflection, Cadence, Emotion...</div>
+    <div class="scene-source">Source: UCL s4</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg warm"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">VOICE AI</div><div class="ttl" style="font-size:10px;margin-bottom:4px">What Makes Voice Natural</div><div class="radial-wrap"><div class="radial-center" style="font-size:6px;color:rgba(255,255,255,0.6);font-weight:300">II</div><div class="radial-word" style="top:8px;left:20%">Pauses</div><div class="radial-word" style="top:8px;right:20%">Emotion</div><div class="radial-word" style="top:30%;left:5%">Inflection</div><div class="radial-word" style="top:30%;right:5%">Cadence</div><div class="radial-word" style="bottom:30%;left:8%">Pitch</div><div class="radial-word" style="bottom:30%;right:8%">Pacing</div><div class="radial-word" style="bottom:8px;left:15%">Tone</div><div class="radial-word" style="bottom:8px;right:15%">Accent</div><div class="radial-word" style="top:50%;left:2%;transform:translateY(-50%)">Dialect</div><div class="radial-word" style="top:50%;right:2%;transform:translateY(-50%)">Language</div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- 5. IntegrationMapScene -->
+<div class="scene-row" data-mode="new">
+  <div class="scene-info">
+    <div class="scene-name">IntegrationMap</div>
+    <span class="scene-mode hero">Hero</span>
+    <span class="scene-tag">New</span>
+    <div class="scene-desc-text">Integration logos organized by category columns (CRM, Telephony, Data, Payment, Automation).</div>
+    <div class="scene-source">Source: Master s21</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg blue"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">INTEGRATIONS</div><div class="ttl" style="font-size:10px;margin-bottom:6px">Connect to Everything</div><div class="div"></div><div class="int-cols"><div class="int-col"><div class="int-col-title">CRM</div><div class="int-logo">Salesforce</div><div class="int-logo">HubSpot</div><div class="int-logo">Zendesk</div><div class="int-logo">Intercom</div></div><div class="int-col"><div class="int-col-title">Telephony</div><div class="int-logo">Twilio</div><div class="int-logo">Genesys</div><div class="int-logo">Vonage</div><div class="int-logo">Telnyx</div></div><div class="int-col"><div class="int-col-title">Data</div><div class="int-logo">Calendly</div><div class="int-logo">Google</div><div class="int-logo">Snowflake</div><div class="int-logo">Airtable</div></div><div class="int-col"><div class="int-col-title">Payment</div><div class="int-logo">Stripe</div><div class="int-logo">Square</div><div class="int-logo">Plaid</div><div class="int-logo">Brex</div></div><div class="int-col"><div class="int-col-title">Auto</div><div class="int-logo">Zapier</div><div class="int-logo">Make</div><div class="int-logo">n8n</div><div class="int-logo">Slack</div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- 6. UseCaseCardScene -->
+<div class="scene-row" data-mode="new">
+  <div class="scene-info">
+    <div class="scene-name">UseCaseCard</div>
+    <span class="scene-mode hero">Hero</span>
+    <span class="scene-tag">New</span>
+    <div class="scene-desc-text">Standardized use case showcase: title, description, voice AI benefit, impact metrics.</div>
+    <div class="scene-source">Source: UCL s16+</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg teal"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">USE CASE</div><div class="ttl" style="font-size:10px;margin-bottom:6px">Customer Support Automation</div><div class="div"></div><div class="uc-sections"><div class="uc-section"><div class="uc-section-label">Description</div><div class="uc-section-text">Automate inbound questions about coverage, policy status, and claims. Voice agent handles 80% of inquiries without escalation.</div></div><div class="uc-section"><div class="uc-section-label">Voice AI Benefit</div><div class="uc-section-text">24/7 availability with human-like clarity. Connects to CRM for personalized responses. Natural language understanding.</div></div><div class="uc-section"><div class="uc-section-label">Impact</div><div class="uc-section-text">↓ 65% call handling time · ↑ 22% CSAT · ↓ 40% agent escalation rate</div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- 7. DeploymentRoadmapScene -->
+<div class="scene-row" data-mode="new">
+  <div class="scene-info">
+    <div class="scene-name">DeploymentRoadmap</div>
+    <span class="scene-mode hero">Hero</span>
+    <span class="scene-tag">New</span>
+    <div class="scene-desc-text">4 numbered vertical cards in a row. "Starting Point → First Unlock → Deploy → What Changes."</div>
+    <div class="scene-source">Source: Master s22, s25</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">THE JOURNEY</div><div class="ttl" style="font-size:10px;margin-bottom:6px">From Friction to Flow</div><div class="div"></div><div class="cards"><div class="card" style="text-align:center;justify-content:center;padding:6px"><div class="num" style="font-size:14px;position:static">01</div><div class="ct" style="font-size:5px">Prepare</div><div class="cd">Data and systems ready</div></div><div class="card" style="text-align:center;justify-content:center;padding:6px"><div class="num" style="font-size:14px;position:static">02</div><div class="ct" style="font-size:5px">Build</div><div class="cd">Voice + chat agents</div></div><div class="card" style="text-align:center;justify-content:center;padding:6px"><div class="num" style="font-size:14px;position:static">03</div><div class="ct" style="font-size:5px">Deploy</div><div class="cd">Across channels</div></div><div class="card" style="text-align:center;justify-content:center;padding:6px"><div class="num" style="font-size:14px;position:static">04</div><div class="ct" style="font-size:5px">Optimize</div><div class="cd">Measure & improve</div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- 8. ComplianceBadgeScene -->
+<div class="scene-row" data-mode="new">
+  <div class="scene-info">
+    <div class="scene-name">ComplianceBadges</div>
+    <span class="scene-mode hero">Hero</span>
+    <span class="scene-tag">New</span>
+    <div class="scene-desc-text">Security certification badge grid. SOC2, ISO 27001, GDPR, PCI DSS, HIPAA. For Module 8.</div>
+    <div class="scene-source">Source: Master s19/34, UCL s10</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg blue"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">COMPLIANCE</div><div class="ttl" style="font-size:10px;margin-bottom:6px">Deploy With Confidence</div><div class="div"></div><div class="badge-grid"><div class="badge-item"><div class="badge-icon">🛡</div><div class="badge-name">SOC 2 Type II</div><div class="badge-sub">Zero exceptions</div></div><div class="badge-item"><div class="badge-icon">🔒</div><div class="badge-name">ISO 27001</div><div class="badge-sub">2022 certified</div></div><div class="badge-item"><div class="badge-icon">🌐</div><div class="badge-name">GDPR</div><div class="badge-sub">EU compliant</div></div><div class="badge-item"><div class="badge-icon">💳</div><div class="badge-name">PCI DSS L1</div><div class="badge-sub">Externally validated</div></div><div class="badge-item"><div class="badge-icon">🏥</div><div class="badge-name">HIPAA</div><div class="badge-sub">BAA available</div></div><div class="badge-item"><div class="badge-icon">☁️</div><div class="badge-name">ISO 27018</div><div class="badge-sub">Cloud privacy</div></div><div class="badge-item"><div class="badge-icon">⭐</div><div class="badge-name">CSA STAR</div><div class="badge-sub">Level 1</div></div><div class="badge-item"><div class="badge-icon">🔐</div><div class="badge-name">Insurance</div><div class="badge-sub">AI agent coverage</div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- 9. EnterpriseFunctionGridScene -->
+<div class="scene-row" data-mode="new">
+  <div class="scene-info">
+    <div class="scene-name">EnterpriseFunctionGrid</div>
+    <span class="scene-mode hero">Hero</span>
+    <span class="scene-tag">New</span>
+    <div class="scene-desc-text">5-column business function breakdown. Support, Sales, Ops, Marketing, Talent with use cases per column.</div>
+    <div class="scene-source">Source: Master s18, s36-40</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg purple"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">THE AGENTIC ENTERPRISE</div><div class="ttl" style="font-size:10px;margin-bottom:6px">Scales Across Every Function</div><div class="div"></div><div class="ent-cols"><div class="ent-col"><div class="ent-col-title">Support</div><div class="ent-col-sub">Resolve & Triage</div><div class="ent-item">Inbound Call Handling</div><div class="ent-item">FAQ & Knowledge</div><div class="ent-item">After-Hours</div><div class="ent-item">Order Tracking</div></div><div class="ent-col"><div class="ent-col-title">Sales</div><div class="ent-col-sub">Qualify & Close</div><div class="ent-item">Lead Qualification</div><div class="ent-item">AI SDR & BDR</div><div class="ent-item">Quoting</div><div class="ent-item">Follow-ups</div></div><div class="ent-col"><div class="ent-col-title">Operations</div><div class="ent-col-sub">Schedule & Route</div><div class="ent-item">Data Collection</div><div class="ent-item">Appointments</div><div class="ent-item">Claims</div><div class="ent-item">Dispatch</div></div><div class="ent-col"><div class="ent-col-title">Marketing</div><div class="ent-col-sub">Engage & Convert</div><div class="ent-item">Product Concierge</div><div class="ent-item">Outreach</div><div class="ent-item">Upsell Agents</div><div class="ent-item">Surveys</div></div><div class="ent-col"><div class="ent-col-title">Talent</div><div class="ent-col-sub">Screen & Train</div><div class="ent-item">Role-Play</div><div class="ent-item">Onboarding</div><div class="ent-item">Screening</div><div class="ent-item">Coaching</div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- 10. EndToEndPipelineScene -->
+<div class="scene-row" data-mode="new">
+  <div class="scene-info">
+    <div class="scene-name">EndToEndPipeline</div>
+    <span class="scene-mode hero">Hero</span>
+    <span class="scene-tag">New</span>
+    <div class="scene-desc-text">Horizontal processing pipeline: STT/ASR → VAD → RAG & LLM → TTS. With branching capabilities below.</div>
+    <div class="scene-source">Source: Master s33</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">END-TO-END PLATFORM</div><div class="ttl" style="font-size:10px;margin-bottom:6px">Full Orchestration Pipeline</div><div class="div"></div><div class="pipeline"><div class="pipe-node"><div class="ct">STT / ASR</div><div class="cd">70+ languages</div></div><div class="pipe-arrow">→</div><div class="pipe-node"><div class="ct">VAD</div><div class="cd">Turn-taking</div></div><div class="pipe-arrow">→</div><div class="pipe-node"><div class="ct">RAG + LLM</div><div class="cd">Knowledge + reasoning</div></div><div class="pipe-arrow">→</div><div class="pipe-node"><div class="ct">TTS</div><div class="cd">Voice synthesis</div></div></div><div style="display:flex;gap:6px;justify-content:center;margin-top:6px;position:relative;z-index:1"><div class="pipe-tag">Function Calling</div><div class="pipe-tag">Language Detection</div><div class="pipe-tag">Agent Transfer</div><div class="pipe-tag">Warm Handoff</div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- 11. ComparisonTableScene -->
+<div class="scene-row" data-mode="new">
+  <div class="scene-info">
+    <div class="scene-name">ComparisonTable</div>
+    <span class="scene-mode either">Either</span>
+    <span class="scene-tag">New</span>
+    <div class="scene-desc-text">Multi-column feature comparison table. Row labels + competitor/option columns with check/x marks.</div>
+    <div class="scene-source">Source: Template s25</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg teal"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">COMPARISON</div><div class="ttl" style="font-size:10px;margin-bottom:6px">Platform Capabilities</div><div class="div"></div><div class="comp-table"><div></div><div class="comp-header">ElevenLabs</div><div class="comp-header">Alt A</div><div class="comp-header">Alt B</div><div class="comp-row-label">Voice quality</div><div class="comp-cell"><span class="comp-check">✓</span></div><div class="comp-cell"><span class="comp-check">✓</span></div><div class="comp-cell"><span class="comp-x">✗</span></div><div class="comp-row-label">Real-time latency</div><div class="comp-cell"><span class="comp-check">✓</span></div><div class="comp-cell"><span class="comp-x">✗</span></div><div class="comp-cell"><span class="comp-x">✗</span></div><div class="comp-row-label">Omnichannel</div><div class="comp-cell"><span class="comp-check">✓</span></div><div class="comp-cell"><span class="comp-check">✓</span></div><div class="comp-cell"><span class="comp-check">✓</span></div><div class="comp-row-label">Voice cloning</div><div class="comp-cell"><span class="comp-check">✓</span></div><div class="comp-cell"><span class="comp-x">✗</span></div><div class="comp-cell"><span class="comp-x">✗</span></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- 12. SixPillarScene -->
+<div class="scene-row" data-mode="new">
+  <div class="scene-info">
+    <div class="scene-name">SixPillarScene</div>
+    <span class="scene-mode hero">Hero</span>
+    <span class="scene-tag">New</span>
+    <div class="scene-desc-text">2x3 grid of image+title cards. Extends beyond ThreePillars for topics with more items.</div>
+    <div class="scene-source">Source: Template s14</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg coral"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">CAPABILITIES</div><div class="div" style="margin-bottom:4px"></div><div class="six-grid"><div class="six-item"><div class="six-img">🎙</div><div class="six-text">Text to Speech</div></div><div class="six-item"><div class="six-img">🔊</div><div class="six-text">Speech to Text</div></div><div class="six-item"><div class="six-img">🤖</div><div class="six-text">Conversational AI</div></div><div class="six-item"><div class="six-img">🎭</div><div class="six-text">Voice Cloning</div></div><div class="six-item"><div class="six-img">🌐</div><div class="six-text">Dubbing</div></div><div class="six-item"><div class="six-img">📖</div><div class="six-text">Audio Native</div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- 13. TwoScreenshotScene -->
+<div class="scene-row" data-mode="new">
+  <div class="scene-info">
+    <div class="scene-name">TwoScreenshot</div>
+    <span class="scene-mode either">Either</span>
+    <span class="scene-tag">New</span>
+    <div class="scene-desc-text">Large title + two side-by-side screenshots. For showing UI states, before/after, or comparison views.</div>
+    <div class="scene-source">Source: Template s19</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg blue"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">PLATFORM</div><div class="ttl" style="font-size:10px;margin-bottom:6px">Agent Dashboard</div><div class="two-ss"><div class="ss-frame">Screenshot A<br><span style="font-size:3.5px">Configuration panel</span></div><div class="ss-frame">Screenshot B<br><span style="font-size:3.5px">Conversation testing</span></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+<!-- 14. VSComparisonScene -->
+<div class="scene-row" data-mode="new">
+  <div class="scene-info">
+    <div class="scene-name">VSComparison</div>
+    <span class="scene-mode hero">Hero</span>
+    <span class="scene-tag">New</span>
+    <div class="scene-desc-text">Head-to-head split with "vs" badge in center divider. Left vs Right with bullet points each side.</div>
+    <div class="scene-source">Source: Master s8, s15</div>
+  </div>
+  <div class="frames">
+    <div class="frame-wrap"><div class="frame-label">V2</div><div class="frame v2"><div class="bg warm"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl" style="text-align:center;width:100%">THE SHIFT</div><div class="ttl" style="font-size:10px;text-align:center">From Deflection to Resolution</div><div class="vs-layout"><div class="vs-side"><div class="vs-title" style="color:rgba(255,255,255,0.5)">Friction Era</div><div class="vs-point bad">Customer does the work</div><div class="vs-point bad">Menus, typing, waiting</div><div class="vs-point bad">Goal: deflection</div></div><div class="vs-divider"><div class="vs-badge">vs</div></div><div class="vs-side"><div class="vs-title">Flow Era</div><div class="vs-point good">Customer just speaks</div><div class="vs-point good">Intent → action instantly</div><div class="vs-point good">Goal: resolution</div></div></div><div class="wm">II</div></div></div>
+  </div>
+</div>
+
+
+<script>
+function filter(mode) {
+  document.querySelectorAll('.mode-filter button').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.scene-row').forEach(row => {
+    if (mode === 'all' || row.dataset.mode === mode) {
+      row.classList.remove('hidden');
+    } else {
+      row.classList.add('hidden');
+    }
+  });
+  // Show/hide section headers based on visible scenes
+  document.querySelectorAll('.section-title, .section-desc').forEach(el => {
+    el.style.display = '';
+  });
+}
+</script>
+
+</body>
+</html>
