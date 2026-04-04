@@ -1,0 +1,14 @@
+{
+  "name": "elevenlabs-academy",
+  "description": "ElevenLabs Academy video production toolkit — Remotion spec drafting, code building, lesson authoring, brand enforcement, and project context for the ElevenAgent Builder Certification.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Jake Rains",
+    "url": "https://github.com/jakerains"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jakerains/elevenlabs-academy-plugin"
+  },
+  "license": "MIT"
+}
