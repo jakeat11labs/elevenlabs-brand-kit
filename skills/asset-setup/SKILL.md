@@ -3,18 +3,33 @@ name: asset-setup
 description: "Download ElevenLabs brand assets (backgrounds, icons, fonts, voice orbs, logos) and bootstrap a project. Use when someone says 'setup assets', 'download brand assets', 'get the assets', 'bootstrap', 'install assets', 'new project setup', 'asset setup', or when brand assets are missing. Also handles updating assets to a newer version."
 ---
 
-# ElevenLabs Academy — Asset Setup
+# ElevenLabs Remotion Kit — Asset Setup
 
 This skill downloads the official ElevenLabs brand asset pack and sets up a project to use them. It supports two storage modes: **project-local** (assets live inside the project) or **central** (single shared copy across all projects).
 
 ## Overview
 
 Brand assets are distributed as a versioned zip from GitHub Releases. The zip contains:
-- `brand-assets/` — backgrounds, icons, voice orbs, logos, diagrams, screenshots, images, color tokens, brand guidelines, and visual catalogs
-- `fonts/` — KMR Waldenburg in 4 weights (Buch, Normal, Halbfett, Fett)
+- `brand-assets/` — backgrounds, icons, voice orbs, logos, diagrams, screenshots, images, color tokens, brand guidelines, visual catalogs, and fonts
+
+**Note on fonts:** KMR Waldenburg OTFs are bundled inside `brand-assets/fonts/`. During installation they are copied to both `public/brand-assets/fonts/` (for the catalog) and `public/fonts/` (for Remotion font loading). Both locations are populated automatically.
 
 **Current version:** `v2.1.0`
 **Download URL:** `https://github.com/jakerains/elevenlabs-remotion-kit/releases/download/v2.1.0/brand-assets-v2.1.zip`
+
+---
+
+## Step 0: Identify Project Type
+
+**Ask this first — before doing anything else:**
+
+> **What kind of project are you setting up?**
+>
+> 1. **Remotion video project** — I'll install brand assets and bootstrap Remotion dependencies
+> 2. **HTML / web project** — I'll install brand assets only, no npm packages
+> 3. **Other / not sure** — I'll install brand assets and you can tell me what else you need
+
+Wait for the response and store it as `PROJECT_TYPE` (remotion / html / other). This determines whether the Remotion bootstrap step runs at the end.
 
 ---
 
@@ -104,15 +119,17 @@ echo "Downloaded $(du -h "$TEMP_ZIP" | cut -f1) — version $LATEST_VERSION"
 mkdir -p public/brand-assets public/fonts
 unzip -o "$TEMP_ZIP" -d /tmp/elevenlabs-assets-extract
 
-# Copy assets into project
+# Copy all brand assets (fonts are inside brand-assets/fonts/)
 cp -r /tmp/elevenlabs-assets-extract/brand-assets/* public/brand-assets/
-cp -r /tmp/elevenlabs-assets-extract/fonts/* public/fonts/
+
+# Also copy fonts to public/fonts/ — required for Remotion's staticFile() font loading
+cp -r /tmp/elevenlabs-assets-extract/brand-assets/fonts/* public/fonts/
 
 # Clean up
 rm -rf /tmp/elevenlabs-assets-extract "$TEMP_ZIP"
 
 echo "Brand assets installed to public/brand-assets/"
-echo "Fonts installed to public/fonts/"
+echo "Fonts installed to public/fonts/ (also at public/brand-assets/fonts/)"
 ```
 
 Save config:
@@ -151,12 +168,14 @@ mkdir -p public
 # Remove existing directories/symlinks if present
 rm -rf public/brand-assets public/fonts
 
-# Create symlinks to central store
+# Symlink brand-assets to central store
 ln -s "$HOME/.elevenlabs-kit/brand-assets" public/brand-assets
-ln -s "$HOME/.elevenlabs-kit/fonts" public/fonts
+
+# Fonts are inside brand-assets/fonts/ — symlink that subdirectory to public/fonts/
+ln -s "$HOME/.elevenlabs-kit/brand-assets/fonts" public/fonts
 
 echo "Symlinked public/brand-assets → $CENTRAL_DIR/brand-assets/"
-echo "Symlinked public/fonts → $CENTRAL_DIR/fonts/"
+echo "Symlinked public/fonts → $CENTRAL_DIR/brand-assets/fonts/"
 ```
 
 Save config:
@@ -183,11 +202,11 @@ CONFIG_FILE="$HOME/.elevenlabs-kit/config.json"
 # Verify central assets exist
 CENTRAL_DIR=$(python3 -c "import json; print(json.load(open('$CONFIG_FILE'))['centralPath'])" 2>/dev/null)
 
-if [ -d "$CENTRAL_DIR/brand-assets" ] && [ -d "$CENTRAL_DIR/fonts" ]; then
+if [ -d "$CENTRAL_DIR/brand-assets" ]; then
   mkdir -p public
   rm -rf public/brand-assets public/fonts
   ln -s "$CENTRAL_DIR/brand-assets" public/brand-assets
-  ln -s "$CENTRAL_DIR/fonts" public/fonts
+  ln -s "$CENTRAL_DIR/brand-assets/fonts" public/fonts
   echo "Linked to central assets at $CENTRAL_DIR"
 else
   echo "Central assets not found — run full setup first"
@@ -231,14 +250,7 @@ After verification, tell the user:
 
 ### Update assets to a new version
 
-```bash
-CONFIG_FILE="$HOME/.elevenlabs-kit/config.json"
-CURRENT_VERSION=$(python3 -c "import json; print(json.load(open('$CONFIG_FILE'))['assetVersion'])" 2>/dev/null || echo "unknown")
-echo "Current version: $CURRENT_VERSION"
-echo "Available version: 2.1.0"
-```
-
-If versions differ, re-run Step 3 using the stored `assetLocation` preference. Central storage only needs one update — all linked projects get it automatically.
+Run Step 1 — it checks GitHub for the latest version and compares against the installed version automatically. If an update is available, it will prompt before downloading. Central storage only needs one update — all linked projects get it automatically.
 
 ### Re-link a project (central mode)
 
@@ -252,15 +264,24 @@ Delete existing assets/symlinks and re-run from Step 2 with the new choice. The 
 
 ## Remotion Project Bootstrap
 
-If this is a brand new Remotion project (not just adding assets to an existing project), also install dependencies:
+**Only run this section if `PROJECT_TYPE` is `remotion` (set in Step 0).**
+
+First check whether Remotion is already installed:
 
 ```bash
-npm install remotion @remotion/cli @remotion/transitions @remotion/fonts @remotion/light-leaks zod
+if [ -f "package.json" ] && grep -q '"remotion"' package.json; then
+  echo "Remotion already installed — skipping npm install"
+else
+  echo "Installing Remotion dependencies..."
+  npm install remotion @remotion/cli @remotion/transitions @remotion/fonts @remotion/light-leaks zod
+fi
 ```
 
-Then verify TypeScript:
+Then verify TypeScript (only if tsconfig.json exists):
 ```bash
-npx tsc --noEmit
+if [ -f "tsconfig.json" ]; then
+  npx tsc --noEmit
+fi
 ```
 
 ---
@@ -306,10 +327,19 @@ This file is read by all ElevenLabs Remotion Kit skills to locate brand assets. 
 
 ## After Setup
 
-**Open the catalog:** `public/brand-assets/index.html` in any browser. It shows every background, icon set, voice orb, scene component, layout, and color token — all with one-click copy buttons that output structured markdown ready to paste into an agent prompt. Use this instead of hunting through file directories.
+**First: open the catalog.** `public/brand-assets/index.html` in any browser. Every background, icon, voice orb, scene component, layout, and color token — all with one-click copy buttons that output ready-to-paste agent prompts. Use this to find the right assets before building anything.
 
-Use the other plugin skills:
-- `/elevenlabs-remotion-kit:remotion-spec-builder` — Draft a video spec
-- `/elevenlabs-remotion-kit:remotion-builder` — Build the composition from a spec
-- `/elevenlabs-remotion-kit:elevenlabs-brand` — Enforce brand guidelines
-- `/elevenlabs-remotion-kit:remotion-best-practices` — Remotion API reference
+**Then, based on your project type:**
+
+**If Remotion (`PROJECT_TYPE=remotion`):**
+> You're ready to build. The typical flow:
+> 1. `/elevenlabs-remotion-kit:remotion-spec-builder` — plan your scenes (layout, mode, content, duration)
+> 2. `/elevenlabs-remotion-kit:remotion-builder` — generate the React/TypeScript code from the spec
+> 3. `/elevenlabs-remotion-kit:remotion-best-practices` — load if you need Remotion API reference while building
+
+**If HTML/web (`PROJECT_TYPE=html`):**
+> Reference `public/brand-assets/` for images and `public/fonts/` for KMR Waldenburg.
+> Use `/elevenlabs-remotion-kit:elevenlabs-brand` to check brand compliance on anything you build.
+
+**If other (`PROJECT_TYPE=other`):**
+> Ask what they're building — then suggest the relevant skills from above.
