@@ -3,174 +3,312 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ElevenLabs Brand Assets - Remotion</title>
+  <title>ElevenLabs Academy — Asset &amp; Component Catalog</title>
   <style>
+    @font-face {
+      font-family: 'KMR Waldenburg';
+      src: url('./fonts/KMR-Waldenburg-Buch.otf') format('opentype');
+      font-weight: 300;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'KMR Waldenburg';
+      src: url('./fonts/KMR-Waldenburg-Normal.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'KMR Waldenburg';
+      src: url('./fonts/KMR-Waldenburg-Halbfett.otf') format('opentype');
+      font-weight: 600;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'KMR Waldenburg';
+      src: url('./fonts/KMR-Waldenburg-Fett.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+      font-family: 'KMR Waldenburg', -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', sans-serif;
       background: #111;
       color: #F5F3F1;
-      padding: 40px;
       min-height: 100vh;
+      display: flex;
     }
 
     a { color: #F5F3F1; text-decoration: none; }
 
-    .header {
-      margin-bottom: 48px;
+    /* ── Sidebar ── */
+    .sidebar {
+      width: 240px;
+      min-width: 240px;
+      background: #0a0a0a;
+      border-right: 1px solid #222;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
     }
 
-    .logo {
-      font-size: 12px;
+    .sidebar-logo {
+      padding: 24px 20px 8px;
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 2px;
       color: #555;
-      margin-bottom: 16px;
     }
 
-    h1 {
-      font-size: 36px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      letter-spacing: -0.5px;
-    }
-
-    .subtitle {
-      color: #666;
+    .sidebar-title {
+      padding: 0 20px 20px;
       font-size: 15px;
-      line-height: 1.5;
-      max-width: 600px;
+      font-weight: 600;
+      color: #F5F3F1;
+      letter-spacing: -0.3px;
+      border-bottom: 1px solid #1a1a1a;
     }
 
+    .sidebar-nav {
+      padding: 12px 0;
+      flex: 1;
+    }
+
+    .sidebar-nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 400;
+      color: #777;
+      transition: all 0.15s;
+      border-left: 3px solid transparent;
+    }
+
+    .sidebar-nav a:hover {
+      color: #F5F3F1;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .sidebar-nav a.active {
+      color: #F5F3F1;
+      background: rgba(255,255,255,0.05);
+      border-left-color: #F5F3F1;
+    }
+
+    .sidebar-nav .nav-count {
+      margin-left: auto;
+      font-size: 11px;
+      color: #444;
+      font-weight: 600;
+    }
+
+    .sidebar-footer {
+      padding: 16px 20px;
+      border-top: 1px solid #1a1a1a;
+      font-size: 11px;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    /* ── Main Content ── */
+    .main {
+      margin-left: 240px;
+      flex: 1;
+      padding: 32px 40px;
+      min-height: 100vh;
+    }
+
+    /* ── Global Search ── */
+    .global-search {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(17,17,17,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      margin: -32px -40px 32px;
+      padding: 16px 40px;
+      border-bottom: 1px solid #222;
+    }
+
+    .search-input {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      color: #F5F3F1;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      width: 100%;
+      max-width: 480px;
+      outline: none;
+      transition: border-color 0.15s;
+      font-family: inherit;
+    }
+
+    .search-input:focus {
+      border-color: #555;
+    }
+
+    .search-input::placeholder {
+      color: #555;
+    }
+
+    /* ── Sections ── */
+    .section {
+      margin-bottom: 56px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 8px;
+      padding-top: 20px;
+      border-top: 1px solid #222;
+    }
+
+    .section-header h2 {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+
+    .section-count {
+      font-size: 13px;
+      color: #555;
+      font-weight: 400;
+    }
+
+    .section-desc {
+      color: #555;
+      font-size: 13px;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    /* ── Sub-filters ── */
+    .sub-filters {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .sub-filter-btn {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      color: #999;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+
+    .sub-filter-btn:hover {
+      border-color: #555;
+      color: #F5F3F1;
+    }
+
+    .sub-filter-btn.active {
+      background: #F5F3F1;
+      color: #111;
+      border-color: #F5F3F1;
+    }
+
+    /* ── Grid ── */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 20px;
-      margin-bottom: 48px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
     }
 
-    .asset-card {
+    .grid.compact {
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+
+    .grid.icons-grid {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 10px;
+    }
+
+    .grid.colors-grid {
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 12px;
+    }
+
+    /* ── Cards ── */
+    .card {
       border: 1px solid #222;
       border-radius: 12px;
-      overflow: hidden;
       background: #1a1a1a;
+      padding: 20px;
       transition: all 0.2s;
-      display: block;
+      position: relative;
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
-    .asset-card:hover {
-      border-color: #444;
+
+    .card:hover {
+      border-color: #3a3a3a;
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(0,0,0,0.3);
     }
 
-    .asset-card .preview {
-      height: 180px;
+    .card-top {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      padding: 24px;
-      border-bottom: 1px solid #222;
-      overflow: hidden;
-    }
-
-    .asset-card .preview.icons-preview {
-      background: #F5F3F1;
-      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
       gap: 8px;
     }
-    .asset-card .preview.icons-preview img {
-      width: 40px;
-      height: 40px;
-      object-fit: contain;
-    }
 
-    .asset-card .preview.bg-preview {
-      padding: 0;
-    }
-    .asset-card .preview.bg-preview img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .asset-card .preview.orb-preview {
-      background: #000;
-      gap: 6px;
-    }
-    .asset-card .preview.orb-preview img {
-      height: 80px;
-      object-fit: contain;
-    }
-
-    .asset-card .preview.diagram-preview {
-      padding: 0;
-    }
-    .asset-card .preview.diagram-preview img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .asset-card .preview.ui-preview {
-      padding: 0;
-    }
-    .asset-card .preview.ui-preview img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .asset-card .preview.tokens-preview {
-      background: #1E1916;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .token-row {
-      display: flex;
-      gap: 6px;
-    }
-    .token-swatch {
-      width: 32px;
-      height: 32px;
-      border-radius: 6px;
-      border: 1px solid #333;
-    }
-
-    .asset-card .info {
-      padding: 20px;
-    }
-
-    .asset-card .info h2 {
-      font-size: 18px;
+    .card-name {
+      font-size: 16px;
       font-weight: 600;
-      margin-bottom: 6px;
+      color: #F5F3F1;
+      line-height: 1.3;
+      word-break: break-word;
     }
 
-    .asset-card .info .desc {
+    .card-desc {
       font-size: 13px;
       color: #666;
-      margin-bottom: 12px;
       line-height: 1.4;
     }
 
-    .asset-card .info .stats {
+    .card-meta {
       display: flex;
-      gap: 16px;
+      align-items: center;
+      gap: 8px;
       flex-wrap: wrap;
+      margin-top: auto;
+      padding-top: 4px;
     }
 
-    .stat {
-      font-size: 12px;
+    .card-meta .stat {
+      font-size: 11px;
       color: #555;
     }
-    .stat strong {
-      color: #F5F3F1;
+
+    .card-meta .stat strong {
+      color: #999;
       font-weight: 600;
     }
 
-    .status-badge {
+    /* ── Badges ── */
+    .badge {
       display: inline-block;
       padding: 2px 8px;
       border-radius: 10px;
@@ -178,263 +316,1346 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      flex-shrink: 0;
     }
-    .status-badge.ready {
-      background: #0a2a0a;
+
+    .badge.v1 {
+      background: rgba(34,197,94,0.15);
       color: #4ade80;
-      border: 1px solid #1a3a1a;
+      border: 1px solid rgba(34,197,94,0.25);
     }
 
-    .colors-section {
-      margin-bottom: 48px;
+    .badge.v2 {
+      background: rgba(59,130,246,0.15);
+      color: #60a5fa;
+      border: 1px solid rgba(59,130,246,0.25);
     }
 
-    .colors-section h2 {
-      font-size: 20px;
+    .badge.layout {
+      background: rgba(168,85,247,0.15);
+      color: #c084fc;
+      border: 1px solid rgba(168,85,247,0.25);
+    }
+
+    .badge.overlay {
+      background: rgba(249,115,22,0.15);
+      color: #fb923c;
+      border: 1px solid rgba(249,115,22,0.25);
+    }
+
+    .badge.shared {
+      background: rgba(234,179,8,0.15);
+      color: #facc15;
+      border: 1px solid rgba(234,179,8,0.25);
+    }
+
+    .badge.asset {
+      background: rgba(236,72,153,0.15);
+      color: #f472b6;
+      border: 1px solid rgba(236,72,153,0.25);
+    }
+
+    .badge.experimental {
+      background: rgba(255,255,255,0.06);
+      color: #888;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .badge.archived {
+      background: rgba(255,255,255,0.04);
+      color: #555;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* ── Copy Button ── */
+    .copy-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #2a2a2a;
+      border: 1px solid #333;
+      color: #999;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.15s;
+      z-index: 2;
+    }
+
+    .card:hover .copy-btn {
+      opacity: 1;
+    }
+
+    .copy-btn:hover {
+      background: #333;
+      color: #F5F3F1;
+      border-color: #555;
+    }
+
+    .copy-btn.copied {
+      background: rgba(34,197,94,0.2);
+      color: #4ade80;
+      border-color: rgba(34,197,94,0.4);
+    }
+
+    /* ── Card Variant Dropdown ── */
+    .variant-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .variant-select {
+      background: #2a2a2a;
+      border: 1px solid #333;
+      color: #F5F3F1;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-family: inherit;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .variant-select:focus {
+      border-color: #555;
+    }
+
+    .variant-label {
+      font-size: 11px;
+      color: #555;
       font-weight: 600;
-      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
-    .color-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 12px;
-    }
-
-    .color-card {
-      border: 1px solid #222;
-      border-radius: 8px;
+    .variant-preview {
+      width: 100px;
+      height: 48px;
+      border-radius: 6px;
       overflow: hidden;
-      background: #1a1a1a;
+      position: relative;
+      margin-top: 4px;
+    }
+
+    .variant-preview-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #0a2e1f 0%, #0d4a3a 20%, #1a6b5a 35%, #0e5a6e 50%, #1a4f7a 65%, #0d3b5e 80%, #0a2a40 100%);
+    }
+
+    .variant-preview-card {
+      position: absolute;
+      inset: 8px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      font-weight: 500;
+    }
+
+    .variant-text-mode {
+      font-size: 10px;
+      color: #555;
+      margin-top: 2px;
+    }
+
+    /* ── Asset Preview ── */
+    .asset-preview {
+      width: 100%;
+      aspect-ratio: 16/9;
+      max-height: 140px;
+      overflow: hidden;
+      border-radius: 6px;
+      border: 1px solid #222;
+      margin-bottom: 12px;
+      background: #0a0a0a;
+    }
+
+    .asset-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .asset-preview.orb-preview {
+      background: #000;
+    }
+
+    .asset-preview.orb-preview img {
+      mix-blend-mode: screen;
+    }
+
+    .icon-preview {
+      width: 100%;
+      aspect-ratio: 1;
+      max-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0a0a0a;
+      border-radius: 6px;
+      border: 1px solid #222;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+
+    .icon-preview img {
+      max-width: 60%;
+      max-height: 60%;
+      object-fit: contain;
+    }
+
+    .icon-card {
+      padding: 12px;
+    }
+
+    .icon-card .card-name {
+      font-size: 11px;
+      word-break: break-all;
     }
 
     .color-swatch {
-      height: 64px;
-      border-bottom: 1px solid #222;
+      width: 100%;
+      height: 60px;
+      border-radius: 6px;
+      border: 1px solid #222;
+      margin-bottom: 8px;
     }
 
-    .color-info {
-      padding: 10px;
-      font-size: 12px;
+    .font-info-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
-    .color-info .name {
-      font-weight: 600;
+
+    .font-weight-sample {
+      font-size: 28px;
+      color: #F5F3F1;
+      line-height: 1;
+      min-width: 32px;
+    }
+
+    /* ── Toast ── */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      color: #F5F3F1;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: all 0.25s ease;
+      pointer-events: none;
+      max-width: 400px;
+    }
+
+    .toast.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .toast .toast-label {
+      color: #666;
+      font-size: 11px;
       margin-bottom: 2px;
     }
-    .color-info .hex {
-      color: #666;
-      font-family: 'SF Mono', 'Fira Code', monospace;
+
+    .toast code {
+      color: #4ade80;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 12px;
     }
 
-    .footer {
-      margin-top: 48px;
-      padding-top: 24px;
-      border-top: 1px solid #222;
-      font-size: 12px;
-      color: #444;
+    /* ── Preview Wrapper ── */
+    .preview-wrap {
+      aspect-ratio: 16/9;
+      width: 100%;
+      max-height: 140px;
+      overflow: hidden;
+      border-radius: 6px;
+      border: 1px solid #222;
+      margin-bottom: 12px;
+    }
+
+    /* ===== CSS-ART PREVIEW STYLES ===== */
+    .preview-wrap .sc-v1 { background: #FAFAFA; padding: 12px 16px; display: flex; flex-direction: column; width: 100%; height: 100%; position: relative; }
+    .preview-wrap .sc-v1.dark { background: #1E1916; }
+    .preview-wrap .sc-v1 .lbl { font-size: 4px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 2px; }
+    .preview-wrap .sc-v1 .ttl { font-size: 10px; font-weight: 300; color: #1E1916; letter-spacing: -0.02em; margin-bottom: 3px; }
+    .preview-wrap .sc-v1.dark .ttl { color: #FAFAFA; }
+    .preview-wrap .sc-v1 .div { width: 100%; height: 1px; background: #E0DEDC; margin-bottom: 5px; }
+    .preview-wrap .sc-v1.dark .div { background: rgba(255,255,255,0.1); }
+    .preview-wrap .sc-v1 .cards { display: flex; gap: 4px; flex: 1; }
+    .preview-wrap .sc-v1 .crd { flex: 1; background: #F5F3F1; border: 1px solid #E0DEDC; border-radius: 3px; padding: 5px; position: relative; display: flex; flex-direction: column; justify-content: flex-end; }
+    .preview-wrap .sc-v1.dark .crd { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.12); }
+    .preview-wrap .sc-v1 .crd .num { position: absolute; top: 2px; right: 4px; font-size: 16px; font-weight: 300; color: #E0DEDC; line-height: 1; }
+    .preview-wrap .sc-v1.dark .crd .num { color: rgba(255,255,255,0.08); }
+    .preview-wrap .sc-v1 .crd .ct { font-size: 5px; font-weight: 400; color: #1E1916; margin-bottom: 1px; }
+    .preview-wrap .sc-v1.dark .crd .ct { color: #fff; }
+    .preview-wrap .sc-v1 .crd .cd { font-size: 3.5px; color: #555; line-height: 1.3; }
+    .preview-wrap .sc-v1.dark .crd .cd { color: #999; }
+    .preview-wrap .sc-v1 .wm { position: absolute; bottom: 4px; right: 6px; font-size: 5px; font-weight: 700; color: #1E1916; opacity: 0.15; letter-spacing: 1px; }
+    .preview-wrap .sc-v1.dark .wm { color: #fff; opacity: 0.15; }
+    .preview-wrap .sc-v1 .split { display: flex; flex: 1; gap: 0; }
+    .preview-wrap .sc-v1 .split-left { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-right: 8px; }
+    .preview-wrap .sc-v1 .split-right { width: 42%; background: #F5F3F1; border-radius: 0; position: relative; overflow: hidden; }
+    .preview-wrap .sc-v1 .split-right .cover { position: absolute; inset: 0; background: linear-gradient(135deg, #ddd, #bbb); opacity: 0.15; filter: grayscale(100%); }
+    .preview-wrap .sc-v1 .centered { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+    .preview-wrap .sc-v1 .rows { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+    .preview-wrap .sc-v1 .row { display: flex; align-items: center; gap: 6px; background: #F5F3F1; border: 1px solid #E0DEDC; border-radius: 3px; padding: 4px 6px; }
+    .preview-wrap .sc-v1.dark .row { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.12); }
+    .preview-wrap .sc-v1 .row .dot { width: 4px; height: 4px; border-radius: 50%; border: 1px solid #1E1916; flex-shrink: 0; }
+    .preview-wrap .sc-v1.dark .row .dot { border-color: rgba(255,255,255,0.3); }
+    .preview-wrap .sc-v1 .row .rt { font-size: 4px; font-weight: 400; color: #1E1916; }
+    .preview-wrap .sc-v1.dark .row .rt { color: #fff; }
+    .preview-wrap .sc-v1 .hero-num { font-size: 28px; font-weight: 300; color: #1E1916; letter-spacing: -0.03em; }
+    .preview-wrap .sc-v1.dark .hero-num { color: #fff; }
+    .preview-wrap .sc-v1 .hero-sub { font-size: 4px; color: #999; margin-top: 3px; }
+    .preview-wrap .sc-v1 .bars { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+    .preview-wrap .sc-v1 .bar-row { display: flex; align-items: center; gap: 4px; }
+    .preview-wrap .sc-v1 .bar-label { font-size: 3px; color: #1E1916; width: 22px; text-align: right; }
+    .preview-wrap .sc-v1 .bar { height: 2px; background: #E0DEDC; border-radius: 1px; flex: 1; position: relative; }
+    .preview-wrap .sc-v1 .bar-fill { height: 100%; background: #1E1916; border-radius: 1px; }
+
+    /* V2 Frame Styles */
+    .preview-wrap .sc-v2 { padding: 12px 16px; display: flex; flex-direction: column; position: relative; width: 100%; height: 100%; }
+    .preview-wrap .sc-v2 .bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0a2e1f 0%, #0d4a3a 20%, #1a6b5a 35%, #0e5a6e 50%, #1a4f7a 65%, #0d3b5e 80%, #0a2a40 100%); }
+    .preview-wrap .sc-v2 .bg.warm { background: linear-gradient(135deg, #3d1c1c 0%, #6b3030 25%, #8a4040 40%, #5a3a6a 60%, #3a2a5a 80%, #2a1a3a 100%); }
+    .preview-wrap .sc-v2 .bg.blue { background: linear-gradient(135deg, #0a1a2e 0%, #1a3a5e 30%, #2a5a7e 50%, #1a4a6e 70%, #0a2a4e 100%); }
+    .preview-wrap .sc-v2 .bg.teal { background: linear-gradient(135deg, #0a2a2a 0%, #1a4a3a 30%, #0a3a4a 60%, #1a3a5a 100%); }
+    .preview-wrap .sc-v2 .bg.coral { background: linear-gradient(135deg, #4a1a1a 0%, #7a3030 25%, #9a5050 40%, #7a4a3a 60%, #5a3a2a 100%); }
+    .preview-wrap .sc-v2 .bg.purple { background: linear-gradient(135deg, #1a0a2e 0%, #2a1a4a 25%, #3a2a5e 40%, #4a3a6e 60%, #2a1a4a 100%); }
+    .preview-wrap .sc-v2 .bg-blur { position: absolute; inset: 0; backdrop-filter: blur(2px); background: rgba(0,0,0,0.12); }
+    .preview-wrap .sc-v2 .noise { position: absolute; inset: 0; opacity: 0.05; mix-blend-mode: overlay; background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); pointer-events: none; }
+    .preview-wrap .sc-v2 > *:not(.bg):not(.bg-blur):not(.noise) { position: relative; z-index: 1; }
+    .preview-wrap .sc-v2 .lbl { font-size: 4px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 2px; }
+    .preview-wrap .sc-v2 .ttl { font-size: 10px; font-weight: 300; color: #fff; letter-spacing: -0.02em; margin-bottom: 3px; }
+    .preview-wrap .sc-v2 .div { width: 100%; height: 1px; background: rgba(255,255,255,0.12); margin-bottom: 5px; }
+    .preview-wrap .sc-v2 .cards { display: flex; gap: 4px; flex: 1; }
+    .preview-wrap .sc-v2 .crd { flex: 1; background: rgba(245,243,241,0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; padding: 5px; position: relative; display: flex; flex-direction: column; justify-content: flex-end; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .preview-wrap .sc-v2 .crd .num { position: absolute; top: 2px; right: 4px; font-size: 16px; font-weight: 300; color: rgba(30,25,22,0.06); line-height: 1; }
+    .preview-wrap .sc-v2 .crd .ct { font-size: 5px; font-weight: 500; color: #151515; margin-bottom: 1px; }
+    .preview-wrap .sc-v2 .crd .cd { font-size: 3.5px; color: #666; line-height: 1.3; }
+    .preview-wrap .sc-v2 .wm { position: absolute; bottom: 4px; right: 6px; font-size: 5px; font-weight: 700; color: #fff; opacity: 0.25; letter-spacing: 1px; z-index: 1; }
+    .preview-wrap .sc-v2 .split { display: flex; flex: 1; gap: 0; }
+    .preview-wrap .sc-v2 .split-left { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-right: 8px; }
+    .preview-wrap .sc-v2 .centered { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+    .preview-wrap .sc-v2 .sub { font-size: 4px; color: rgba(255,255,255,0.6); margin-top: 3px; }
+    .preview-wrap .sc-v2 .accent { width: 28px; height: 1.5px; background: rgba(255,255,255,0.5); margin: 3px 0; }
+    .preview-wrap .sc-v2 .rows { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+    .preview-wrap .sc-v2 .row { display: flex; align-items: center; gap: 6px; background: rgba(245,243,241,0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12); border-radius: 3px; padding: 4px 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+    .preview-wrap .sc-v2 .row .dot { width: 4px; height: 4px; border-radius: 50%; border: 1px solid rgba(30,25,22,0.3); flex-shrink: 0; }
+    .preview-wrap .sc-v2 .row .rt { font-size: 4px; font-weight: 400; color: #151515; }
+    .preview-wrap .sc-v2 .hero-num { font-size: 28px; font-weight: 300; color: #fff; letter-spacing: -0.03em; }
+    .preview-wrap .sc-v2 .hero-sub { font-size: 4px; color: rgba(255,255,255,0.5); margin-top: 3px; }
+    .preview-wrap .sc-v2 .panels { display: flex; gap: 4px; flex: 1; }
+    .preview-wrap .sc-v2 .panel { flex: 1; background: rgba(245,243,241,0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; padding: 6px 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .preview-wrap .sc-v2 .panel .pnum { font-size: 18px; font-weight: 300; color: rgba(30,25,22,0.06); margin-bottom: 1px; }
+    .preview-wrap .sc-v2 .panel .pword { font-size: 7px; font-weight: 300; color: #151515; margin-bottom: 2px; }
+    .preview-wrap .sc-v2 .panel .pdesc { font-size: 3.5px; color: #666; line-height: 1.3; }
+
+    .preview-wrap .sc-v2 .agenda-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; flex: 1; }
+    .preview-wrap .sc-v2 .agenda-item { background: rgba(245,243,241,0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12); border-radius: 3px; padding: 4px 5px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+    .preview-wrap .sc-v2 .agenda-num { font-size: 3px; font-weight: 600; color: rgba(30,25,22,0.3); margin-bottom: 1px; }
+    .preview-wrap .sc-v2 .agenda-text { font-size: 4px; font-weight: 400; color: #151515; }
+
+    .preview-wrap .sc-v2 .stat-mosaic { display: flex; gap: 6px; margin-bottom: 4px; }
+    .preview-wrap .sc-v2 .stat-block { text-align: center; }
+    .preview-wrap .sc-v2 .stat-big { font-size: 12px; font-weight: 300; color: #fff; letter-spacing: -0.02em; }
+    .preview-wrap .sc-v2 .stat-label { font-size: 3px; color: rgba(255,255,255,0.5); margin-top: 1px; }
+    .preview-wrap .sc-v2 .logo-wall { display: flex; gap: 3px; flex-wrap: wrap; justify-content: center; }
+    .preview-wrap .sc-v2 .logo-pill { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); border-radius: 2px; padding: 2px 4px; font-size: 3px; color: rgba(255,255,255,0.5); }
+
+    .preview-wrap .sc-v2 .bubble-row { display: flex; gap: 4px; margin-bottom: 3px; align-items: flex-start; }
+    .preview-wrap .sc-v2 .bubble-row.right { flex-direction: row-reverse; }
+    .preview-wrap .sc-v2 .bubble-avatar { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 4px; font-weight: 600; }
+    .preview-wrap .sc-v2 .bubble { padding: 3px 5px; border-radius: 3px; font-size: 3.5px; line-height: 1.3; max-width: 75%; }
+    .preview-wrap .sc-v2 .bubble-caller { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.9); }
+    .preview-wrap .sc-v2 .bubble-agent { background: rgba(245,243,241,0.88); color: #151515; }
+    .preview-wrap .sc-v2 .emotion-tag { font-size: 3px; font-weight: 600; padding: 1px 3px; border-radius: 2px; display: inline-block; margin-top: 1px; }
+    .preview-wrap .sc-v2 .emotion-tag.frustrated { background: rgba(239,68,68,0.2); color: #ef4444; }
+    .preview-wrap .sc-v2 .emotion-tag.empathetic { background: rgba(59,130,246,0.2); color: #60a5fa; }
+    .preview-wrap .sc-v2 .emotion-tag.calm { background: rgba(34,197,94,0.2); color: #4ade80; }
+
+    .preview-wrap .sc-v2 .radial-wrap { position: relative; flex: 1; display: flex; align-items: center; justify-content: center; }
+    .preview-wrap .sc-v2 .radial-center { width: 28px; height: 28px; border-radius: 50%; background: rgba(245,243,241,0.15); border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; }
+    .preview-wrap .sc-v2 .radial-word { position: absolute; font-size: 4px; font-weight: 400; color: rgba(255,255,255,0.7); }
+
+    .preview-wrap .sc-v2 .int-cols { display: flex; gap: 3px; flex: 1; }
+    .preview-wrap .sc-v2 .int-col { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+    .preview-wrap .sc-v2 .int-col-title { font-size: 3px; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1px; text-align: center; }
+    .preview-wrap .sc-v2 .int-logo { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.08); border-radius: 2px; padding: 2px 3px; font-size: 3px; color: rgba(255,255,255,0.6); text-align: center; }
+
+    .preview-wrap .sc-v2 .uc-sections { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+    .preview-wrap .sc-v2 .uc-section { background: rgba(245,243,241,0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12); border-radius: 3px; padding: 4px 5px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+    .preview-wrap .sc-v2 .uc-section-label { font-size: 3px; font-weight: 600; color: rgba(30,25,22,0.4); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1px; }
+    .preview-wrap .sc-v2 .uc-section-text { font-size: 3.5px; color: #151515; line-height: 1.3; }
+
+    .preview-wrap .sc-v2 .badge-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; flex: 1; }
+    .preview-wrap .sc-v2 .badge-item { background: rgba(245,243,241,0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12); border-radius: 3px; padding: 4px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+    .preview-wrap .sc-v2 .badge-icon { font-size: 7px; margin-bottom: 1px; }
+    .preview-wrap .sc-v2 .badge-name { font-size: 4px; font-weight: 600; color: #151515; }
+    .preview-wrap .sc-v2 .badge-sub { font-size: 3px; color: #666; }
+
+    .preview-wrap .sc-v2 .ent-cols { display: flex; gap: 3px; flex: 1; }
+    .preview-wrap .sc-v2 .ent-col { flex: 1; background: rgba(245,243,241,0.08); border: 1px solid rgba(255,255,255,0.08); border-radius: 3px; padding: 4px 3px; }
+    .preview-wrap .sc-v2 .ent-col-title { font-size: 4px; font-weight: 600; color: #fff; margin-bottom: 2px; text-align: center; }
+    .preview-wrap .sc-v2 .ent-col-sub { font-size: 3px; color: rgba(255,255,255,0.4); margin-bottom: 2px; text-align: center; }
+    .preview-wrap .sc-v2 .ent-item { font-size: 3px; color: rgba(255,255,255,0.6); padding: 1px 0; border-top: 1px solid rgba(255,255,255,0.05); }
+
+    .preview-wrap .sc-v2 .pipeline { display: flex; align-items: center; gap: 2px; flex: 1; padding: 0 4px; }
+    .preview-wrap .sc-v2 .pipe-node { background: rgba(245,243,241,0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12); border-radius: 3px; padding: 4px 3px; text-align: center; flex: 1; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+    .preview-wrap .sc-v2 .pipe-node .ct { font-size: 4px; font-weight: 500; color: #151515; }
+    .preview-wrap .sc-v2 .pipe-node .cd { font-size: 3px; color: #666; }
+    .preview-wrap .sc-v2 .pipe-arrow { color: rgba(255,255,255,0.3); font-size: 6px; flex-shrink: 0; }
+    .preview-wrap .sc-v2 .pipe-tag { font-size: 3px; color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.06); padding: 1px 3px; border-radius: 2px; }
+
+    .preview-wrap .sc-v2 .comp-table { display: grid; grid-template-columns: 50px repeat(3, 1fr); gap: 1px; flex: 1; }
+    .preview-wrap .sc-v2 .comp-header { font-size: 3.5px; font-weight: 600; color: #151515; padding: 3px; background: rgba(245,243,241,0.88); border-radius: 2px; text-align: center; }
+    .preview-wrap .sc-v2 .comp-row-label { font-size: 3px; font-weight: 500; color: rgba(255,255,255,0.6); padding: 3px; display: flex; align-items: center; }
+    .preview-wrap .sc-v2 .comp-cell { font-size: 3px; color: #666; padding: 3px; background: rgba(245,243,241,0.88); border-radius: 2px; text-align: center; display: flex; align-items: center; justify-content: center; }
+    .preview-wrap .sc-v2 .comp-check { color: #4ade80; font-weight: 700; }
+    .preview-wrap .sc-v2 .comp-x { color: #ef4444; font-weight: 700; }
+
+    .preview-wrap .sc-v2 .six-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; flex: 1; }
+    .preview-wrap .sc-v2 .six-item { background: rgba(245,243,241,0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12); border-radius: 3px; padding: 4px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+    .preview-wrap .sc-v2 .six-img { height: 12px; background: rgba(30,25,22,0.04); border-radius: 2px; margin-bottom: 2px; display: flex; align-items: center; justify-content: center; font-size: 6px; color: rgba(30,25,22,0.15); }
+    .preview-wrap .sc-v2 .six-text { font-size: 4px; font-weight: 500; color: #151515; }
+
+    .preview-wrap .sc-v2 .two-ss { display: flex; gap: 4px; flex: 1; }
+    .preview-wrap .sc-v2 .ss-frame { flex: 1; background: rgba(30,25,22,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 4px; color: rgba(255,255,255,0.3); }
+
+    .preview-wrap .sc-v2 .vs-layout { display: flex; flex: 1; gap: 0; }
+    .preview-wrap .sc-v2 .vs-side { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 5px; }
+    .preview-wrap .sc-v2 .vs-divider { width: 1px; background: rgba(255,255,255,0.15); position: relative; display: flex; align-items: center; }
+    .preview-wrap .sc-v2 .vs-badge { position: absolute; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; width: 14px; height: 14px; display: flex; align-items: center; justify-content: center; font-size: 4px; font-weight: 700; color: #fff; }
+    .preview-wrap .sc-v2 .vs-title { font-size: 5px; font-weight: 500; color: #fff; margin-bottom: 3px; text-align: center; }
+    .preview-wrap .sc-v2 .vs-point { font-size: 3px; color: rgba(255,255,255,0.6); margin: 1px 0; text-align: center; }
+    .preview-wrap .sc-v2 .vs-point.good { color: #4ade80; }
+    .preview-wrap .sc-v2 .vs-point.bad { color: #ef4444; }
+
+    /* ── Responsive ── */
+    @media (max-width: 800px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; }
     }
   </style>
 </head>
 <body>
-  <div class="header">
-    <div class="logo">ElevenLabs</div>
-    <h1>Brand Assets for Remotion</h1>
-    <p class="subtitle">Centralized brand assets for ElevenLabs Academy video compositions. Icons, backgrounds, voice orbs, diagrams, and visual elements exported from the official Figma brand kit and PPTX pitch decks.</p>
-  </div>
 
-  <div class="grid">
-    <a class="asset-card" href="icons/catalog.html">
-      <div class="preview icons-preview" id="iconPreview"></div>
-      <div class="info">
-        <h2>Icons</h2>
-        <div class="desc">Brand icon library in 3 color variants (cream, black, white) plus product-specific icons.</div>
-        <div class="stats">
-          <div class="stat"><strong>400</strong> total icons</div>
-          <div class="stat"><strong>3</strong> color sets + product</div>
-          <div class="stat"><span class="status-badge ready">Ready</span></div>
-        </div>
-      </div>
-    </a>
-
-    <a class="asset-card" href="backgrounds/catalog.html">
-      <div class="preview bg-preview">
-        <img src="backgrounds/agents/agents-bg-01-green-teal.png" alt="Agents background">
-      </div>
-      <div class="info">
-        <h2>Backgrounds</h2>
-        <div class="desc">Gradient backgrounds, Chladni close-up base layers, atmospheric gradients, and shared textures for compositions.</div>
-        <div class="stats">
-          <div class="stat"><strong>7</strong> general</div>
-          <div class="stat"><strong>9</strong> agents</div>
-          <div class="stat"><strong>15</strong> chladni close-up</div>
-          <div class="stat"><strong>18</strong> gradient</div>
-          <div class="stat"><strong>2</strong> textures</div>
-          <div class="stat"><strong>1</strong> creative</div>
-          <div class="stat"><span class="status-badge ready">Ready</span></div>
-        </div>
-      </div>
-    </a>
-
-    <a class="asset-card" href="voice-orbs/catalog.html">
-      <div class="preview orb-preview">
-        <img src="voice-orbs/orb-teal-on-black.jpg" alt="Teal orb">
-        <img src="voice-orbs/orb-purple-blue-on-black.jpg" alt="Purple-blue orb">
-        <img src="voice-orbs/orb-coral-on-black.jpg" alt="Coral orb">
-        <img src="voice-orbs/orb-gold-on-black.jpg" alt="Gold orb">
-      </div>
-      <div class="info">
-        <h2>Voice Orbs</h2>
-        <div class="desc">Signature ElevenLabs textured sphere visuals. 8 color variants on black backgrounds.</div>
-        <div class="stats">
-          <div class="stat"><strong>8</strong> orbs</div>
-          <div class="stat"><strong>1174x1038</strong> each</div>
-          <div class="stat"><span class="status-badge ready">Ready</span></div>
-        </div>
-      </div>
-    </a>
-
-    <a class="asset-card" href="#">
-      <div class="preview diagram-preview">
-        <img src="diagrams/agents-platform-architecture.jpg" alt="Agents platform architecture">
-      </div>
-      <div class="info">
-        <h2>Diagrams</h2>
-        <div class="desc">Platform architecture concentric rings diagram from PPTX pitch deck.</div>
-        <div class="stats">
-          <div class="stat"><strong>1</strong> diagram</div>
-          <div class="stat"><strong>2048x1152</strong></div>
-          <div class="stat"><span class="status-badge ready">Ready</span></div>
-        </div>
-      </div>
-    </a>
-
-    <a class="asset-card" href="#">
-      <div class="preview ui-preview">
-        <img src="ui-highlights/phone-agent-live-activity.jpg" alt="Phone agent live activity">
-      </div>
-      <div class="info">
-        <h2>UI Highlights</h2>
-        <div class="desc">Phone agent live activity screenshot from PPTX pitch deck.</div>
-        <div class="stats">
-          <div class="stat"><strong>1</strong> highlight</div>
-          <div class="stat"><strong>2048x1150</strong></div>
-          <div class="stat"><span class="status-badge ready">Ready</span></div>
-        </div>
-      </div>
-    </a>
-
-    <a class="asset-card" href="#">
-      <div class="preview tokens-preview">
-        <div class="token-row">
-          <div class="token-swatch" style="background:#1E1916;"></div>
-          <div class="token-swatch" style="background:#FAFAFA;"></div>
-          <div class="token-swatch" style="background:#F5F3F1;"></div>
-          <div class="token-swatch" style="background:#E0DEDC;"></div>
-          <div class="token-swatch" style="background:#999999;"></div>
-        </div>
-        <div class="token-row">
-          <div class="token-swatch" style="background:#151515;"></div>
-          <div class="token-swatch" style="background:#555555;"></div>
-          <div class="token-swatch" style="background:#F59E0B;"></div>
-          <div class="token-swatch" style="background:#000000;"></div>
-          <div class="token-swatch" style="background:#FFFFFF; border-color:#555;"></div>
-        </div>
-      </div>
-      <div class="info">
-        <h2>Color Tokens</h2>
-        <div class="desc">Brand, pitch deck, and Echo Design System color token definitions in JSON.</div>
-        <div class="stats">
-          <div class="stat"><strong>1</strong> file</div>
-          <div class="stat">color-tokens.json</div>
-          <div class="stat"><span class="status-badge ready">Ready</span></div>
-        </div>
-      </div>
-    </a>
-  </div>
-
-  <div class="colors-section">
-    <h2>Brand Color Palette</h2>
-    <div class="color-grid">
-      <div class="color-card">
-        <div class="color-swatch" style="background: #1E1916;"></div>
-        <div class="color-info">
-          <div class="name">GRAPHITE</div>
-          <div class="hex">#1E1916</div>
-        </div>
-      </div>
-      <div class="color-card">
-        <div class="color-swatch" style="background: #FAFAFA;"></div>
-        <div class="color-info">
-          <div class="name">OFF_WHITE</div>
-          <div class="hex">#FAFAFA</div>
-        </div>
-      </div>
-      <div class="color-card">
-        <div class="color-swatch" style="background: #F5F3F1;"></div>
-        <div class="color-info">
-          <div class="name">CREAM</div>
-          <div class="hex">#F5F3F1</div>
-        </div>
-      </div>
-      <div class="color-card">
-        <div class="color-swatch" style="background: #E0DEDC;"></div>
-        <div class="color-info">
-          <div class="name">LIGHT_GRAY</div>
-          <div class="hex">#E0DEDC</div>
-        </div>
-      </div>
-      <div class="color-card">
-        <div class="color-swatch" style="background: #999999;"></div>
-        <div class="color-info">
-          <div class="name">MID_GRAY</div>
-          <div class="hex">#999999</div>
-        </div>
-      </div>
-      <div class="color-card">
-        <div class="color-swatch" style="background: #151515; border: 1px solid #333;"></div>
-        <div class="color-info">
-          <div class="name">NEAR_BLACK</div>
-          <div class="hex">#151515</div>
-        </div>
-      </div>
-      <div class="color-card">
-        <div class="color-swatch" style="background: #F59E0B;"></div>
-        <div class="color-info">
-          <div class="name">AMBER (accent)</div>
-          <div class="hex">#F59E0B</div>
-        </div>
-      </div>
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="sidebar-logo">ElevenLabs</div>
+    <div class="sidebar-title">Remotion Catalog</div>
+    <div class="sidebar-nav">
+      <a href="#compositions" data-section="compositions" class="active">Compositions <span class="nav-count">6</span></a>
+      <a href="#v2-scenes" data-section="v2-scenes">V2 Scenes <span class="nav-count">19</span></a>
+      <a href="#v1-scenes" data-section="v1-scenes">V1 Scenes <span class="nav-count">21</span></a>
+      <a href="#layouts-overlays" data-section="layouts-overlays">Layouts & Overlays <span class="nav-count">17</span></a>
+      <a href="#backgrounds" data-section="backgrounds">Backgrounds <span class="nav-count">52</span></a>
+      <a href="#icons" data-section="icons">Icons <span class="nav-count">400+</span></a>
+      <a href="#voice-orbs" data-section="voice-orbs">Voice Orbs <span class="nav-count">8</span></a>
+      <a href="#other-assets" data-section="other-assets">Other Assets <span class="nav-count">28+</span></a>
     </div>
-  </div>
+    <div class="sidebar-footer">
+      ElevenLabs Academy<br>
+      Remotion Video Production
+    </div>
+  </nav>
 
-  <div class="footer">
-    Source: ElevenLabs Figma Brand Kit + PPTX Pitch Decks. Exported April 2026.<br>
-    Icons: 130 per color variant (cream, black, white) + 10 product = 400 total.
-    Backgrounds: 50 (7 general + 9 agents + 15 chladni close-up + 18 gradient + 2 shared textures + 1 creative).
-    Voice Orbs: 8.
-    Diagrams: 1. UI Highlights: 1. Color Tokens: 1 JSON file.
+  <!-- Main Content -->
+  <div class="main">
+
+    <!-- Global Search -->
+    <div class="global-search">
+      <input type="text" class="search-input" id="globalSearch" placeholder="Search everything -- components, assets, backgrounds, icons..." />
+    </div>
+
+    <!-- 1. Compositions -->
+    <div class="section" id="compositions" data-nav="compositions">
+      <div class="section-header">
+        <h2>Combined Compositions</h2>
+        <span class="section-count">6 compositions</span>
+      </div>
+      <p class="section-desc">Full lesson timelines. Each combines multiple scenes into a single renderable composition with a flat editable schema.</p>
+      <div class="grid" id="compositionsGrid"></div>
+    </div>
+
+    <!-- 2. V2 Scenes -->
+    <div class="section" id="v2-scenes" data-nav="v2-scenes">
+      <div class="section-header">
+        <h2>V2 Scene Components</h2>
+        <span class="section-count">19 scenes (incl. PillarDetail variants)</span>
+      </div>
+      <p class="section-desc">Hero mode scenes with gradient backgrounds, frosted cards, and white text. The current visual treatment.</p>
+      <div class="grid" id="v2Grid"></div>
+    </div>
+
+    <!-- 3. V1 Scenes -->
+    <div class="section" id="v1-scenes" data-nav="v1-scenes">
+      <div class="section-header">
+        <h2>V1 Scene Components</h2>
+        <span class="section-count">21 scenes</span>
+      </div>
+      <p class="section-desc">Original scene components. Light backgrounds with dark text (Content mode) or solid dark backgrounds.</p>
+      <div class="grid" id="v1Grid"></div>
+    </div>
+
+    <!-- 4. Layouts & Overlays -->
+    <div class="section" id="layouts-overlays" data-nav="layouts-overlays">
+      <div class="section-header">
+        <h2>Layouts & Overlays</h2>
+        <span class="section-count">13 layouts + 4 overlays</span>
+      </div>
+      <p class="section-desc">Reusable layout components and alpha-channel overlays for Premiere compositing.</p>
+      <div class="sub-filters">
+        <button class="sub-filter-btn active" data-subfilter="all-lo">All</button>
+        <button class="sub-filter-btn" data-subfilter="layout">Layouts</button>
+        <button class="sub-filter-btn" data-subfilter="overlay">Overlays</button>
+      </div>
+      <div class="grid" id="layoutsGrid"></div>
+    </div>
+
+    <!-- 5. Backgrounds -->
+    <div class="section" id="backgrounds" data-nav="backgrounds">
+      <div class="section-header">
+        <h2>Backgrounds</h2>
+        <span class="section-count">52 total</span>
+      </div>
+      <p class="section-desc">Background images for Hero mode scenes. Apply blur (25px) + noise overlay (7%) + dark tint programmatically.</p>
+      <div class="sub-filters" id="bgFilters">
+        <button class="sub-filter-btn active" data-bgfilter="all">All (52)</button>
+        <button class="sub-filter-btn" data-bgfilter="general">General (7)</button>
+        <button class="sub-filter-btn" data-bgfilter="agents">Agents (9)</button>
+        <button class="sub-filter-btn" data-bgfilter="chladni-closeup">Chladni (15)</button>
+        <button class="sub-filter-btn" data-bgfilter="gradient">Gradient (18)</button>
+        <button class="sub-filter-btn" data-bgfilter="creative">Creative (1)</button>
+        <button class="sub-filter-btn" data-bgfilter="textures">Textures (2)</button>
+      </div>
+      <div class="grid compact" id="bgGrid"></div>
+    </div>
+
+    <!-- 6. Icons -->
+    <div class="section" id="icons" data-nav="icons">
+      <div class="section-header">
+        <h2>Icons</h2>
+        <span class="section-count">400+ brand icons + 21 public</span>
+      </div>
+      <p class="section-desc">Brand icons in cream, black, and white variants. Product icons and public icons.</p>
+      <div class="sub-filters" id="iconFilters">
+        <button class="sub-filter-btn active" data-iconfilter="cream">Cream</button>
+        <button class="sub-filter-btn" data-iconfilter="black">Black</button>
+        <button class="sub-filter-btn" data-iconfilter="white">White</button>
+        <button class="sub-filter-btn" data-iconfilter="product">Product (10)</button>
+        <button class="sub-filter-btn" data-iconfilter="public">Public (21)</button>
+      </div>
+      <input type="text" class="search-input" id="iconSearch" placeholder="Search icons..." style="margin-bottom:16px;max-width:320px" />
+      <div class="grid icons-grid" id="iconGrid"></div>
+    </div>
+
+    <!-- 7. Voice Orbs -->
+    <div class="section" id="voice-orbs" data-nav="voice-orbs">
+      <div class="section-header">
+        <h2>Voice Orbs</h2>
+        <span class="section-count">8 variants</span>
+      </div>
+      <p class="section-desc">Metallic textured spheres on black backgrounds. Composite with mix-blend-mode: screen to knock out black.</p>
+      <div class="grid compact" id="orbGrid"></div>
+    </div>
+
+    <!-- 8. Other Assets -->
+    <div class="section" id="other-assets" data-nav="other-assets">
+      <div class="section-header">
+        <h2>Other Assets</h2>
+        <span class="section-count">Logos, covers, images, screenshots, fonts, colors</span>
+      </div>
+      <p class="section-desc">Logos, cover images, brand imagery, screenshots, font references, and the brand color palette.</p>
+
+      <h3 style="font-size:15px;font-weight:600;color:#999;margin:24px 0 12px;text-transform:uppercase;letter-spacing:1px;font-size:12px">Logos</h3>
+      <div class="grid compact" id="logosGrid"></div>
+
+      <h3 style="font-size:15px;font-weight:600;color:#999;margin:24px 0 12px;text-transform:uppercase;letter-spacing:1px;font-size:12px">Covers</h3>
+      <div class="grid compact" id="coversGrid"></div>
+
+      <h3 style="font-size:15px;font-weight:600;color:#999;margin:24px 0 12px;text-transform:uppercase;letter-spacing:1px;font-size:12px">Images</h3>
+      <div class="grid compact" id="imagesGrid"></div>
+
+      <h3 style="font-size:15px;font-weight:600;color:#999;margin:24px 0 12px;text-transform:uppercase;letter-spacing:1px;font-size:12px">Screenshots</h3>
+      <div class="grid compact" id="screenshotsGrid"></div>
+
+      <h3 style="font-size:15px;font-weight:600;color:#999;margin:24px 0 12px;text-transform:uppercase;letter-spacing:1px;font-size:12px">Fonts</h3>
+      <div class="grid" id="fontsGrid"></div>
+
+      <h3 style="font-size:15px;font-weight:600;color:#999;margin:24px 0 12px;text-transform:uppercase;letter-spacing:1px;font-size:12px">Color Palette</h3>
+      <div class="grid colors-grid" id="colorsGrid"></div>
+    </div>
+
+  </div><!-- /main -->
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <div class="toast-label">Copied to clipboard</div>
+    <code id="toastText"></code>
   </div>
 
   <script>
-    // Load a sample of cream icons into the preview
-    const sampleIcons = [
-      'icons/cream/000-calendar-clock-4.png',
-      'icons/cream/003-video-on-cam-on.png',
-      'icons/cream/009-window-app-browser-app-desktop.png',
-      'icons/cream/015-zap-lightning-flash-thunder.png',
-      'icons/cream/028-brain-2-ai-thinking-database-ki.png',
-      'icons/cream/036-finger-print-1-touch-id.png',
-      'icons/cream/039-group-1-users.png',
-      'icons/cream/045-animation.png'
+    // ===== PREVIEWS =====
+    const PREVIEWS = {
+      // V1 Scene Previews
+      WaveformScene: '<div class="sc-v1"><div class="split"><div class="split-left"><div class="lbl">II ELEVENLABS</div><div style="height:3px"></div><div class="ttl">Welcome to<br>ElevenLabs</div><div style="width:40px;height:1.5px;background:#1E1916;margin:3px 0"></div><div class="cd" style="font-size:4px;color:#555">ElevenLabs Academy</div></div><div class="split-right"><div class="cover"></div></div></div><div class="wm">II</div></div>',
+      TextRevealScene: '<div class="sc-v1"><div class="lbl">THE VOICE</div><div class="ttl" style="font-size:8px">The Most Natural Interface</div><div class="div"></div><div class="cards"><div class="crd"><div class="num">01</div><div class="ct">Before screens.</div><div class="cd">The most natural</div></div><div class="crd"><div class="num">02</div><div class="ct">Before keyboards.</div><div class="cd">Fastest path</div></div><div class="crd"><div class="num">03</div><div class="ct">Now it scales.</div><div class="cd">AI voice</div></div></div><div class="wm">II</div></div>',
+      OriginStory: '<div class="sc-v1"><div class="split"><div class="split-left"><div class="lbl">THE ORIGIN</div><div class="ttl" style="font-size:10px">A Research Company<br>Built for Voice</div><div style="width:36px;height:1.5px;background:#1E1916;margin:3px 0"></div><div class="cd" style="font-size:4px;color:#555">That research became a platform</div></div><div class="split-right"><div class="cover"></div></div></div><div class="wm">II</div></div>',
+      PlatformEvolution: '<div class="sc-v1"><div class="lbl">THE JOURNEY</div><div class="ttl" style="font-size:8px;margin-bottom:4px">Research &rarr; Platform &rarr; Agents</div><div class="div"></div><div class="cards"><div class="crd" style="text-align:center;padding:5px"><div class="ct" style="font-size:5px">Research</div><div class="cd">Voice AI</div></div><div style="display:flex;align-items:center;color:#E0DEDC;font-size:7px;padding:0 1px">&rarr;</div><div class="crd" style="text-align:center;padding:5px"><div class="ct" style="font-size:5px">Platform</div><div class="cd">TTS, STT</div></div><div style="display:flex;align-items:center;color:#E0DEDC;font-size:7px;padding:0 1px">&rarr;</div><div class="crd" style="text-align:center;padding:5px"><div class="ct" style="font-size:5px">Agents</div><div class="cd">Conv AI</div></div></div><div class="wm">II</div></div>',
+      ChannelStrip: '<div class="sc-v1"><div class="lbl">CHANNELS</div><div class="ttl" style="font-size:8px;margin-bottom:4px">Deploy Everywhere</div><div class="div"></div><div class="cards"><div class="crd" style="text-align:center;padding:5px"><div class="ct" style="font-size:5px">Phone</div><div class="cd">Voice calls</div></div><div class="crd" style="text-align:center;padding:5px"><div class="ct" style="font-size:5px">Web</div><div class="cd">Widget</div></div><div class="crd" style="text-align:center;padding:5px"><div class="ct" style="font-size:5px">Mobile</div><div class="cd">SDK</div></div></div><div class="wm">II</div></div>',
+      WelcomeCard: '<div class="sc-v1"><div class="centered"><div class="ttl" style="font-size:12px">Welcome to<br>ElevenLabs Academy</div><div style="width:36px;height:1.5px;background:#1E1916;margin:4px auto"></div><div class="cd" style="font-size:4px;color:#999;margin-top:3px">Your path to certification</div></div><div class="wm">II</div></div>',
+      ThreePillarsScene: '<div class="sc-v1"><div class="lbl">THE PLATFORMS</div><div class="ttl" style="font-size:8px;margin-bottom:4px">Three Product Platforms</div><div class="div"></div><div class="cards"><div class="crd" style="text-align:center;padding:5px"><div class="ct" style="font-size:5px">Creative</div><div class="cd">The Studio</div></div><div class="crd" style="text-align:center;padding:5px"><div class="ct" style="font-size:5px">Agents</div><div class="cd">Conv AI</div></div><div class="crd" style="text-align:center;padding:5px"><div class="ct" style="font-size:5px">API</div><div class="cd">Dev Toolkit</div></div></div><div class="wm">II</div></div>',
+      FoundationDiagram: '<div class="sc-v1"><div class="lbl">ARCHITECTURE</div><div class="ttl" style="font-size:8px;margin-bottom:4px">Platform Foundation</div><div class="div"></div><div class="rows"><div class="row"><div class="dot"></div><div class="rt">Voice Engine &mdash; TTS, STT, VAD</div></div><div class="row"><div class="dot"></div><div class="rt">Intelligence &mdash; LLM, RAG, Tools</div></div><div class="row"><div class="dot"></div><div class="rt">Deployment &mdash; Phone, Web, Mobile</div></div></div><div class="wm">II</div></div>',
+      TimelineV4: '<div class="sc-v1"><div class="lbl">YOUR PATH</div><div class="ttl" style="font-size:8px;margin-bottom:4px">8 Modules to Certification</div><div class="div"></div><div style="display:flex;gap:3px;flex:1"><div class="crd" style="padding:4px"><div class="ct" style="font-size:4px">M1</div></div><div class="crd" style="padding:4px"><div class="ct" style="font-size:4px">M2</div></div><div class="crd" style="padding:4px"><div class="ct" style="font-size:4px">M3</div></div><div class="crd" style="padding:4px"><div class="ct" style="font-size:4px">M4</div></div></div><div style="display:flex;gap:3px;flex:1;margin-top:3px"><div class="crd" style="padding:4px"><div class="ct" style="font-size:4px">M5</div></div><div class="crd" style="padding:4px"><div class="ct" style="font-size:4px">M6</div></div><div class="crd" style="padding:4px"><div class="ct" style="font-size:4px">M7</div></div><div class="crd" style="padding:4px"><div class="ct" style="font-size:4px">M8</div></div></div><div class="wm">II</div></div>',
+      TimelineProgression: '<div class="sc-v1"><div class="split"><div class="split-left"><div class="lbl">YOUR PATH</div><div class="ttl" style="font-size:8px">Module<br>Progression</div><div style="width:30px;height:1px;background:#E0DEDC;margin:3px 0"></div><div class="cd" style="font-size:4px;color:#555">8 modules, certification</div></div><div class="split-right" style="display:flex;flex-direction:column;gap:2px;padding:6px;background:#F5F3F1"><div class="crd" style="padding:3px;flex:none"><div class="ct" style="font-size:3.5px">M1 Platform</div></div><div class="crd" style="padding:3px;flex:none"><div class="ct" style="font-size:3.5px">M2 Voice</div></div><div class="crd" style="padding:3px;flex:none"><div class="ct" style="font-size:3.5px">M3 Prompts</div></div></div></div><div class="wm">II</div></div>',
+      LearnBuildProve: '<div class="sc-v1"><div class="lbl">THE METHOD</div><div class="ttl" style="font-size:8px;margin-bottom:4px">How You\'ll Get Certified</div><div class="div"></div><div class="cards"><div class="crd" style="text-align:center;justify-content:center;padding:6px"><div class="num" style="font-size:18px;position:static;color:#E0DEDC">01</div><div class="ct" style="font-size:7px">LEARN</div><div class="cd">Concepts</div></div><div class="crd" style="text-align:center;justify-content:center;padding:6px"><div class="num" style="font-size:18px;position:static;color:#E0DEDC">02</div><div class="ct" style="font-size:7px">BUILD</div><div class="cd">Practice</div></div><div class="crd" style="text-align:center;justify-content:center;padding:6px"><div class="num" style="font-size:18px;position:static;color:#E0DEDC">03</div><div class="ct" style="font-size:7px">PROVE</div><div class="cd">Cert</div></div></div><div class="wm">II</div></div>',
+      OutroScene: '<div class="sc-v1"><div class="split"><div class="split-left"><div class="lbl">UP NEXT</div><div style="height:3px"></div><div class="ttl" style="font-size:9px">Lesson 1.3</div><div style="font-size:4px;color:#555">Build Your First Agent</div><div style="width:30px;height:1.5px;background:#1E1916;margin:3px 0"></div></div><div class="split-right"><div class="cover"></div></div></div><div class="wm">II</div></div>',
+      ConversationLoop: '<div class="sc-v1"><div class="lbl">THE LOOP</div><div class="ttl" style="font-size:8px;margin-bottom:4px">How Agents Converse</div><div class="div"></div><div class="rows"><div class="row"><div class="dot"></div><div class="rt">Listen &mdash; STT</div></div><div class="row"><div class="dot"></div><div class="rt">Think &mdash; LLM</div></div><div class="row"><div class="dot"></div><div class="rt">Speak &mdash; TTS</div></div><div class="row"><div class="dot"></div><div class="rt">Manage &mdash; VAD</div></div></div><div class="wm">II</div></div>',
+      DecisionMatrix: '<div class="sc-v1"><div class="lbl">DECISION GUIDE</div><div class="ttl" style="font-size:8px;margin-bottom:4px">Which Approach?</div><div class="div"></div><div class="cards"><div class="crd" style="padding:5px"><div class="ct">Option A</div><div class="cd">Pre-built template</div></div><div class="crd" style="padding:5px"><div class="ct">Option B</div><div class="cd">Custom build</div></div><div class="crd" style="padding:5px"><div class="ct">Option C</div><div class="cd">API-first</div></div></div><div class="wm">II</div></div>',
+      RecapGrid: '<div class="sc-v1"><div class="lbl">KEY TAKEAWAYS</div><div class="ttl" style="font-size:8px;margin-bottom:4px">What You Learned</div><div class="div"></div><div class="cards"><div class="crd" style="border-color:#1E1916;border-width:2px"><div class="num">01</div><div class="ct">Platform</div><div class="cd">Orientation</div></div><div class="crd"><div class="num">02</div><div class="ct">First agent</div><div class="cd">30 minutes</div></div><div class="crd"><div class="num">03</div><div class="ct">Test & iterate</div><div class="cd">Simulator</div></div></div><div class="wm">II</div></div>',
+      RecapGridV2: '<div class="sc-v1"><div class="lbl">RECAP</div><div class="ttl" style="font-size:8px;margin-bottom:4px">Lesson Summary</div><div class="div"></div><div class="rows"><div class="row"><div class="dot" style="background:#1E1916"></div><div class="rt">Key concept one</div></div><div class="row"><div class="dot" style="background:#1E1916"></div><div class="rt">Key concept two</div></div><div class="row"><div class="dot" style="background:#1E1916"></div><div class="rt">Key concept three</div></div></div><div class="wm">II</div></div>',
+      ScribeFeatureCard: '<div class="sc-v1"><div class="split"><div class="split-left"><div class="lbl">FEATURE</div><div class="ttl" style="font-size:9px">Scribe<br>Feature</div><div style="width:30px;height:1px;background:#E0DEDC;margin:3px 0"></div><div class="cd" style="font-size:4px;color:#555">Waveform animation</div></div><div class="split-right" style="background:#F5F3F1;display:flex;align-items:center;justify-content:center"><div style="display:flex;gap:1px;align-items:flex-end;height:20px"><div style="width:2px;height:8px;background:#E0DEDC;border-radius:1px"></div><div style="width:2px;height:14px;background:#E0DEDC;border-radius:1px"></div><div style="width:2px;height:6px;background:#E0DEDC;border-radius:1px"></div><div style="width:2px;height:18px;background:#E0DEDC;border-radius:1px"></div><div style="width:2px;height:10px;background:#E0DEDC;border-radius:1px"></div><div style="width:2px;height:4px;background:#E0DEDC;border-radius:1px"></div><div style="width:2px;height:12px;background:#E0DEDC;border-radius:1px"></div></div></div></div><div class="wm">II</div></div>',
+      AudienceCards: '<div class="sc-v1"><div class="lbl">AUDIENCES</div><div class="ttl" style="font-size:8px;margin-bottom:4px">Who This Is For</div><div class="div"></div><div class="rows"><div class="row"><div class="dot"></div><div class="rt">Builders &mdash; Developers</div></div><div class="row"><div class="dot"></div><div class="rt">Business &mdash; Decision Makers</div></div><div class="row"><div class="dot"></div><div class="rt">Operators &mdash; CX Teams</div></div></div><div class="wm">II</div></div>',
+      AgentExperienceScene: '<div class="sc-v1"><div class="lbl">AGENT EXPERIENCE</div><div class="ttl" style="font-size:8px;margin-bottom:4px">Voice Agent Showcase</div><div class="div"></div><div class="cards"><div class="crd" style="padding:5px"><div class="ct">Configure</div><div class="cd">Set up voice &amp; personality</div></div><div class="crd" style="padding:5px"><div class="ct">Deploy</div><div class="cd">Launch across channels</div></div></div><div class="wm">II</div></div>',
+      MultiplierVisual: '<div class="sc-v1"><div class="centered"><div class="lbl">THE MULTIPLIER</div><div style="position:relative;width:60px;height:60px;margin:4px auto"><div style="position:absolute;inset:0;border:1px solid #E0DEDC;border-radius:50%"></div><div style="position:absolute;inset:8px;border:1px solid #E0DEDC;border-radius:50%"></div><div style="position:absolute;inset:16px;border:1px solid #E0DEDC;border-radius:50%"></div><div style="position:absolute;inset:50%;transform:translate(-50%,-50%);font-size:6px;color:#1E1916;font-weight:300">10x</div></div><div class="cd" style="font-size:4px;color:#999">Scale with every module</div></div><div class="wm">II</div></div>',
+      PillarDetailScene: '<div class="sc-v1"><div class="split"><div class="split-left"><div class="lbl">DEEP DIVE</div><div class="ttl" style="font-size:9px">ElevenAgents</div><div style="width:30px;height:1px;background:#E0DEDC;margin:3px 0"></div><div class="cd" style="font-size:4px;color:#555">The Agent Platform</div></div><div class="split-right" style="display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:6px;background:#F5F3F1"><div class="crd" style="padding:3px;text-align:center"><div class="ct" style="font-size:3.5px">Builder</div></div><div class="crd" style="padding:3px;text-align:center"><div class="ct" style="font-size:3.5px">Tools</div></div><div class="crd" style="padding:3px;text-align:center"><div class="ct" style="font-size:3.5px">Deploy</div></div><div class="crd" style="padding:3px;text-align:center"><div class="ct" style="font-size:3.5px">Eval</div></div></div></div><div class="wm">II</div></div>',
+
+      // Compositions
+      M01L01v5v2: '<div class="sc-v2"><div class="bg teal"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">M01 L01 v5v2</div><div class="ttl" style="font-size:8px">Welcome to ElevenLabs</div><div class="div"></div><div style="display:flex;gap:2px;flex:1"><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Title</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Reveal</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Origin</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Evolve</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Chan</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Welcome</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Pillars</div></div></div><div style="display:flex;gap:2px;margin-top:2px;flex:1"><div style="flex:1;background:#FAFAFA;border:1px solid #E0DEDC;border-radius:2px;padding:3px;text-align:center"><div style="font-size:3px;color:#1E1916">Crtv</div></div><div style="flex:1;background:#FAFAFA;border:1px solid #E0DEDC;border-radius:2px;padding:3px;text-align:center"><div style="font-size:3px;color:#1E1916">API</div></div><div style="flex:1;background:#FAFAFA;border:1px solid #E0DEDC;border-radius:2px;padding:3px;text-align:center"><div style="font-size:3px;color:#1E1916">Agnts</div></div><div style="flex:1;background:#FAFAFA;border:1px solid #E0DEDC;border-radius:2px;padding:3px;text-align:center"><div style="font-size:3px;color:#1E1916">Found</div></div><div style="flex:1;background:#FAFAFA;border:1px solid #E0DEDC;border-radius:2px;padding:3px;text-align:center"><div style="font-size:3px;color:#1E1916">Exp</div></div><div style="flex:1;background:#FAFAFA;border:1px solid #E0DEDC;border-radius:2px;padding:3px;text-align:center"><div style="font-size:3px;color:#1E1916">Time</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Outro</div></div></div><div class="wm">II</div></div>',
+      M01L01v5: '<div class="sc-v1"><div class="lbl">M01 L01 v5</div><div class="ttl" style="font-size:8px">Welcome to ElevenLabs</div><div class="div"></div><div style="display:flex;gap:2px;flex:1"><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Title</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Reveal</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Origin</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Evolve</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Chan</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Welc</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Pillars</div></div></div><div style="display:flex;gap:2px;margin-top:2px;flex:1"><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Crtv</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">API</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Agnts</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Found</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Exp</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Time</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Outro</div></div></div><div class="wm">II</div></div>',
+      M01L01v4: '<div class="sc-v1"><div class="lbl">M01 L01 v4</div><div class="ttl" style="font-size:8px">Welcome (Experimental)</div><div class="div"></div><div style="display:flex;gap:2px;flex:1"><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Title</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Reveal</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Origin</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">...</div></div></div><div class="wm">II</div></div>',
+      M01L01v3: '<div class="sc-v1" style="opacity:0.5"><div class="lbl">M01 L01 v3 (ARCHIVED)</div><div class="ttl" style="font-size:8px">Welcome</div><div class="div"></div><div style="display:flex;gap:2px;flex:1"><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">13 scenes</div></div></div><div class="wm">II</div></div>',
+      M01L02v1: '<div class="sc-v1"><div class="lbl">M01 L02 v1</div><div class="ttl" style="font-size:8px">Product Landscape</div><div class="div"></div><div style="display:flex;gap:2px;flex:1"><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Title</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Scribe</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Loop</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Recap</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Outro</div></div></div><div class="wm">II</div></div>',
+      M01L02v2: '<div class="sc-v2"><div class="bg blue"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">M01 L02 v2</div><div class="ttl" style="font-size:8px">Agents Platform</div><div class="div"></div><div style="display:flex;gap:2px;flex:1"><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Title</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Sidebar</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Recap</div></div><div class="crd" style="flex:1;padding:3px;text-align:center"><div class="ct" style="font-size:3px">Outro</div></div></div><div class="wm">II</div></div>',
+
+      // V2 Scenes
+      WaveformSceneV2: '<div class="sc-v2"><div class="bg teal"></div><div class="bg-blur"></div><div class="noise"></div><div class="split"><div class="split-left"><div class="lbl">II ELEVENLABS</div><div style="height:3px"></div><div class="ttl">Welcome to<br>ElevenLabs</div><div class="accent"></div><div style="font-size:4px;color:rgba(255,255,255,0.7)">ElevenLabs Academy</div></div></div><div class="wm">II</div></div>',
+      TextRevealSceneV2: '<div class="sc-v2"><div class="bg teal"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">THE VOICE</div><div class="ttl" style="font-size:8px">The Most Natural Interface</div><div class="div"></div><div class="cards"><div class="crd"><div class="num">01</div><div class="ct">Before screens.</div><div class="cd">The most natural</div></div><div class="crd"><div class="num">02</div><div class="ct">Before keyboards.</div><div class="cd">Fastest path</div></div><div class="crd"><div class="num">03</div><div class="ct">Now it scales.</div><div class="cd">AI voice</div></div></div><div class="wm">II</div></div>',
+      OriginStoryV2: '<div class="sc-v2"><div class="bg warm"></div><div class="bg-blur"></div><div class="noise"></div><div class="centered" style="align-items:flex-start;text-align:left"><div class="lbl">THE ORIGIN</div><div class="ttl" style="font-size:10px">A Research Company<br>Built for Voice</div><div class="accent"></div><div style="font-size:4px;color:rgba(255,255,255,0.7)">That research became a platform</div></div><div class="wm">II</div></div>',
+      PlatformEvolutionV2: '<div class="sc-v2"><div class="bg blue"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">THE JOURNEY</div><div class="ttl" style="font-size:8px;margin-bottom:4px">Research &rarr; Platform &rarr; Agents</div><div class="div"></div><div class="cards"><div class="crd" style="text-align:center;padding:5px"><div class="ct" style="font-size:5px">Research</div><div class="cd">Voice AI</div></div><div style="display:flex;align-items:center;color:rgba(255,255,255,0.3);font-size:7px;padding:0 1px">&rarr;</div><div class="crd" style="text-align:center;padding:5px"><div class="ct" style="font-size:5px">Platform</div><div class="cd">TTS, STT</div></div><div style="display:flex;align-items:center;color:rgba(255,255,255,0.3);font-size:7px;padding:0 1px">&rarr;</div><div class="crd" style="text-align:center;padding:5px"><div class="ct" style="font-size:5px">Agents</div><div class="cd">Conv AI</div></div></div><div class="wm">II</div></div>',
+      ChannelStripV2: '<div class="sc-v2"><div class="bg blue"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">CHANNELS</div><div class="ttl" style="font-size:8px;margin-bottom:4px">Deploy Everywhere</div><div class="div"></div><div class="cards"><div class="crd" style="text-align:center;padding:5px"><div class="ct" style="font-size:5px">Phone</div><div class="cd">Voice calls</div></div><div class="crd" style="text-align:center;padding:5px"><div class="ct" style="font-size:5px">Web</div><div class="cd">Widget</div></div><div class="crd" style="text-align:center;padding:5px"><div class="ct" style="font-size:5px">Mobile</div><div class="cd">SDK</div></div></div><div class="wm">II</div></div>',
+      WelcomeCardV2: '<div class="sc-v2"><div class="bg warm"></div><div class="bg-blur"></div><div class="noise"></div><div class="centered"><div class="ttl" style="font-size:12px">Welcome to<br>ElevenLabs Academy</div><div class="accent" style="margin:4px auto"></div><div class="sub">Your path to certification</div></div><div class="wm">II</div></div>',
+      ThreePillarsSceneV2: '<div class="sc-v2"><div class="bg teal"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">THE PLATFORMS</div><div class="ttl" style="font-size:8px;margin-bottom:4px">Three Product Platforms</div><div class="div"></div><div class="cards"><div class="crd" style="text-align:center;padding:5px"><div class="ct" style="font-size:5px">Creative</div><div class="cd">The Studio</div></div><div class="crd" style="text-align:center;padding:5px"><div class="ct" style="font-size:5px">Agents</div><div class="cd">Conv AI</div></div><div class="crd" style="text-align:center;padding:5px"><div class="ct" style="font-size:5px">API</div><div class="cd">Dev Toolkit</div></div></div><div class="wm">II</div></div>',
+      'PillarDetailSceneV2-Creative': '<div style="display:flex;width:100%;height:100%"><div style="width:45%;background:#FAFAFA;padding:8px 10px;display:flex;flex-direction:column;justify-content:center"><div style="width:90%;height:16px;background:linear-gradient(135deg,#8a3a1a,#c45a2a,#1a2a3a);border-radius:3px;margin-bottom:4px;display:flex;align-items:center;justify-content:center"><div style="font-size:3.5px;color:#fff;font-weight:500">IIEleven Creative</div></div><div style="font-size:4px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:3px">THE STUDIO</div><div style="width:24px;height:1.5px;background:#1E1916;margin-bottom:3px;border-radius:1px"></div><div style="font-size:3.5px;color:#555;line-height:1.4">Text-to-speech, dubbing, sound effects, and music.</div></div><div style="flex:1;position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:linear-gradient(135deg,#3d1c4a,#6b3060,#8a4070,#5a3a8a)"></div><div style="position:absolute;inset:0;background:rgba(0,0,0,0.12)"></div><div style="position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:6px;height:100%;align-content:stretch"><div style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);border-radius:3px;padding:4px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:4px;font-weight:500;color:#151515">TTS</div><div style="font-size:3px;color:#666">Speech</div></div><div style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);border-radius:3px;padding:4px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:4px;font-weight:500;color:#151515">Dubbing</div><div style="font-size:3px;color:#666">Translate</div></div><div style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);border-radius:3px;padding:4px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:4px;font-weight:500;color:#151515">SFX</div><div style="font-size:3px;color:#666">Audio</div></div><div style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);border-radius:3px;padding:4px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:4px;font-weight:500;color:#151515">Music</div><div style="font-size:3px;color:#666">Scoring</div></div></div></div></div>',
+      'PillarDetailSceneV2-API': '<div style="display:flex;width:100%;height:100%"><div style="width:45%;background:#FAFAFA;padding:8px 10px;display:flex;flex-direction:column;justify-content:center"><div style="width:90%;height:16px;background:linear-gradient(135deg,#1a1a2a,#2a2a3a,#3a3a4a);border-radius:3px;margin-bottom:4px;display:flex;align-items:center;justify-content:center"><div style="font-size:3.5px;color:#fff;font-weight:500">IIEleven API</div></div><div style="font-size:4px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:3px">THE DEVELOPER TOOLKIT</div><div style="width:24px;height:1.5px;background:#1E1916;margin-bottom:3px;border-radius:1px"></div><div style="font-size:3.5px;color:#555;line-height:1.4">REST API, SDKs, and CLI for programmatic control.</div></div><div style="flex:1;position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:linear-gradient(135deg,#3d1c4a,#6b3060,#8a4070,#5a3a8a)"></div><div style="position:absolute;inset:0;background:rgba(0,0,0,0.12)"></div><div style="position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:6px;height:100%;align-content:stretch"><div style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);border-radius:3px;padding:4px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:4px;font-weight:500;color:#151515">REST</div><div style="font-size:3px;color:#666">HTTP</div></div><div style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);border-radius:3px;padding:4px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:4px;font-weight:500;color:#151515">SDKs</div><div style="font-size:3px;color:#666">Py, JS</div></div><div style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);border-radius:3px;padding:4px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:4px;font-weight:500;color:#151515">CLI</div><div style="font-size:3px;color:#666">Terminal</div></div><div style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);border-radius:3px;padding:4px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:4px;font-weight:500;color:#151515">Docs</div><div style="font-size:3px;color:#666">Reference</div></div></div></div></div>',
+      'PillarDetailSceneV2-Agents': '<div style="display:flex;width:100%;height:100%"><div style="width:45%;background:#FAFAFA;padding:8px 10px;display:flex;flex-direction:column;justify-content:center"><div style="width:90%;height:16px;background:linear-gradient(135deg,#1a3a5a,#0a5a4a);border-radius:3px;margin-bottom:4px;display:flex;align-items:center;justify-content:center"><div style="font-size:3.5px;color:#fff;font-weight:500">IIEleven Agents</div></div><div style="font-size:4px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:3px">THE AGENT PLATFORM</div><div style="width:24px;height:1.5px;background:#1E1916;margin-bottom:3px;border-radius:1px"></div><div style="font-size:3.5px;color:#555;line-height:1.4">Build, deploy, and operate conversational AI agents.</div></div><div style="flex:1;position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:linear-gradient(135deg,#0a2e1f,#0e5a6e,#1a4f7a)"></div><div style="position:absolute;inset:0;background:rgba(0,0,0,0.12)"></div><div style="position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:6px;height:100%;align-content:stretch"><div style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);border-radius:3px;padding:4px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:4px;font-weight:500;color:#151515">Builder</div><div style="font-size:3px;color:#666">Configure</div></div><div style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);border-radius:3px;padding:4px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:4px;font-weight:500;color:#151515">Tools</div><div style="font-size:3px;color:#666">Connect</div></div><div style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);border-radius:3px;padding:4px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:4px;font-weight:500;color:#151515">Deploy</div><div style="font-size:3px;color:#666">Phone, web</div></div><div style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);border-radius:3px;padding:4px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:4px;font-weight:500;color:#151515">Eval</div><div style="font-size:3px;color:#666">Measure</div></div></div></div></div>',
+      PillarDetailSceneV2: '<div style="display:flex;width:100%;height:100%"><div style="width:45%;background:#FAFAFA;padding:8px 10px;display:flex;flex-direction:column;justify-content:center"><div style="width:90%;height:16px;background:linear-gradient(135deg,#1a3a5a,#0a5a4a);border-radius:3px;margin-bottom:4px;display:flex;align-items:center;justify-content:center"><div style="font-size:3.5px;color:#fff;font-weight:500">IIEleven Agents</div></div><div style="font-size:4px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:3px">THE AGENT PLATFORM</div><div style="width:24px;height:1.5px;background:#1E1916;margin-bottom:3px;border-radius:1px"></div><div style="font-size:3.5px;color:#555;line-height:1.4">Build, deploy, and operate conversational AI agents.</div></div><div style="flex:1;position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:linear-gradient(135deg,#0a2e1f,#0e5a6e,#1a4f7a)"></div><div style="position:absolute;inset:0;background:rgba(0,0,0,0.12)"></div><div style="position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:6px;height:100%;align-content:stretch"><div style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);border-radius:3px;padding:4px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:4px;font-weight:500;color:#151515">Builder</div><div style="font-size:3px;color:#666">Configure</div></div><div style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);border-radius:3px;padding:4px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:4px;font-weight:500;color:#151515">Tools</div><div style="font-size:3px;color:#666">Connect</div></div><div style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);border-radius:3px;padding:4px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:4px;font-weight:500;color:#151515">Deploy</div><div style="font-size:3px;color:#666">Phone, web</div></div><div style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);border-radius:3px;padding:4px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:4px;font-weight:500;color:#151515">Eval</div><div style="font-size:3px;color:#666">Measure</div></div></div></div></div>',
+      FoundationDiagramV2: '<div class="sc-v2"><div class="bg warm"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">ARCHITECTURE</div><div class="ttl" style="font-size:8px;margin-bottom:4px">Built In-House. Every Part.</div><div class="div"></div><div class="rows" style="padding-left:12px"><div style="position:absolute;left:8px;top:0;bottom:0;width:2px;background:rgba(255,255,255,0.15);border-radius:1px"></div><div class="row" style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);box-shadow:0 1px 4px rgba(0,0,0,0.08)"><div class="dot" style="border-color:rgba(255,255,255,0.3);background:rgba(245,243,241,0.88)"></div><div class="rt" style="color:#151515">Speech &mdash; TTS</div></div><div class="row" style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);box-shadow:0 1px 4px rgba(0,0,0,0.08)"><div class="dot" style="border-color:rgba(255,255,255,0.3);background:rgba(245,243,241,0.88)"></div><div class="rt" style="color:#151515">Listening &mdash; STT</div></div><div class="row" style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);box-shadow:0 1px 4px rgba(0,0,0,0.08)"><div class="dot" style="border-color:rgba(255,255,255,0.3);background:rgba(245,243,241,0.88)"></div><div class="rt" style="color:#151515">Turn-Taking &mdash; VAD</div></div></div><div class="wm">II</div></div>',
+      AgentExperienceSceneV2: '<div class="sc-v2"><div class="bg blue"></div><div class="bg-blur"></div><div class="noise"></div><div class="lbl">YOUR AGENT</div><div class="ttl" style="font-size:8px;margin-bottom:4px">One Research Foundation</div><div class="div"></div><div class="cards"><div class="crd" style="text-align:center;padding:5px"><div class="ct" style="font-size:5px">Voice</div><div class="cd">Natural speech</div></div><div class="crd" style="text-align:center;padding:5px"><div class="ct" style="font-size:5px">Listening</div><div class="cd">Real-time</div></div><div class="crd" style="text-align:center;padding:5px"><div class="ct" style="font-size:5px">Turn-Taking</div><div class="cd">Interruptions</div></div></div><div style="font-size:4px;color:rgba(255,255,255,0.5);text-align:center;margin-top:4px">Not stitched together from third parties.</div><div class="wm">II</div></div>',
+      TimelineV4V2: '<div style="display:flex;width:100%;height:100%"><div style="width:35%;background:#FAFAFA;padding:8px 10px;display:flex;flex-direction:column;justify-content:center"><div style="font-size:4px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px">CERT PATH</div><div style="font-size:9px;font-weight:300;color:#1E1916;margin-bottom:3px">Eight Modules</div><div style="width:20px;height:1.5px;background:#1E1916;margin-bottom:3px"></div><div style="font-size:3.5px;color:#999">Each builds on the last.</div></div><div style="flex:1;position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:linear-gradient(135deg,#3d1c4a,#6b3060,#8a4070,#5a3a8a)"></div><div style="position:absolute;inset:0;background:rgba(0,0,0,0.12)"></div><div style="position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;padding:5px;height:100%"><div style="display:grid;grid-template-columns:1fr 1fr;gap:2px"><div style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);border-radius:2px;padding:3px;display:flex;align-items:center;gap:3px"><div style="width:10px;height:10px;border-radius:50%;background:rgba(30,25,22,0.8);display:flex;align-items:center;justify-content:center;font-size:3.5px;color:#fff;flex-shrink:0">1</div><div style="font-size:3.5px;color:#151515">Platform</div></div><div style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);border-radius:2px;padding:3px;display:flex;align-items:center;gap:3px"><div style="width:10px;height:10px;border-radius:50%;border:1px solid rgba(30,25,22,0.15);display:flex;align-items:center;justify-content:center;font-size:3.5px;color:#999;flex-shrink:0">2</div><div style="font-size:3.5px;color:#666">Voice</div></div><div style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);border-radius:2px;padding:3px;display:flex;align-items:center;gap:3px"><div style="width:10px;height:10px;border-radius:50%;border:1px solid rgba(30,25,22,0.15);display:flex;align-items:center;justify-content:center;font-size:3.5px;color:#999;flex-shrink:0">3</div><div style="font-size:3.5px;color:#666">Prompts</div></div><div style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);border-radius:2px;padding:3px;display:flex;align-items:center;gap:3px"><div style="width:10px;height:10px;border-radius:50%;border:1px solid rgba(30,25,22,0.15);display:flex;align-items:center;justify-content:center;font-size:3.5px;color:#999;flex-shrink:0">4</div><div style="font-size:3.5px;color:#666">Tools</div></div></div><div style="background:rgba(245,243,241,0.88);border:1px solid rgba(255,255,255,0.12);border-radius:2px;padding:3px;margin-top:3px;display:flex;align-items:center;gap:3px"><div style="font-size:4px;color:#151515;font-weight:500">Certification</div><div style="margin-left:auto;font-size:3px;background:#151515;color:#fafafa;padding:1px 3px;border-radius:2px;text-transform:uppercase;font-weight:600">Final</div></div></div></div></div>',
+      OutroSceneV2: '<div class="sc-v2"><div class="bg blue"></div><div class="bg-blur"></div><div class="noise"></div><div class="split"><div class="split-left"><div class="lbl">UP NEXT</div><div style="height:3px"></div><div class="ttl" style="font-size:9px">Lesson 1.3</div><div style="font-size:4px;color:rgba(255,255,255,0.7)">Build Your First Agent</div><div class="accent"></div></div></div><div class="wm">II</div></div>',
+      GradientBackground: '<div class="sc-v2"><div class="bg teal"></div><div class="bg-blur"></div><div class="noise"></div><div class="centered"><div style="font-size:5px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.1em">Full-bleed gradient</div><div style="font-size:8px;color:#fff;font-weight:300;margin-top:3px">blur + noise + tint</div></div></div>',
+      BrandedCard: '<div class="sc-v2"><div class="bg blue"></div><div class="bg-blur"></div><div class="noise"></div><div style="flex:1;display:flex;align-items:center;justify-content:center;padding:10px"><div class="crd" style="padding:10px;width:70%;text-align:center"><div class="ct" style="font-size:6px">Frosted Card</div><div class="cd">rgba(245,243,241,0.88) + blur(24px)</div></div></div></div>',
+
+      // Layouts
+      TwoColumnCards: '<div class="sc-v1"><div class="cards" style="padding-top:8px"><div class="crd" style="padding:6px;text-align:center"><div class="ct" style="font-size:6px">Left</div><div class="cd">Column one content</div></div><div class="crd" style="padding:6px;text-align:center"><div class="ct" style="font-size:6px">Right</div><div class="cd">Column two content</div></div></div></div>',
+      FourGridCards: '<div class="sc-v1"><div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;flex:1;padding-top:6px"><div class="crd" style="padding:5px;text-align:center"><div class="ct" style="font-size:5px">A</div></div><div class="crd" style="padding:5px;text-align:center"><div class="ct" style="font-size:5px">B</div></div><div class="crd" style="padding:5px;text-align:center"><div class="ct" style="font-size:5px">C</div></div><div class="crd" style="padding:5px;text-align:center"><div class="ct" style="font-size:5px">D</div></div></div></div>',
+      SingleFeatureCard: '<div class="sc-v1"><div style="flex:1;display:flex;align-items:center;justify-content:center;padding:8px"><div class="crd" style="padding:12px;width:100%;text-align:center"><div class="ct" style="font-size:7px">Feature Name</div><div class="cd">Full-width spotlight card with description</div></div></div></div>',
+      QuoteCard: '<div class="sc-v1"><div style="flex:1;display:flex;align-items:center;justify-content:center;padding:8px"><div class="crd" style="padding:10px;width:80%;text-align:center"><div style="font-size:14px;color:#E0DEDC;line-height:1">&ldquo;</div><div class="ct" style="font-size:5px;font-style:italic">The most natural interface we have ever had.</div><div class="cd" style="margin-top:4px">&mdash; Attribution</div></div></div></div>',
+      SideBySideComparison: '<div class="sc-v1"><div class="cards" style="padding-top:8px"><div class="crd" style="padding:6px;text-align:center;border-color:#4ade80"><div class="ct" style="font-size:5px;color:#4ade80">Before</div><div class="cd">Old approach</div></div><div class="crd" style="padding:6px;text-align:center;border-color:#60a5fa"><div class="ct" style="font-size:5px;color:#60a5fa">After</div><div class="cd">New approach</div></div></div></div>',
+      StatNumber: '<div class="sc-v1"><div class="centered"><div class="hero-num">4M+</div><div class="hero-sub">agents deployed</div></div></div>',
+      StatRow: '<div class="sc-v1"><div style="display:flex;gap:6px;flex:1;align-items:center;justify-content:center;padding:6px"><div style="text-align:center"><div style="font-size:14px;font-weight:300;color:#1E1916">40M+</div><div style="font-size:3.5px;color:#999">Users</div></div><div style="text-align:center"><div style="font-size:14px;font-weight:300;color:#1E1916">$11B</div><div style="font-size:3.5px;color:#999">Valuation</div></div><div style="text-align:center"><div style="font-size:14px;font-weight:300;color:#1E1916">75%</div><div style="font-size:3.5px;color:#999">Growth</div></div></div></div>',
+      NumberedSteps: '<div class="sc-v1"><div class="rows" style="padding-top:6px"><div class="row"><div style="width:12px;height:12px;border-radius:50%;background:#1E1916;color:#FAFAFA;font-size:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0">1</div><div class="rt">Create your agent</div></div><div class="row"><div style="width:12px;height:12px;border-radius:50%;background:#1E1916;color:#FAFAFA;font-size:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div><div class="rt">Configure voice</div></div><div class="row"><div style="width:12px;height:12px;border-radius:50%;background:#1E1916;color:#FAFAFA;font-size:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0">3</div><div class="rt">Deploy & test</div></div></div></div>',
+      Checklist: '<div class="sc-v1"><div class="rows" style="padding-top:6px"><div class="row"><div style="color:#4ade80;font-size:7px;flex-shrink:0">&#10003;</div><div class="rt">Voice configured</div></div><div class="row"><div style="color:#4ade80;font-size:7px;flex-shrink:0">&#10003;</div><div class="rt">Prompt written</div></div><div class="row"><div style="color:#E0DEDC;font-size:7px;flex-shrink:0">&#9744;</div><div class="rt">Knowledge base connected</div></div></div></div>',
+      IconRow: '<div class="sc-v1"><div style="display:flex;gap:8px;flex:1;align-items:center;justify-content:center"><div style="width:24px;height:24px;background:#F5F3F1;border:1px solid #E0DEDC;border-radius:6px"></div><div style="width:24px;height:24px;background:#F5F3F1;border:1px solid #E0DEDC;border-radius:6px"></div><div style="width:24px;height:24px;background:#F5F3F1;border:1px solid #E0DEDC;border-radius:6px"></div><div style="width:24px;height:24px;background:#F5F3F1;border:1px solid #E0DEDC;border-radius:6px"></div><div style="width:24px;height:24px;background:#F5F3F1;border:1px solid #E0DEDC;border-radius:6px"></div></div></div>',
+      CodeDisplay: '<div class="sc-v1" style="background:#1E1916"><div style="flex:1;padding:6px;font-family:monospace"><div style="font-size:4px;color:#4ade80;margin-bottom:2px">// Agent configuration</div><div style="font-size:4px;color:#FAFAFA">const agent = new Agent(&#123;</div><div style="font-size:4px;color:#FAFAFA;padding-left:8px">voice: &quot;rachel&quot;,</div><div style="font-size:4px;color:#FAFAFA;padding-left:8px">model: &quot;turbo&quot;,</div><div style="font-size:4px;color:#FAFAFA">&#125;);</div></div></div>',
+      FullBleedPlaceholder: '<div class="sc-v1" style="background:#F5F3F1"><div style="flex:1;display:flex;align-items:center;justify-content:center;border:2px dashed #E0DEDC;border-radius:6px;margin:6px"><div style="text-align:center"><div style="font-size:8px;color:#E0DEDC;margin-bottom:2px">&#9654;</div><div style="font-size:5px;color:#999">[Screen Recording]</div><div style="font-size:3.5px;color:#ccc">Replaced in Premiere</div></div></div></div>',
+      SplitQuote: '<div class="sc-v1"><div class="split"><div class="split-left" style="padding:8px"><div style="font-size:12px;color:#E0DEDC;line-height:1">&ldquo;</div><div class="ttl" style="font-size:7px;font-style:italic">Every interaction is an opportunity.</div></div><div class="split-right"><div class="cover" style="opacity:0.08"></div></div></div></div>',
+
+      // Overlays
+      LowerThird: '<div style="width:100%;height:100%;position:relative;background:#000"><div style="position:absolute;bottom:14px;left:14px;background:rgba(245,243,241,0.92);backdrop-filter:blur(8px);padding:5px 10px;border-radius:4px;border:1px solid rgba(255,255,255,0.1)"><div style="font-size:6px;font-weight:600;color:#1E1916">Speaker Name</div><div style="font-size:4px;color:#555">Title / Role</div></div></div>',
+      HighlightBox: '<div style="width:100%;height:100%;position:relative;background:#000"><div style="position:absolute;top:20%;left:15%;width:40%;height:35%;border:2px solid rgba(245,158,11,0.8);border-radius:4px;box-shadow:0 0 12px rgba(245,158,11,0.3)"></div></div>',
+      CalloutLabel: '<div style="width:100%;height:100%;position:relative;background:#000"><div style="position:absolute;top:30%;left:25%"><div style="width:40px;height:1px;background:rgba(245,158,11,0.6);transform:rotate(-20deg);transform-origin:left center"></div><div style="background:rgba(245,243,241,0.92);padding:3px 6px;border-radius:3px;font-size:4px;color:#1E1916;margin-top:4px">Label text</div></div></div>',
+      SectionBumper: '<div style="width:100%;height:100%;position:relative;background:#000;display:flex;align-items:center;justify-content:center"><div style="background:rgba(245,243,241,0.92);padding:6px 16px;border-radius:4px"><div style="font-size:5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#1E1916">Section Title</div></div></div>',
+    };
+
+    // ===== CARD VARIANTS =====
+    const CARD_VARIANTS = {
+      darkflat:       { bg: 'rgba(0,0,0,0.3)', blur: null, border: '1px solid rgba(255,255,255,0.12)', radius: 14, textMode: 'light' },
+      darkglass:      { bg: 'rgba(0,0,0,0.3)', blur: '20px', border: '1px solid rgba(255,255,255,0.12)', radius: 14, textMode: 'light' },
+      glass:          { bg: 'rgba(255,255,255,0.08)', blur: '40px', border: '1px solid rgba(255,255,255,0.2)', radius: 16, textMode: 'light' },
+      baseline:       { bg: 'rgba(245,243,241,0.88)', blur: '24px', border: '1px solid rgba(255,255,255,0.12)', radius: 14, textMode: 'dark' },
+      outline:        { bg: 'transparent', blur: null, border: '1px solid rgba(255,255,255,0.25)', radius: 14, textMode: 'light' },
+      pill:           { bg: 'rgba(255,255,255,0.12)', blur: '30px', border: '1px solid rgba(255,255,255,0.18)', radius: 24, textMode: 'light' },
+      acrylic:        { bg: 'rgba(245,243,241,0.45)', blur: '12px', border: '1px solid rgba(255,255,255,0.15)', radius: 14, textMode: 'dark' },
+      gradientborder: { bg: 'rgba(0,0,0,0.15)', blur: '20px', border: '1px solid rgba(255,255,255,0.15)', radius: 14, textMode: 'light' },
+    };
+
+    const V2_WITH_CARDS = [
+      'ThreePillarsSceneV2', 'TextRevealSceneV2', 'PlatformEvolutionV2', 'ChannelStripV2',
+      'PillarDetailSceneV2', 'FoundationDiagramV2', 'AgentExperienceSceneV2', 'TimelineV4V2',
+      'TwoColumnCardsV2', 'FourGridCardsV2', 'NumberedStepsV2', 'SideBySideComparisonV2',
+      'ConfigurabilitySceneV2', 'ComplianceBadgeSceneV2'
     ];
-    const preview = document.getElementById('iconPreview');
-    sampleIcons.forEach(src => {
-      const img = document.createElement('img');
-      img.src = src;
-      img.alt = '';
-      img.style.cssText = 'width:40px;height:40px;object-fit:contain;';
-      img.onerror = function() { this.style.display = 'none'; };
-      preview.appendChild(img);
+
+    const V2_NO_CARDS = ['WaveformSceneV2', 'WelcomeCardV2', 'OriginStoryV2', 'OutroSceneV2', 'DifferentiatorIntroSceneV2'];
+
+    // ===== V2 SCENE PROPS =====
+    const V2_PROPS = {
+      WaveformSceneV2: 'title?, subtitle?, backgroundSrc?',
+      TextRevealSceneV2: 'sectionLabel?, headline?, lines[]?, cards[]?, backgroundSrc?',
+      OriginStoryV2: 'label?, title?, subtitle?, backgroundSrc?',
+      PlatformEvolutionV2: 'label?, headline?, backgroundSrc?',
+      ChannelStripV2: 'label?, headline?, caption?, backgroundSrc?',
+      WelcomeCardV2: 'title?, subtitle?, backgroundSrc?',
+      ThreePillarsSceneV2: 'sectionLabel?, headline?, backgroundSrc?',
+      PillarDetailSceneV2: 'name, tagline, description, features[], isFocus?, backgroundSrc?',
+      OutroSceneV2: 'lessonNumber?, lessonTitle?, backgroundSrc?',
+      AgentExperienceSceneV2: 'sectionLabel?, headline?, bottomText?, backgroundSrc?',
+      FoundationDiagramV2: 'label?, headline?, bottomText?, backgroundSrc?',
+      TimelineV4V2: 'sectionLabel?, headline?, subtext?, backgroundSrc?',
+      SideBySideComparisonV2: 'sectionLabel?, headline?, leftLabel?, leftTitle?, leftDesc?, rightLabel?, rightTitle?, rightDesc?, backgroundSrc?',
+      FourGridCardsV2: 'sectionLabel?, headline?, cards[]?, backgroundSrc?',
+      NumberedStepsV2: 'sectionLabel?, headline?, steps[]?, backgroundSrc?',
+      TwoColumnCardsV2: 'sectionLabel?, headline?, card1Title?, card1Desc?, card2Title?, card2Desc?, backgroundSrc?',
+      DifferentiatorIntroSceneV2: 'headline?, subtitle?, backgroundSrc?',
+      ConfigurabilitySceneV2: 'sectionLabel?, headline?, bottomText?, backgroundSrc?',
+      ComplianceBadgeSceneV2: 'sectionLabel?, headline?, bottomText?, backgroundSrc?',
+    };
+
+    const V1_PROPS = {
+      WaveformScene: 'title?, subtitle?',
+      TextRevealScene: 'lines[]?, sectionLabel?, headline?, cards[]?',
+      OriginStory: 'label?, title?, subtitle?',
+      PlatformEvolution: 'label?, headline?, steps[]?',
+      ChannelStrip: 'label?, headline?, caption?',
+      WelcomeCard: 'title?, subtitle?',
+      ThreePillarsScene: 'sectionLabel?, headline?',
+      PillarDetailScene: 'name, tagline, description, features[], placeholderImage?, isFocus?',
+      FoundationDiagram: 'label?, headline?, bottomText?',
+      TimelineV4: 'sectionLabel?, headline?, subtext?',
+      TimelineProgression: 'sectionLabel?, headline?, subtext?',
+      LearnBuildProve: 'sectionLabel?, headline?',
+      MultiplierVisual: 'caption?',
+      OutroScene: 'lessonNumber?, lessonTitle?',
+      ScribeFeatureCard: 'sectionLabel?, title?, description?',
+      ConversationLoop: 'sectionLabel?, headline?, bottomText?',
+      DecisionMatrix: 'sectionLabel?, headline?, caption?',
+      RecapGrid: 'sectionLabel?, headline?',
+      RecapGridV2: 'sectionLabel?, headline?',
+      AgentExperienceScene: 'sectionLabel?, headline?, bottomText?',
+      AudienceCards: 'sectionLabel?, headline?',
+    };
+
+    const LAYOUT_PROPS = {
+      TwoColumnCards: 'sectionLabel?, headline?, card1Title?, card1Desc?, card2Title?, card2Desc?',
+      FourGridCards: 'sectionLabel?, headline?, cards[]?',
+      SingleFeatureCard: 'title?, description?',
+      QuoteCard: 'quote?, attribution?',
+      SideBySideComparison: 'sectionLabel?, headline?, leftLabel?, leftTitle?, leftDesc?, rightLabel?, rightTitle?, rightDesc?',
+      StatNumber: 'value?, label?',
+      StatRow: 'sectionLabel?, headline?, stats[]?',
+      NumberedSteps: 'sectionLabel?, headline?, steps[]?',
+      Checklist: 'sectionLabel?, headline?, items[]?',
+      IconRow: 'sectionLabel?, caption?, items[]?',
+      CodeDisplay: 'sectionLabel?, headline?, lines[]?',
+      FullBleedPlaceholder: 'label?, description?',
+      SplitQuote: 'quote?, attribution?',
+    };
+
+    const OVERLAY_PROPS = {
+      LowerThird: 'title, subtitle?, position?',
+      HighlightBox: 'x, y, width, height',
+      CalloutLabel: 'text, targetX, targetY, labelX, labelY',
+      SectionBumper: 'label?, title?',
+    };
+
+    // ===== COPY PAYLOAD BUILDERS =====
+
+    function buildCompositionPayload(id, desc, meta) {
+      return `## ${id}\n- Composition ID: ${id}\n- Description: ${desc}\n- Duration: ${meta}\n- Schema: ${id}Schema`;
+    }
+
+    function buildV2Payload(id, hasCards, variant) {
+      const schemaName = id.replace(/V2$/, 'V2Schema').replace(/SceneV2/, 'SceneV2Schema').replace('SchemaSchema','Schema');
+      const props = V2_PROPS[id] || 'backgroundSrc?';
+      let payload = `## ${id}\n- Component: ${id}\n- Import: import { ${id} } from "./components/v2/${id}"\n- Mode: Hero (GradientBackground)\n- Schema: ${id}Schema\n- Props: ${props}`;
+      if (hasCards) {
+        const tm = CARD_VARIANTS[variant]?.textMode || 'light';
+        payload += `\n- Card Variant: ${variant}\n- Text Mode: ${tm} (${tm === 'light' ? 'white' : 'dark'} text on cards)`;
+      }
+      payload += `\n- Background: (set via backgroundSrc prop)\n- Usage: <${id} ${hasCards ? `cardVariant="${variant}" ` : ''}backgroundSrc={staticFile('brand-assets/backgrounds/...')} />`;
+      return payload;
+    }
+
+    function buildV1Payload(id) {
+      const props = V1_PROPS[id] || '';
+      return `## ${id}\n- Component: ${id}\n- Import: import { ${id} } from "./components/${id}"\n- Mode: Content\n- Schema: ${id}Schema\n- Props: ${props}`;
+    }
+
+    function buildLayoutPayload(id) {
+      const props = LAYOUT_PROPS[id] || '';
+      return `## ${id}\n- Component: ${id}\n- Import: import { ${id} } from "./components/layouts/${id}"\n- Type: Layout (Content mode)\n- Props: ${props}`;
+    }
+
+    function buildOverlayPayload(id) {
+      const props = OVERLAY_PROPS[id] || '';
+      return `## ${id}\n- Component: ${id}\n- Import: import { ${id} } from "./overlays/${id}"\n- Type: Overlay (alpha channel, composited in Premiere)\n- Schema: ${id}Schema\n- Props: ${props}`;
+    }
+
+    function buildBgPayload(filename, category) {
+      const cat = category === 'textures' ? '' : category + '/';
+      return `## ${filename}\n- Asset: Background (${category})\n- Path: brand-assets/backgrounds/${cat}${filename}\n- Remotion: staticFile('brand-assets/backgrounds/${cat}${filename}')\n- Usage: <Img src={staticFile('brand-assets/backgrounds/${cat}${filename}')} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />`;
+    }
+
+    function buildIconPayload(name, variant) {
+      if (variant === 'product') {
+        return `## ${name}\n- Asset: Icon (product)\n- Path: brand-assets/icons/product/${name}\n- Remotion: staticFile('brand-assets/icons/product/${name}')`;
+      }
+      if (variant === 'public') {
+        return `## ${name}\n- Asset: Icon (public)\n- Path: icons/${name}\n- Remotion: staticFile('icons/${name}')`;
+      }
+      return `## ${name}\n- Asset: Icon (${variant})\n- Path: brand-assets/icons/${variant}/${name}\n- Remotion: staticFile('brand-assets/icons/${variant}/${name}')\n- Variants: cream | black | white\n- Hero mode: Use white variant or apply filter: "brightness(0) invert(1)"`;
+    }
+
+    function buildOrbPayload(filename) {
+      const color = filename.replace('orb-','').replace('-on-black.jpg','');
+      return `## ${filename}\n- Asset: Voice Orb (${color})\n- Path: brand-assets/voice-orbs/${filename}\n- Remotion: staticFile('brand-assets/voice-orbs/${filename}')\n- Compositing: mix-blend-mode: screen (knocks out black background)`;
+    }
+
+    function buildAssetPayload(filename, folder, type) {
+      return `## ${filename}\n- Asset: ${type}\n- Path: ${folder}/${filename}\n- Remotion: staticFile('${folder}/${filename}')`;
+    }
+
+    function buildColorPayload(name, hex, usage) {
+      return `## ${name} (${hex})\n- Token: ${name}\n- Hex: ${hex}\n- CSS: color: '${hex}'\n- Brand constant: BRAND.${name}\n- Usage: ${usage}`;
+    }
+
+    // ===== TOAST & COPY =====
+    let toastTimeout;
+    function showToast(text) {
+      const toast = document.getElementById('toast');
+      const toastText = document.getElementById('toastText');
+      toastText.textContent = text.substring(0, 80) + (text.length > 80 ? '...' : '');
+      toast.classList.add('visible');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => toast.classList.remove('visible'), 2000);
+    }
+
+    function copyPayload(payload, btn, evt) {
+      evt.stopPropagation();
+      navigator.clipboard.writeText(payload).then(() => {
+        btn.textContent = 'Copied';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
+        showToast(payload.split('\n')[0]);
+      });
+    }
+
+    // ===== CARD VARIANT PREVIEW =====
+    function renderVariantPreview(variant) {
+      const v = CARD_VARIANTS[variant];
+      if (!v) return '';
+      const isGradBorder = variant === 'gradientborder';
+      const cardStyle = [
+        `background: ${v.bg}`,
+        v.blur ? `backdrop-filter: blur(${v.blur})` : '',
+        `border: ${isGradBorder ? '1px solid rgba(255,255,255,0.2)' : v.border}`,
+        `border-radius: ${v.radius}px`,
+      ].filter(Boolean).join('; ');
+      const textColor = v.textMode === 'light' ? '#fff' : '#151515';
+      return `<div class="variant-preview"><div class="variant-preview-bg"></div><div class="variant-preview-card" style="${cardStyle}"><span style="color:${textColor}">${variant}</span></div></div><div class="variant-text-mode">Text: ${v.textMode === 'light' ? 'white (light)' : 'dark (#151515)'}</div>`;
+    }
+
+    // ===== CARD BUILDERS =====
+
+    function makeCard(opts) {
+      const card = document.createElement('div');
+      card.className = 'card' + (opts.extraClass ? ' ' + opts.extraClass : '');
+      card.dataset.searchable = (opts.searchable || opts.name + ' ' + (opts.desc || '')).toLowerCase();
+      if (opts.subtype) card.dataset.subtype = opts.subtype;
+      if (opts.bgcat) card.dataset.bgcat = opts.bgcat;
+
+      let preview = '';
+      if (opts.previewKey && PREVIEWS[opts.previewKey]) {
+        preview = `<div class="preview-wrap">${PREVIEWS[opts.previewKey]}</div>`;
+      } else if (opts.previewHtml) {
+        preview = opts.previewHtml;
+      }
+
+      let badges = '';
+      if (opts.badges) {
+        badges = opts.badges.map(b => `<span class="badge ${b}">${b}</span>`).join(' ');
+      }
+
+      let extra = opts.extraHtml || '';
+
+      card.innerHTML = `
+        <button class="copy-btn" data-payload="">Copy</button>
+        ${preview}
+        <div class="card-top">
+          <span class="card-name">${opts.name}</span>
+          <span>${badges}</span>
+        </div>
+        ${opts.desc ? `<div class="card-desc">${opts.desc}</div>` : ''}
+        ${opts.meta ? `<div class="card-meta"><span class="stat">${opts.meta}</span></div>` : ''}
+        ${extra}
+      `;
+
+      const btn = card.querySelector('.copy-btn');
+      const payload = typeof opts.payload === 'function' ? opts.payload : () => opts.payload;
+      btn.addEventListener('click', (e) => copyPayload(payload(), btn, e));
+
+      return card;
+    }
+
+    // ===== POPULATE SECTIONS =====
+
+    // 1. Compositions
+    const compositions = [
+      { id: 'M01L01v5v2', desc: 'Welcome to ElevenLabs Academy (V2)', meta: '14 scenes, ~117s', badge: 'v2' },
+      { id: 'M01L01v5', desc: 'Welcome to ElevenLabs Academy', meta: '14 scenes, ~117s', badge: 'v1' },
+      { id: 'M01L01v4', desc: 'Welcome (Experimental)', meta: '11 scenes', badge: 'v1', extra: ['experimental'] },
+      { id: 'M01L01v3', desc: 'Welcome (Archived)', meta: 'Archived', badge: 'v1', extra: ['archived'] },
+      { id: 'M01L02v1', desc: 'Product Landscape', meta: '', badge: 'v1' },
+      { id: 'M01L02v2', desc: 'Agents Platform', meta: '', badge: 'v2', extra: ['experimental'] },
+    ];
+    const cGrid = document.getElementById('compositionsGrid');
+    compositions.forEach(c => {
+      cGrid.appendChild(makeCard({
+        name: c.id,
+        desc: c.desc,
+        meta: c.meta,
+        badges: [c.badge, ...(c.extra || [])],
+        previewKey: c.id,
+        payload: buildCompositionPayload(c.id, c.desc, c.meta),
+        searchable: c.id + ' ' + c.desc + ' composition',
+      }));
+    });
+
+    // 2. V2 Scenes
+    const v2Scenes = [
+      { id: 'WaveformSceneV2', desc: 'Full gradient title card', hasCards: false },
+      { id: 'TextRevealSceneV2', desc: 'Gradient bg + frosted BrandedCards', hasCards: true },
+      { id: 'OriginStoryV2', desc: 'Full gradient origin narrative', hasCards: false },
+      { id: 'PlatformEvolutionV2', desc: 'Gradient bg + frosted cards flow', hasCards: true },
+      { id: 'ChannelStripV2', desc: 'Gradient bg + frosted panels', hasCards: true },
+      { id: 'WelcomeCardV2', desc: 'Gradient centered hero', hasCards: false },
+      { id: 'ThreePillarsSceneV2', desc: 'Gradient bg + frosted platform cards', hasCards: true },
+      { id: 'PillarDetailSceneV2-Creative', desc: 'ElevenCreative -- white left / gradient right', hasCards: true, copyId: 'PillarDetailSceneV2' },
+      { id: 'PillarDetailSceneV2-API', desc: 'ElevenAPI -- white left / gradient right', hasCards: true, copyId: 'PillarDetailSceneV2' },
+      { id: 'PillarDetailSceneV2-Agents', desc: 'ElevenAgents -- white left / gradient right', hasCards: true, copyId: 'PillarDetailSceneV2' },
+      { id: 'FoundationDiagramV2', desc: 'Gradient bg + frosted connected rows', hasCards: true },
+      { id: 'AgentExperienceSceneV2', desc: 'Gradient bg + frosted 3-card agent showcase', hasCards: true },
+      { id: 'TimelineV4V2', desc: 'White left / gradient right module timeline', hasCards: true },
+      { id: 'OutroSceneV2', desc: 'Full gradient outro', hasCards: false },
+      { id: 'DifferentiatorIntroSceneV2', desc: 'Headline + subtitle intro scene', hasCards: false },
+      { id: 'TwoColumnCardsV2', desc: 'V2 two-column card layout', hasCards: true },
+      { id: 'FourGridCardsV2', desc: 'V2 2x2 card grid', hasCards: true },
+      { id: 'NumberedStepsV2', desc: 'V2 sequential step list', hasCards: true },
+      { id: 'SideBySideComparisonV2', desc: 'V2 two-panel comparison', hasCards: true },
+      { id: 'ConfigurabilitySceneV2', desc: 'Configurability showcase', hasCards: true },
+      { id: 'ComplianceBadgeSceneV2', desc: 'Compliance badge grid', hasCards: true },
+    ];
+    const v2Grid = document.getElementById('v2Grid');
+    v2Scenes.forEach(s => {
+      const compId = s.copyId || s.id;
+      let extraHtml = '';
+      if (s.hasCards) {
+        const uid = 'var-' + s.id.replace(/[^a-zA-Z0-9]/g, '');
+        extraHtml = `
+          <div class="variant-row">
+            <span class="variant-label">Card Variant:</span>
+            <select class="variant-select" id="${uid}" onchange="updateVariant('${s.id}', '${compId}', this.value)">
+              <option value="darkflat" selected>darkflat (default)</option>
+              <option value="darkglass">darkglass</option>
+              <option value="glass">glass</option>
+              <option value="baseline">baseline</option>
+              <option value="outline">outline</option>
+              <option value="pill">pill</option>
+              <option value="acrylic">acrylic</option>
+              <option value="gradientborder">gradientborder</option>
+            </select>
+          </div>
+          <div id="vprev-${uid}">${renderVariantPreview('darkflat')}</div>
+        `;
+      }
+      const card = makeCard({
+        name: s.id,
+        desc: s.desc,
+        badges: ['v2'],
+        previewKey: s.id,
+        payload: () => buildV2Payload(compId, s.hasCards, s.hasCards ? (document.getElementById('var-' + s.id.replace(/[^a-zA-Z0-9]/g, ''))?.value || 'darkflat') : null),
+        searchable: s.id + ' ' + compId + ' ' + s.desc + ' v2 hero gradient',
+        extraHtml: extraHtml,
+      });
+      v2Grid.appendChild(card);
+    });
+
+    window.updateVariant = function(sceneId, compId, variant) {
+      const uid = 'var-' + sceneId.replace(/[^a-zA-Z0-9]/g, '');
+      const prevEl = document.getElementById('vprev-' + uid);
+      if (prevEl) prevEl.innerHTML = renderVariantPreview(variant);
+    };
+
+    // 3. V1 Scenes
+    const v1Scenes = [
+      { id: 'WaveformScene', desc: 'Split title card (opener)' },
+      { id: 'TextRevealScene', desc: 'Three-panel concept reveal' },
+      { id: 'OriginStory', desc: 'Split layout with brand narrative' },
+      { id: 'PlatformEvolution', desc: 'Three-step horizontal flow' },
+      { id: 'ChannelStrip', desc: 'Three-panel channel icons' },
+      { id: 'WelcomeCard', desc: 'Centered hero welcome' },
+      { id: 'ThreePillarsScene', desc: 'Product platform cards' },
+      { id: 'PillarDetailScene', desc: 'Individual platform deep-dive' },
+      { id: 'FoundationDiagram', desc: 'Three-row component diagram' },
+      { id: 'TimelineV4', desc: 'Module timeline' },
+      { id: 'TimelineProgression', desc: 'Split layout + module grid' },
+      { id: 'LearnBuildProve', desc: 'Three methodology panels' },
+      { id: 'MultiplierVisual', desc: 'Concentric circles scale visual' },
+      { id: 'OutroScene', desc: 'Split outro with "Up Next"' },
+      { id: 'ScribeFeatureCard', desc: 'Split card with waveform animation' },
+      { id: 'ConversationLoop', desc: 'Four-row connected diagram' },
+      { id: 'DecisionMatrix', desc: 'Three need-to-answer cards' },
+      { id: 'RecapGrid', desc: 'Three vertical recap cards' },
+      { id: 'RecapGridV2', desc: 'Three horizontal recap rows' },
+      { id: 'AgentExperienceScene', desc: 'Agent experience showcase' },
+      { id: 'AudienceCards', desc: 'Vertical audience list' },
+    ];
+    const v1Grid = document.getElementById('v1Grid');
+    v1Scenes.forEach(s => {
+      v1Grid.appendChild(makeCard({
+        name: s.id,
+        desc: s.desc,
+        badges: ['v1'],
+        previewKey: s.id,
+        payload: buildV1Payload(s.id),
+        searchable: s.id + ' ' + s.desc + ' v1 content',
+      }));
+    });
+
+    // 4. Layouts & Overlays
+    const layouts = [
+      { id: 'TwoColumnCards', desc: 'Two-column card layout' },
+      { id: 'FourGridCards', desc: '2x2 card grid' },
+      { id: 'SingleFeatureCard', desc: 'Full-width feature card' },
+      { id: 'QuoteCard', desc: 'Styled quote block' },
+      { id: 'SideBySideComparison', desc: 'Two-panel comparison' },
+      { id: 'StatNumber', desc: 'Big centered statistic' },
+      { id: 'StatRow', desc: 'Horizontal stat row' },
+      { id: 'NumberedSteps', desc: 'Sequential step list' },
+      { id: 'Checklist', desc: 'Animated checklist' },
+      { id: 'IconRow', desc: 'Horizontal icon strip' },
+      { id: 'CodeDisplay', desc: 'Syntax-highlighted code block' },
+      { id: 'FullBleedPlaceholder', desc: 'Screen recording placeholder slot' },
+      { id: 'SplitQuote', desc: 'Split-panel quote layout' },
+    ];
+    const overlays = [
+      { id: 'LowerThird', desc: 'Name/title lower third bar' },
+      { id: 'HighlightBox', desc: 'Animated highlight rectangle' },
+      { id: 'CalloutLabel', desc: 'Arrow + label callout' },
+      { id: 'SectionBumper', desc: 'Section transition bumper' },
+    ];
+    const loGrid = document.getElementById('layoutsGrid');
+    layouts.forEach(s => {
+      loGrid.appendChild(makeCard({
+        name: s.id,
+        desc: s.desc,
+        badges: ['layout'],
+        previewKey: s.id,
+        payload: buildLayoutPayload(s.id),
+        searchable: s.id + ' ' + s.desc + ' layout',
+        subtype: 'layout',
+      }));
+    });
+    overlays.forEach(s => {
+      loGrid.appendChild(makeCard({
+        name: s.id,
+        desc: s.desc,
+        badges: ['overlay'],
+        previewKey: s.id,
+        payload: buildOverlayPayload(s.id),
+        searchable: s.id + ' ' + s.desc + ' overlay premiere',
+        subtype: 'overlay',
+      }));
+    });
+
+    // Layout/Overlay sub-filters
+    document.querySelectorAll('[data-subfilter]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-subfilter]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.subfilter;
+        loGrid.querySelectorAll('.card').forEach(card => {
+          if (f === 'all-lo') { card.style.display = ''; return; }
+          card.style.display = card.dataset.subtype === f ? '' : 'none';
+        });
+      });
+    });
+
+    // 5. Backgrounds
+    const bgData = {
+      general: ['general-bg-01-blue-cyan-chladni.jpg','general-bg-02-dark-blue-teal.jpg','general-bg-03-blue-cyan-clean.jpg','general-bg-04-teal-gradient.jpg','image38-chladni-pattern.jpg','image42-chladni-pattern.jpg','image50-chladni-pattern.jpg'],
+      agents: ['agents-bg-00-green-white.jpg','agents-bg-01-blue-green.jpg','agents-bg-01-green-teal.png','agents-bg-02-blue-warm.jpg','agents-bg-03-dark-green.jpg','agents-bg-04-teal-blue.jpg','agents-bg-05-grass-warm.jpg','agents-bg-06-flowers-dark.jpg','agents-bg-06-layer2.jpg'],
+      'chladni-closeup': ['closeup-01-red-rock-blue-sky.jpg','closeup-02-blue-coral-splash.jpg','closeup-03-blue-mountain-orange.jpg','closeup-04-blue-peach-dunes.jpg','closeup-05-green-leaves.jpg','closeup-06-warm-abstract.jpg','closeup-07-pink-teal-blend.jpg','closeup-08-dreamy-clouds.jpg','closeup-09-water-splash-blue.jpg','closeup-10-mountains-motion.jpg','closeup-11-flowers-blur-warm.jpg','closeup-12-flowers-purple-pink.jpg','closeup-13-blue-purple-portrait.jpg','closeup-14-blue-red-portrait.jpg','closeup-15-landscape-green.jpg'],
+      gradient: ['Background0.jpg','Background1.jpg','Background2.jpg','Background3.jpg','Background4.jpg','Background5.jpg','Background6.jpg','Background7.jpg','Background8.jpg','Background9.jpg','Background9bw.jpg','Background10.jpg','Background11.jpg','Background12.jpg','Background13.jpg','Background14.jpg','Background15.jpg','Background16.jpg'],
+      creative: ['creative-bg-01-coral-sunset.png'],
+      textures: ['noise-texture.jpg','seamless-texture.jpg'],
+    };
+    const bgGrid = document.getElementById('bgGrid');
+    Object.entries(bgData).forEach(([cat, files]) => {
+      files.forEach(file => {
+        const imgPath = cat === 'textures' ? `./backgrounds/${file}` : `./backgrounds/${cat}/${file}`;
+        bgGrid.appendChild(makeCard({
+          name: file,
+          desc: cat.charAt(0).toUpperCase() + cat.slice(1),
+          badges: ['asset'],
+          previewHtml: `<div class="asset-preview"><img src="${imgPath}" loading="lazy" alt="${file}" /></div>`,
+          payload: buildBgPayload(file, cat),
+          searchable: file + ' ' + cat + ' background',
+          bgcat: cat,
+        }));
+      });
+    });
+
+    // Background sub-filters
+    document.querySelectorAll('[data-bgfilter]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-bgfilter]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.bgfilter;
+        bgGrid.querySelectorAll('.card').forEach(card => {
+          card.style.display = (f === 'all' || card.dataset.bgcat === f) ? '' : 'none';
+        });
+      });
+    });
+
+    // 6. Icons
+    const iconGrid = document.getElementById('iconGrid');
+    let activeIconTab = 'cream';
+
+    const allIcons = {
+      cream: ["000-calendar-clock-4.png","001-call-phone.png","002-icon-2637.png","003-video-on-cam-on.png","004-circle.png","005-gamepad-controls-left-joystick.png","006-diamond-pro-premium.png","007-icon-2642.png","008-icon-2643.png","009-window-app-browser-app-desktop.png","010-paperclip-3-attachment.png","011-minimize-45-arrow-shrink.png","012-call-incoming-phone.png","013-icon-2648.png","014-people-circle-user-circle-avatar-profile.png","015-zap-lightning-flash-thunder.png","016-icon-2651.png","017-icon-2652.png","018-text-indicator.png","019-icon-2654.png","020-icon-2655.png","021-explosion-boom-bang-pop.png","022-bezier-vector-nodes.png","023-play-icon.png","024-icon-2659.png","025-coins-add.png","026-icon-2661.png","027-icon-2662.png","028-brain-2-ai-thinking-database-ki.png","029-warning-icon.png","030-icon-2665.png","031-icon-2666.png","032-icon-2667.png","033-icon-2668.png","034-icon-2669.png","035-icon-2670.png","036-finger-print-1-touch-id.png","037-icon-2672.png","038-alignment-left-bar.png","039-group-1-users.png","040-icon-2675.png","041-calendar-1-date.png","042-subscription-tick-1-verify.png","043-icon-2678.png","044-icon-2679.png","045-animation.png","046-icon-2681.png","047-icon-2682.png","048-icon-2683.png","049-icon-2684.png","050-icon-2685.png","051-icon-2686.png","052-icon-2687.png","053-icon-2688.png","054-camera-icon.png","055-icon-2690.png","056-icon-2691.png","057-icon-2692.png","058-icon-2693.png","059-icon-2694.png","060-icon-2695.png","061-icon-2696.png","062-icon-2697.png","063-search-menu-list-search.png","064-icon-2699.png","065-icon-2700.png","066-icon-2701.png","067-icon-2702.png","068-icon-2703.png","069-icon-2704.png","070-icon-2705.png","071-icon-2706.png","072-icon-2707.png","073-icon-2708.png","074-icon-2709.png","075-icon-2710.png","076-icon-2711.png","077-icon-2712.png","078-icon-2713.png","079-icon-2714.png","080-icon-2715.png","081-arrow-top-bottom-sort-1-switch-vertical.png","082-book-guide-info-faq.png","083-icon-2718.png","084-thumb-up-curved.png","085-icon-2720.png","086-icon-2721.png","087-icon-2722.png","088-calendar-check-date-check.png","089-icon-2724.png","090-icon-2725.png","091-icon-2726.png","092-icon-2727.png","093-icon-2728.png","094-icon-2729.png","095-icon-2730.png","096-icon-2731.png","097-icon-2732.png","098-icon-2733.png","099-icon-2734.png","100-icon-2735.png","101-icon-2736.png","102-icon-2737.png","103-icon-2738.png","104-icon-2739.png","105-icon-2740.png","106-icon-2741.png","107-icon-2742.png","108-arrows-repeat-repost.png","109-icon-2744.png","110-icon-2745.png","111-icon-2746.png","112-icon-2747.png","113-icon-2748.png","114-icon-2749.png","115-icon-2750.png","116-files-documents.png","117-icon-2752.png","118-icon-2753.png","119-icon-2754.png","120-icon-2755.png","121-icon-2756.png","122-icon-2757.png","123-icon-2758.png","124-icon-2759.png","125-icon-2760.png","126-icon-2761.png","127-icon-2762.png","128-icon-2763.png","129-checkmark-icon.png"],
+      black: ["000-camera-icon.png","001-checkmark-icon.png","002-circle.png","003-icon-background-1.png","004-icon-background.png","005-icon-outline-1.png","006-icon-outline-2.png","007-icon-outline.png","008-icon-shape-1.png","009-icon-shape-10.png","010-icon-shape-11.png","011-icon-shape-12.png","012-icon-shape-13.png","013-icon-shape-14.png","014-icon-shape-15.png","015-icon-shape-2.png","016-icon-shape-3.png","017-icon-shape-4.png","018-icon-shape-5.png","019-icon-shape-6.png","020-icon-shape-7.png","021-icon-shape-8.png","022-icon-shape-9.png","023-icon-shape.png","024-icon-1.png","025-icon-10.png","026-icon-11.png","027-icon-12.png","028-icon-13.png","029-icon-14.png","030-icon-15.png","031-icon-16.png","032-icon-17.png","033-icon-18.png","034-icon-19.png","035-icon-2.png","036-icon-20.png","037-icon-21.png","038-icon-22.png","039-icon-23.png","040-icon-24.png","041-icon-25.png","042-icon-26.png","043-icon-27.png","044-icon-28.png","045-icon-29.png","046-icon-3.png","047-icon-30.png","048-icon-31.png","049-icon-32.png","050-icon-33.png","051-icon-34.png","052-icon-35.png","053-icon-36.png","054-icon-37.png","055-icon-38.png","056-icon-39.png","057-icon-4.png","058-icon-40.png","059-icon-41.png","060-icon-42.png","061-icon-43.png","062-icon-44.png","063-icon-45.png","064-icon-46.png","065-icon-47.png","066-icon-48.png","067-icon-49.png","068-icon-5.png","069-icon-50.png","070-icon-51.png","071-icon-52.png","072-icon-53.png","073-icon-54.png","074-icon-55.png","075-icon-56.png","076-icon-57.png","077-icon-58.png","078-icon-59.png","079-icon-6.png","080-icon-60.png","081-icon-61.png","082-icon-62.png","083-icon-63.png","084-icon-64.png","085-icon-65.png","086-icon-66.png","087-icon-67.png","088-icon-68.png","089-icon-69.png","090-icon-7.png","091-icon-70.png","092-icon-71.png","093-icon-72.png","094-icon-73.png","095-icon-8.png","096-icon-9.png","097-icon.png","098-play-icon.png","099-warning-icon.png","100-alignment-left-bar.png","101-animation.png","102-arrow-top-bottom-sort-1-switch-vertical.png","103-arrows-repeat-repost.png","104-bezier-vector-nodes.png","105-book-guide-info-faq.png","106-brain-2-ai-thinking-database-ki.png","107-calendar-1-date.png","108-calendar-check-date-check.png","109-calendar-clock-4.png","110-call-phone.png","111-call-incoming-phone.png","112-coins-add.png","113-diamond-pro-premium.png","114-explosion-boom-bang-pop.png","115-files-documents.png","116-finger-print-1-touch-id.png","117-gamepad-controls-left-joystick.png","118-group-1-users.png","119-minimize-45-arrow-shrink.png","120-paperclip-3-attachment.png","121-people-circle-user-circle-avatar-profile.png","122-search-menu-list-search.png","123-subscription-tick-1-verify.png","124-text-indicator.png","125-thumb-up-curved.png","126-vector.png","127-video-on-cam-on.png","128-window-app-browser-app-desktop.png","129-zap-lightning-flash-thunder.png"],
+      white: ["000-camera-icon.png","001-checkmark-icon.png","002-circle.png","003-icon-background-1.png","004-icon-background.png","005-icon-outline-1.png","006-icon-outline-2.png","007-icon-outline.png","008-icon-shape-1.png","009-icon-shape-10.png","010-icon-shape-11.png","011-icon-shape-12.png","012-icon-shape-13.png","013-icon-shape-14.png","014-icon-shape-15.png","015-icon-shape-2.png","016-icon-shape-3.png","017-icon-shape-4.png","018-icon-shape-5.png","019-icon-shape-6.png","020-icon-shape-7.png","021-icon-shape-8.png","022-icon-shape-9.png","023-icon-shape.png","024-icon-1.png","025-icon-10.png","026-icon-11.png","027-icon-12.png","028-icon-13.png","029-icon-14.png","030-icon-15.png","031-icon-16.png","032-icon-17.png","033-icon-18.png","034-icon-19.png","035-icon-2.png","036-icon-20.png","037-icon-21.png","038-icon-22.png","039-icon-23.png","040-icon-24.png","041-icon-25.png","042-icon-26.png","043-icon-27.png","044-icon-28.png","045-icon-29.png","046-icon-3.png","047-icon-30.png","048-icon-31.png","049-icon-32.png","050-icon-33.png","051-icon-34.png","052-icon-35.png","053-icon-36.png","054-icon-37.png","055-icon-38.png","056-icon-39.png","057-icon-4.png","058-icon-40.png","059-icon-41.png","060-icon-42.png","061-icon-43.png","062-icon-44.png","063-icon-45.png","064-icon-46.png","065-icon-47.png","066-icon-48.png","067-icon-49.png","068-icon-5.png","069-icon-50.png","070-icon-51.png","071-icon-52.png","072-icon-53.png","073-icon-54.png","074-icon-55.png","075-icon-56.png","076-icon-57.png","077-icon-58.png","078-icon-59.png","079-icon-6.png","080-icon-60.png","081-icon-61.png","082-icon-62.png","083-icon-63.png","084-icon-64.png","085-icon-65.png","086-icon-66.png","087-icon-67.png","088-icon-68.png","089-icon-69.png","090-icon-7.png","091-icon-70.png","092-icon-71.png","093-icon-72.png","094-icon-73.png","095-icon-8.png","096-icon-9.png","097-icon.png","098-play-icon.png","099-warning-icon.png","100-alignment-left-bar.png","101-animation.png","102-arrow-top-bottom-sort-1-switch-vertical.png","103-arrows-repeat-repost.png","104-bezier-vector-nodes.png","105-book-guide-info-faq.png","106-brain-2-ai-thinking-database-ki.png","107-calendar-1-date.png","108-calendar-check-date-check.png","109-calendar-clock-4.png","110-call-phone.png","111-call-incoming-phone.png","112-coins-add.png","113-diamond-pro-premium.png","114-explosion-boom-bang-pop.png","115-files-documents.png","116-finger-print-1-touch-id.png","117-gamepad-controls-left-joystick.png","118-group-1-users.png","119-minimize-45-arrow-shrink.png","120-paperclip-3-attachment.png","121-people-circle-user-circle-avatar-profile.png","122-search-menu-list-search.png","123-subscription-tick-1-verify.png","124-text-indicator.png","125-thumb-up-curved.png","126-vector.png","127-video-on-cam-on.png","128-window-app-browser-app-desktop.png","129-zap-lightning-flash-thunder.png"],
+      product: ['home.png','studio.png','stt.png','tts.png','dubbing.png','voices.png','convai.png','sfx.png','voice changer.png','voice isolator.png'],
+      public: ['book.png','brain.png','checkmark.png','convai.png','dubbing.png','explosion.png','group.png','home.png','music.png','phone.png','play.png','sfx.png','stt.png','studio.png','tts.png','video.png','voice-changer.png','voice-isolator.png','voices.png','window-app.png','zap.png'],
+    };
+
+    function renderIcons() {
+      const query = document.getElementById('iconSearch').value.toLowerCase().trim();
+      iconGrid.innerHTML = '';
+      let icons, pathPrefix, variant;
+
+      if (activeIconTab === 'product') {
+        icons = allIcons.product;
+        pathPrefix = './icons/product/';
+        variant = 'product';
+      } else if (activeIconTab === 'public') {
+        icons = allIcons.public;
+        pathPrefix = './icons/';
+        variant = 'public';
+      } else {
+        icons = allIcons[activeIconTab] || [];
+        pathPrefix = `./icons/${activeIconTab}/`;
+        variant = activeIconTab;
+      }
+
+      const bgStyle = activeIconTab === 'cream' ? 'background:#222'
+        : activeIconTab === 'black' ? 'background:#eee'
+        : activeIconTab === 'white' ? 'background:#222'
+        : activeIconTab === 'product' ? 'background:#e8e6e4'
+        : 'background:#e8e6e4'; /* public — light bg so dark icons show */
+
+      icons.forEach(name => {
+        if (query && !name.toLowerCase().includes(query)) return;
+        const card = makeCard({
+          name: name,
+          badges: ['asset'],
+          previewHtml: `<div class="icon-preview" style="${bgStyle}"><img src="${pathPrefix}${name}" loading="lazy" alt="${name}" /></div>`,
+          payload: buildIconPayload(name, variant),
+          searchable: name + ' icon ' + variant,
+          extraClass: 'icon-card',
+        });
+        iconGrid.appendChild(card);
+      });
+
+      if (iconGrid.children.length === 0) {
+        iconGrid.innerHTML = '<div style="color:#555;padding:20px;grid-column:1/-1">No icons found.</div>';
+      }
+    }
+
+    renderIcons();
+
+    document.querySelectorAll('[data-iconfilter]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-iconfilter]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeIconTab = btn.dataset.iconfilter;
+        renderIcons();
+      });
+    });
+    document.getElementById('iconSearch').addEventListener('input', renderIcons);
+
+    // 7. Voice Orbs
+    const orbs = ['orb-teal-on-black.jpg','orb-purple-blue-on-black.jpg','orb-pink-on-black.jpg','orb-coral-on-black.jpg','orb-green-on-black.jpg','orb-gold-on-black.jpg','orb-hotpink-on-black.jpg','orb-lavender-on-black.jpg'];
+    const orbGrid = document.getElementById('orbGrid');
+    orbs.forEach(file => {
+      const color = file.replace('orb-','').replace('-on-black.jpg','');
+      orbGrid.appendChild(makeCard({
+        name: file,
+        desc: color.charAt(0).toUpperCase() + color.slice(1) + ' orb',
+        badges: ['asset'],
+        previewHtml: `<div class="asset-preview orb-preview"><img src="./voice-orbs/${file}" loading="lazy" alt="${file}" /></div>`,
+        payload: buildOrbPayload(file),
+        searchable: file + ' ' + color + ' voice orb',
+      }));
+    });
+
+    // 8. Other Assets
+    // Logos
+    const logosGrid = document.getElementById('logosGrid');
+    const logos = ['Logo-white.png','Logo-black.png','ElevenLabs_Icon_White.svg','ElevenLabs_Icon_Black.svg','agents.jpg','api.jpg','creative.jpg'];
+    logos.forEach(file => {
+      const bgStyle = file.includes('white') || file.includes('White') ? 'background:#333' : 'background:#eee';
+      logosGrid.appendChild(makeCard({
+        name: file,
+        badges: ['asset'],
+        previewHtml: `<div class="asset-preview" style="${bgStyle}"><img src="./logos/${file}" loading="lazy" alt="${file}" style="object-fit:contain;padding:12px" /></div>`,
+        payload: buildAssetPayload(file, 'logos', 'Logo'),
+        searchable: file + ' logo',
+      }));
+    });
+
+    // Covers
+    const coversGrid = document.getElementById('coversGrid');
+    ['Cover0.jpg','Cover1.jpg'].forEach(file => {
+      coversGrid.appendChild(makeCard({
+        name: file,
+        badges: ['asset'],
+        previewHtml: `<div class="asset-preview"><img src="./covers/${file}" loading="lazy" alt="${file}" /></div>`,
+        payload: buildAssetPayload(file, 'covers', 'Cover'),
+        searchable: file + ' cover',
+      }));
+    });
+
+    // Images
+    const imagesGrid = document.getElementById('imagesGrid');
+    ['bg0.jpg','bg3.jpg','bg7.jpg','bg12.jpg','bg15.jpg','ElevenLabs_0.png','ElevenLabs_1.png','ElevenLabs_2.png'].forEach(file => {
+      imagesGrid.appendChild(makeCard({
+        name: file,
+        badges: ['asset'],
+        previewHtml: `<div class="asset-preview"><img src="./images/${file}" loading="lazy" alt="${file}" /></div>`,
+        payload: buildAssetPayload(file, 'images', 'Image'),
+        searchable: file + ' image brand',
+      }));
+    });
+
+    // Screenshots
+    const screenshotsGrid = document.getElementById('screenshotsGrid');
+    ['homepage.png','agents-landing.png','api-docs.png','tts-landing.png'].forEach(file => {
+      screenshotsGrid.appendChild(makeCard({
+        name: file,
+        badges: ['asset'],
+        previewHtml: `<div class="asset-preview"><img src="./screenshots/${file}" loading="lazy" alt="${file}" /></div>`,
+        payload: buildAssetPayload(file, 'screenshots', 'Screenshot'),
+        searchable: file + ' screenshot',
+      }));
+    });
+
+    // Fonts
+    const fontsGrid = document.getElementById('fontsGrid');
+    const fonts = [
+      { file: 'KMR-Waldenburg-Buch.otf', weight: 300, label: 'Buch (Light)', sample: 'Aa' },
+      { file: 'KMR-Waldenburg-Normal.otf', weight: 400, label: 'Normal (Regular)', sample: 'Aa' },
+      { file: 'KMR-Waldenburg-Halbfett.otf', weight: 600, label: 'Halbfett (Semi-Bold)', sample: 'Aa' },
+      { file: 'KMR-Waldenburg-Fett.otf', weight: 700, label: 'Fett (Bold)', sample: 'Aa' },
+    ];
+    fonts.forEach(f => {
+      fontsGrid.appendChild(makeCard({
+        name: f.file,
+        desc: `Weight ${f.weight} -- ${f.label}`,
+        badges: ['asset'],
+        previewHtml: `<div class="font-info-card"><span class="font-weight-sample" style="font-weight:${f.weight}">${f.sample}</span></div>`,
+        payload: `## ${f.file}\n- Asset: Font\n- Path: fonts/${f.file}\n- Weight: ${f.weight}\n- Label: ${f.label}\n- Family: KMR Waldenburg`,
+        searchable: f.file + ' font ' + f.label + ' ' + f.weight,
+      }));
+    });
+
+    // Colors
+    const colorsGrid = document.getElementById('colorsGrid');
+    const colors = [
+      { name: 'GRAPHITE', hex: '#1E1916', usage: 'Text on Content scenes, graphic elements. Never backgrounds.' },
+      { name: 'OFF_WHITE', hex: '#FAFAFA', usage: 'Content scene backgrounds.' },
+      { name: 'CREAM', hex: '#F5F3F1', usage: 'Card fills (solid on Content, frosted on Hero).' },
+      { name: 'LIGHT_GRAY', hex: '#E0DEDC', usage: 'Borders, dividers, decorative numbers (Content mode).' },
+      { name: 'MID_GRAY', hex: '#999999', usage: 'Labels, secondary text, section labels (Content mode).' },
+      { name: 'DARK_GRAY', hex: '#555555', usage: 'Body text, descriptions (Content mode).' },
+      { name: 'WHITE', hex: '#FFFFFF', usage: 'Text on Hero scenes, Hero watermarks.' },
+    ];
+    colors.forEach(c => {
+      const borderStyle = c.hex === '#FFFFFF' || c.hex === '#FAFAFA' || c.hex === '#F5F3F1' || c.hex === '#E0DEDC' ? 'border:1px solid #333' : '';
+      colorsGrid.appendChild(makeCard({
+        name: `${c.name}`,
+        desc: `${c.hex} -- ${c.usage}`,
+        badges: ['asset'],
+        previewHtml: `<div class="color-swatch" style="background:${c.hex};${borderStyle}"></div>`,
+        payload: buildColorPayload(c.name, c.hex, c.usage),
+        searchable: c.name + ' ' + c.hex + ' color palette',
+      }));
+    });
+
+    // ===== GLOBAL SEARCH =====
+    const globalSearch = document.getElementById('globalSearch');
+    globalSearch.addEventListener('input', () => {
+      const query = globalSearch.value.toLowerCase().trim();
+      document.querySelectorAll('.section').forEach(section => {
+        let visibleCount = 0;
+        section.querySelectorAll('.card').forEach(card => {
+          const match = !query || (card.dataset.searchable && card.dataset.searchable.includes(query));
+          card.style.display = match ? '' : 'none';
+          if (match) visibleCount++;
+        });
+        // Keep section visible if it has subsections (other-assets) or visible cards
+        if (section.id === 'other-assets') {
+          section.style.display = '';
+        } else {
+          section.style.display = visibleCount > 0 ? '' : 'none';
+        }
+      });
+    });
+
+    // ===== SIDEBAR SCROLL HIGHLIGHT =====
+    const sectionEls = document.querySelectorAll('.section[data-nav]');
+    const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const nav = entry.target.dataset.nav;
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.dataset.section === nav);
+          });
+        }
+      });
+    }, { rootMargin: '-20% 0px -60% 0px' });
+
+    sectionEls.forEach(el => observer.observe(el));
+
+    // Smooth scroll on sidebar click
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.getElementById(link.dataset.section);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
     });
   </script>
 </body>
