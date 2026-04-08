@@ -76,4 +76,4 @@ elevenlabs-academy-plugin/
 
 ## License
 
-For ElevenLabs internal use only. Brand assets, guidelines, fonts, and curriculum content are proprietary to ElevenLabs.
+For ElevenLabs internal use only. This plugin is for authorized use by ElevenLabs employees. Brand assets, guidelines, fonts, and curriculum content are proprietary to ElevenLabs.
