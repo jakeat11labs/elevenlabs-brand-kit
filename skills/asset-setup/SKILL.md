@@ -14,8 +14,8 @@ Brand assets are distributed as a versioned zip from GitHub Releases. The zip co
 
 **Note on fonts:** KMR Waldenburg OTFs are bundled inside `brand-assets/fonts/`. During installation they are copied to both `public/brand-assets/fonts/` (for the catalog) and `public/fonts/` (for web font loading / Remotion staticFile()). Both locations are populated automatically.
 
-**Current version:** `v2.1.0`
-**Download URL:** `https://github.com/jakerains/elevenlabs-brand-kit/releases/download/v2.1.0/brand-assets-v2.1.zip`
+**Current version:** `v3.0.0`
+**Download URL:** `https://github.com/jakerains/elevenlabs-brand-kit/releases/download/v3.0.0/brand-assets-v3.0.zip`
 
 ---
 
@@ -104,7 +104,7 @@ Use `$ASSET_URL` and `$LATEST_VERSION` from Step 1. If Step 1 failed to fetch (n
 ```bash
 # $ASSET_URL and $LATEST_VERSION set in Step 1
 # Fallback if network check failed:
-ASSET_URL="${ASSET_URL:-https://github.com/jakerains/elevenlabs-brand-kit/releases/download/v2.1.0/brand-assets-v2.1.zip}"
+ASSET_URL="${ASSET_URL:-https://github.com/jakerains/elevenlabs-brand-kit/releases/download/v3.0.0/brand-assets-v3.0.zip}"
 LATEST_VERSION="${LATEST_VERSION:-2.1.0}"
 TEMP_ZIP="/tmp/elevenlabs-brand-assets-latest.zip"
 
