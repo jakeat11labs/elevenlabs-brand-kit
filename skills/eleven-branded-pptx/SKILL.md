@@ -22,7 +22,7 @@ The plugin ships a 30-slide branded template that is fully self-contained — it
 1. Check `~/.elevenlabs-kit/config.json` — if `assetLocation` is `"central"`, look in the `centralPath` directory
 2. Otherwise check `public/brand-assets/` in the current project
 3. Look in the plugin's own `brand-assets/` directory
-4. The file is named `[Template] ElevenLabs Presentation _ Update.pptx`
+4. The file is named `elevenlabs-presentation-template.pptx`
 
 **Steps:**
 

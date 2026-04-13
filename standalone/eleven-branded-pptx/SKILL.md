@@ -13,7 +13,7 @@ Create PowerPoint decks that follow ElevenLabs brand guidelines. This standalone
 
 ## Template
 
-This skill ships with the ElevenLabs template at `assets/[Template] ElevenLabs Presentation _ Update.pptx`. It contains 30 professionally designed slides, 3 slide masters (80 layouts), and 54 embedded media files — gradient backgrounds, voice orbs, brand icons, logos, and Chladni patterns. No external asset downloads needed.
+This skill ships with the ElevenLabs template at `assets/elevenlabs-presentation-template.pptx`. It contains 30 professionally designed slides, 3 slide masters (80 layouts), and 54 embedded media files — gradient backgrounds, voice orbs, brand icons, logos, and Chladni patterns. No external asset downloads needed.
 
 ---
 
@@ -21,7 +21,7 @@ This skill ships with the ElevenLabs template at `assets/[Template] ElevenLabs P
 
 ### Default: Edit the Template
 
-1. Copy `assets/[Template] ElevenLabs Presentation _ Update.pptx` to your working directory
+1. Copy `assets/elevenlabs-presentation-template.pptx` to your working directory
 2. Use `python scripts/thumbnail.py` to see all 30 layouts
 3. Use `python scripts/office/unpack.py` to extract
 4. Use `python scripts/add_slide.py` to duplicate the layouts you need

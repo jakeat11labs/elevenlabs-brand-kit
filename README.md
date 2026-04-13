@@ -138,7 +138,7 @@ elevenlabs-brand-kit/
 │   ├── voice-orbs/              # 8 metallic orb images
 │   ├── logos/                   # Wordmark + II symbol
 │   ├── fonts/                   # KMR Waldenburg (4 weights)
-│   ├── [Template]...pptx        # 30-slide branded presentation template
+│   ├── elevenlabs-presentation-template.pptx  # 30-slide branded template
 │   ├── BRAND_GUIDELINES.md      # Official 2025 brand guidelines
 │   ├── CLAUDE.md                # Asset inventory + usage guide
 │   ├── color-tokens.json        # Color definitions
