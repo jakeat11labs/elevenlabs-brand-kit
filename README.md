@@ -1,5 +1,8 @@
 <p align="center">
-  <img src="brand-assets/logos/Logo-black.png" alt="ElevenLabs" width="300" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="brand-assets/logos/Logo-white.png">
+    <img src="brand-assets/logos/Logo-black.png" alt="ElevenLabs" width="300" />
+  </picture>
 </p>
 
 <h1 align="center">ElevenLabs Brand Kit</h1>
@@ -27,7 +30,17 @@ A Claude Code plugin for producing on-brand ElevenLabs content -- web apps, land
 
 ## Installation
 
-### From GitHub (recommended)
+### Via marketplace (recommended)
+
+```
+/plugin marketplace add jakerains/elevenlabs-brand-kit
+```
+
+```
+/plugin install elevenlabs-brand-kit@elevenlabs-brand-kit
+```
+
+### Direct install (alternative)
 
 ```bash
 claude /plugin install https://github.com/jakerains/elevenlabs-brand-kit
