@@ -9,6 +9,13 @@
 
 A Claude Code plugin for producing on-brand ElevenLabs content -- web apps, landing pages, marketing sites, presentations, and Remotion videos. Brand assets, design guidelines, and creative workflows in one package.
 
+<p align="center">
+  <a href="#for-claude-code"><img src="https://img.shields.io/badge/Claude_Code-Install_Plugin-6B4FBB?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik04IDNoOHYySDh6TTYgN2gxMnYySDZ6TTQgMTFoMTZ2Mkg0eiIvPjwvc3ZnPg==" alt="Claude Code"></a>
+  <a href="#for-claude-desktop--cowork-desktop"><img src="https://img.shields.io/badge/Claude_Desktop-Download_.skill-E8491D?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAyTDEyIDE1TTEyIDE1TDcgMTBNMTIgMTVMMTcgMTBNNSAxOEgxOSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48L3N2Zz4=" alt="Claude Desktop"></a>
+  <a href="#brand-assets"><img src="https://img.shields.io/badge/Brand_Assets-~75MB-1E1916?style=for-the-badge" alt="Brand Assets"></a>
+  <a href="#whats-included"><img src="https://img.shields.io/badge/Skills-7_Included-F5F3F1?style=for-the-badge&labelColor=1E1916" alt="Skills"></a>
+</p>
+
 ## What's Included
 
 | Skill | Command | What It Does |
