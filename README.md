@@ -7,7 +7,7 @@
 
 <h1 align="center">ElevenLabs Brand Kit</h1>
 
-A Claude Code plugin for producing on-brand ElevenLabs content -- web apps, landing pages, marketing sites, and Remotion videos. Brand assets, design guidelines, and creative workflows in one package.
+A Claude Code plugin for producing on-brand ElevenLabs content -- web apps, landing pages, marketing sites, presentations, and Remotion videos. Brand assets, design guidelines, and creative workflows in one package.
 
 ## What's Included
 
@@ -16,21 +16,25 @@ A Claude Code plugin for producing on-brand ElevenLabs content -- web apps, land
 | **Asset Setup** | `/elevenlabs-brand-kit:asset-setup` | Download brand assets (~75MB), bootstrap a project, configure storage |
 | **Brand** | `/elevenlabs-brand-kit:brand` | Enforce ElevenLabs brand guidelines on any content |
 | **Branded Web** | `/elevenlabs-brand-kit:branded-web` | Build ElevenLabs-branded web experiences (HTML, CSS, React, Tailwind, shadcn/ui) |
+| **Branded PPTX** | `/elevenlabs-brand-kit:branded-pptx` | Create ElevenLabs-branded PowerPoint presentations from the included 30-slide template |
 | **Remotion Spec Builder** | `/elevenlabs-brand-kit:remotion-spec` | Draft scene-by-scene video blueprints with layouts, modes, backgrounds |
 | **Remotion Builder** | `/elevenlabs-brand-kit:remotion-builder` | Generate React/TypeScript Remotion compositions from spec files |
 | **Remotion Best Practices** | `/elevenlabs-brand-kit:remotion-best-practices` | Remotion API reference -- animations, transitions, audio, video, fonts, 3D |
 
 ### When to use which
 
-- **"Build a branded web page"** → **Branded Web** -- CSS tokens, card variants, font loading, noise overlays, Tailwind/shadcn setup
-- **"Is this on-brand?"** → **Brand** -- checks content against ElevenLabs brand guidelines
-- **"Set up a new project"** → **Asset Setup** -- downloads brand assets and bootstraps the project
-- **"Spec out a video"** → **Remotion Spec Builder** -- creates the video blueprint (scene layouts, modes, durations)
-- **"Implement this spec"** → **Remotion Builder** -- generates the actual React code from a spec file
+- **"Build a branded web page"** -> **Branded Web** -- CSS tokens, card variants, font loading, noise overlays, Tailwind/shadcn setup
+- **"Make a presentation"** -> **Branded PPTX** -- ElevenLabs-branded decks from the included 30-slide template (requires `/pptx` skill)
+- **"Is this on-brand?"** -> **Brand** -- checks content against ElevenLabs brand guidelines
+- **"Set up a new project"** -> **Asset Setup** -- downloads brand assets and bootstraps the project
+- **"Spec out a video"** -> **Remotion Spec Builder** -- creates the video blueprint (scene layouts, modes, durations)
+- **"Implement this spec"** -> **Remotion Builder** -- generates the actual React code from a spec file
 
 ## Installation
 
-### Via marketplace (recommended)
+### For Claude Code
+
+**Via marketplace (recommended):**
 
 ```
 /plugin marketplace add jakerains/elevenlabs-brand-kit
@@ -40,18 +44,40 @@ A Claude Code plugin for producing on-brand ElevenLabs content -- web apps, land
 /plugin install elevenlabs-brand-kit@elevenlabs-brand-kit
 ```
 
-### Direct install (alternative)
+**Direct install:**
 
 ```bash
 claude /plugin install https://github.com/jakerains/elevenlabs-brand-kit
 ```
 
-### Local development
+**Local development:**
 
 ```bash
 git clone https://github.com/jakerains/elevenlabs-brand-kit.git
 claude --plugin-dir ./elevenlabs-brand-kit
 ```
+
+### For Claude Desktop / Cowork Desktop
+
+Individual skills are available as standalone `.skill` files that bundle everything needed -- no plugin setup required.
+
+**How to install:**
+
+1. Download the `.skill` file from the table below
+2. Open Claude Desktop or Cowork Desktop
+3. Go to **Customize** (bottom-left)
+4. Under **Personal Plugins**, click the **+** button
+5. Select **Create Plugin**
+6. Choose **Upload plugin file**
+7. Select the downloaded `.skill` file
+
+**Available standalone skills:**
+
+| Skill | Download | Size | What's Included |
+|-------|----------|------|----------------|
+| **Branded PPTX** | [`branded-pptx.skill`](branded-pptx.skill) | ~11MB | 30-slide ElevenLabs template with 54 embedded media files (backgrounds, voice orbs, icons, logos), brand tokens, layout guide |
+
+Each `.skill` file is self-contained -- it bundles the template and all reference materials so the agent can create on-brand presentations without any additional downloads.
 
 ## Quick Start
 
@@ -69,6 +95,12 @@ claude --plugin-dir ./elevenlabs-brand-kit
 3. Draft a spec with `/elevenlabs-brand-kit:remotion-spec`
 4. Build it with `/elevenlabs-brand-kit:remotion-builder`
 
+### For Presentations
+
+1. Install the plugin (or download the standalone [`branded-pptx.skill`](branded-pptx.skill) for Claude Desktop)
+2. Run `/elevenlabs-brand-kit:asset-setup` to download brand assets (includes the PowerPoint template)
+3. Create branded decks with `/elevenlabs-brand-kit:branded-pptx` (requires the `/pptx` skill for file tooling)
+
 ## Brand Assets
 
 Brand assets (~75MB optimized) are distributed via [GitHub Releases](https://github.com/jakerains/elevenlabs-brand-kit/releases). The `asset-setup` skill downloads them and supports both project-local and central (`~/.elevenlabs-kit/`) storage.
@@ -80,11 +112,12 @@ Brand assets (~75MB optimized) are distributed via [GitHub Releases](https://git
 - **Logos** -- black + white wordmark, II symbol
 - **4 KMR Waldenburg fonts** -- Book, Normal, Halbfett, Fett weights
 - **Color tokens** (`color-tokens.json`) + **Brand Guidelines** (`BRAND_GUIDELINES.md`)
+- **Presentation template** -- 30-slide branded PowerPoint with 80 layout masters and 54 embedded media
 - **Visual catalog** (`index.html`) -- browse every asset with one-click copy buttons
 
 ## V2 Design System
 
-The kit includes the full ElevenLabs V2 visual system, applicable to both web and video:
+The kit includes the full ElevenLabs V2 visual system, applicable to web, video, and presentations:
 
 - **Hero mode** -- Gradient backgrounds, frosted BrandedCards, white text
 - **Content mode** -- OFF_WHITE backgrounds, CREAM cards, GRAPHITE text
@@ -97,13 +130,15 @@ The kit includes the full ElevenLabs V2 visual system, applicable to both web an
 ```
 elevenlabs-brand-kit/
 ├── .claude-plugin/
-│   └── plugin.json              # Plugin manifest
+│   ├── plugin.json              # Plugin manifest
+│   └── marketplace.json         # Marketplace catalog
 ├── brand-assets/                # ~75MB optimized brand assets
 │   ├── backgrounds/             # Gradients, agents, Chladni, textures
-│   ├── icons/                   # 130 icons × 3 variants + product icons
+│   ├── icons/                   # 130 icons x 3 variants + product icons
 │   ├── voice-orbs/              # 8 metallic orb images
 │   ├── logos/                   # Wordmark + II symbol
 │   ├── fonts/                   # KMR Waldenburg (4 weights)
+│   ├── [Template]...pptx        # 30-slide branded presentation template
 │   ├── BRAND_GUIDELINES.md      # Official 2025 brand guidelines
 │   ├── CLAUDE.md                # Asset inventory + usage guide
 │   ├── color-tokens.json        # Color definitions
@@ -111,6 +146,8 @@ elevenlabs-brand-kit/
 ├── skills/
 │   ├── asset-setup/             # Project bootstrap + asset download
 │   ├── brand/                   # Brand guideline enforcement
+│   ├── branded-pptx/            # ElevenLabs-branded presentations
+│   │   └── references/          # Template layout guide
 │   ├── branded-web/             # Web development with brand system
 │   │   └── rules/               # CSS tokens, Tailwind, shadcn, cards, backgrounds, typography
 │   ├── remotion-best-practices/ # Remotion API patterns
@@ -122,6 +159,12 @@ elevenlabs-brand-kit/
 │       ├── assets/              # Spec templates and examples
 │       ├── rules/               # Scene layouts, modes, backgrounds
 │       └── references/          # Brand guidelines, asset inventory
+├── standalone/
+│   └── branded-pptx/            # Standalone skill source (packaged into .skill)
+│       ├── SKILL.md
+│       ├── references/
+│       └── assets/              # Bundled template PPTX
+├── branded-pptx.skill           # Downloadable standalone skill (zip)
 └── README.md
 ```
 
