@@ -29,8 +29,8 @@ AskUserQuestion({
     question: "What kind of project are you setting up?",
     header: "Project type",
     options: [
+      { label: "Just the brand assets", description: "Install brand-assets only — no npm packages, no project-specific bootstrap. Good for web projects, reference use, or pulling individual files" },
       { label: "Remotion video project", description: "Install brand assets and bootstrap Remotion dependencies" },
-      { label: "HTML / web project", description: "Install brand assets only, no npm packages" },
       { label: "Presentations", description: "Install brand assets for creating branded PowerPoint decks" },
       { label: "All of the above", description: "Install brand assets, bootstrap Remotion, and prep for web + presentations" }
     ],
@@ -39,7 +39,7 @@ AskUserQuestion({
 })
 ```
 
-Store the response as `PROJECT_TYPE` (remotion / html / pptx / all). If the user picks "Other" (the auto-provided escape hatch), treat it as `all` and install everything so they're unblocked. This determines post-setup guidance and whether Remotion bootstrap runs.
+Store the response as `PROJECT_TYPE` (assets / remotion / pptx / all). If the user picks "Other" (the auto-provided escape hatch), treat it as `assets` and just install the brand-assets without bootstrapping anything else. This determines post-setup guidance and whether Remotion bootstrap runs.
 
 ---
 
@@ -357,10 +357,10 @@ This file is read by all ElevenLabs Brand Kit skills to locate brand assets. Whe
 
 **Then, based on your project type:**
 
-**If HTML/web (`PROJECT_TYPE=html`):**
-> Reference `public/brand-assets/` for images and `public/fonts/` for KMR Waldenburg.
-> Use `/elevenlabs-brand-kit:branded-web` for guidance on implementing brand patterns in CSS/React/Tailwind.
-> Use `/elevenlabs-brand-kit:elevenlabs-brand` to check brand compliance on anything you build.
+**If assets-only (`PROJECT_TYPE=assets`):**
+> The brand assets are installed at `public/brand-assets/` (images, icons, voice orbs, logos) and `public/fonts/` (KMR Waldenburg). You can reference them directly or pull individual files as needed.
+> If you're building a web project: use `/elevenlabs-brand-kit:branded-web` for CSS/React/Tailwind brand patterns.
+> Use `/elevenlabs-brand-kit:brand` to check brand compliance on anything you build.
 
 **If Remotion (`PROJECT_TYPE=remotion`):**
 > You're ready to build. The typical flow:
