@@ -21,15 +21,25 @@ Brand assets are distributed as a versioned zip from GitHub Releases. The zip co
 
 ## Step 0: Identify Project Type
 
-**Ask this first — before doing anything else:**
+**Ask this first — before doing anything else.** Use the `AskUserQuestion` tool for a clean selection UI:
 
-> **What kind of project are you setting up?**
->
-> 1. **Remotion video project** — I'll install brand assets and bootstrap Remotion dependencies
-> 2. **HTML / web project** — I'll install brand assets only, no npm packages
-> 3. **Other / not sure** — I'll install brand assets and you can tell me what else you need
+```
+AskUserQuestion({
+  questions: [{
+    question: "What kind of project are you setting up?",
+    header: "Project type",
+    options: [
+      { label: "Remotion video project", description: "Install brand assets and bootstrap Remotion dependencies" },
+      { label: "HTML / web project", description: "Install brand assets only, no npm packages" },
+      { label: "Presentations", description: "Install brand assets for creating branded PowerPoint decks" },
+      { label: "Other / not sure", description: "Install brand assets and you can tell me what else you need" }
+    ],
+    multiSelect: false
+  }]
+})
+```
 
-Wait for the response and store it as `PROJECT_TYPE` (remotion / html / other). This determines whether the Remotion bootstrap step runs at the end.
+Store the response as `PROJECT_TYPE` (remotion / html / pptx / other). This determines post-setup guidance.
 
 ---
 
@@ -69,11 +79,21 @@ fi
 | Config exists, version is **outdated** | Tell the user there's an update available and ask if they want to install it (see prompt below). If yes — skip Step 2, use stored `ASSET_LOCATION`, go to **Step 3**. If no — stop. |
 | Config exists but assets are missing/broken | Tell the user assets are missing and re-download using stored preference — go to **Step 3**. |
 
-**Update prompt (use when version is outdated):**
+**Update prompt (use when version is outdated).** Use the `AskUserQuestion` tool:
 
-> **Update available:** your assets are at v`$INSTALLED_VERSION` — v`$LATEST_VERSION` is available.
->
-> Changes in this release are in the GitHub changelog. Want me to update now? (yes / no)
+```
+AskUserQuestion({
+  questions: [{
+    question: "Update available: your assets are at v$INSTALLED_VERSION — v$LATEST_VERSION is available. Want me to update now?",
+    header: "Update",
+    options: [
+      { label: "Yes, update now", description: "Download and install the latest brand assets" },
+      { label: "No, skip", description: "Keep the current version" }
+    ],
+    multiSelect: false
+  }]
+})
+```
 
 Wait for the user's response before proceeding.
 
@@ -81,15 +101,21 @@ Wait for the user's response before proceeding.
 
 ## Step 2: Ask the User Where to Store Assets
 
-**Only reach this step if no config exists (first-time setup).** Present the two options clearly:
+**Only reach this step if no config exists (first-time setup).** Use the `AskUserQuestion` tool:
 
-> **Where should I store the brand assets?**
->
-> 1. **Project-local** — Downloads assets directly into this project's `public/` directory. Each project gets its own copy. Best if you only work on one project at a time.
->
-> 2. **Central (shared)** — Downloads assets once to `~/.elevenlabs-kit/` and creates symlinks in each project. All projects share the same assets — saves disk space and keeps everything in sync. Best if you work across multiple ElevenLabs projects.
->
-> Which do you prefer? (1 or 2)
+```
+AskUserQuestion({
+  questions: [{
+    question: "Where should I store the brand assets?",
+    header: "Storage",
+    options: [
+      { label: "Project-local", description: "Downloads assets into this project's public/ directory. Each project gets its own copy. Best for single-project workflows." },
+      { label: "Central (shared)", description: "Downloads once to ~/.elevenlabs-kit/ and symlinks into each project. Saves disk space — best for multiple ElevenLabs projects." }
+    ],
+    multiSelect: false
+  }]
+})
+```
 
 Wait for the user's response before proceeding.
 
@@ -341,6 +367,12 @@ This file is read by all ElevenLabs Brand Kit skills to locate brand assets. Whe
 > 1. `/elevenlabs-brand-kit:remotion-spec-builder` — plan your scenes (layout, mode, content, duration)
 > 2. `/elevenlabs-brand-kit:remotion-builder` — generate the React/TypeScript code from the spec
 > 3. `/elevenlabs-brand-kit:remotion-best-practices` — load if you need Remotion API reference while building
+
+**If presentations (`PROJECT_TYPE=pptx`):**
+> You're ready to create branded decks. The typical flow:
+> 1. `/elevenlabs-brand-kit:eleven-branded-pptx` — create ElevenLabs-branded PowerPoint presentations from the included 30-slide template
+> 2. `/elevenlabs-brand-kit:brand` — check brand compliance on your content
+> Requires the `/pptx` skill for file tooling.
 
 **If other (`PROJECT_TYPE=other`):**
 > Ask what they're building — then suggest the relevant skills from above.

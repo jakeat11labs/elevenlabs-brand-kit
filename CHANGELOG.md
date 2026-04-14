@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0] - April 14, 2026
+
+### Added
+- Branded PPTX skill (`eleven-branded-pptx`) — create ElevenLabs-branded PowerPoint presentations from the included 30-slide template
+- Standalone `.skill` file for Claude Desktop / Cowork Desktop — self-contained branded PPTX with 54 embedded media files
+- Presentations project type in asset-setup — guides users to the branded PPTX workflow
+- AskUserQuestion UI for all asset-setup prompts — clean selection interface instead of raw text
+- Quick-nav badges in README for Claude Code, Claude Desktop, Brand Assets, and Skills
+- Marketplace install instructions (`/plugin marketplace add` + `/plugin install`)
+
+### Changed
+- Renamed `branded-pptx` skill to `eleven-branded-pptx` across all references
+- Plugin source switched from GitHub clone to relative path — avoids redundant re-clone during install
+- Plugin manifest `repository` field uses string format per Claude Code schema
+
+### Fixed
+- Plugin install failure caused by SSH clone attempt on public repo (permission denied publickey)
+- `.skill` download links now point to GitHub release assets
+- Template file renamed to remove special characters that broke downloads
+- Dark mode logo rendering in README
+- Asset-setup references updated to v3.1.0 release URL
+
 ## [2.0.0] - April 10, 2026
 
 ### Added
