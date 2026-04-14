@@ -292,14 +292,29 @@ Delete existing assets/symlinks and re-run from Step 2 with the new choice. The 
 
 **Only run this section if `PROJECT_TYPE` is `remotion` (set in Step 0).**
 
-First check whether Remotion is already installed:
+Ensure a package.json exists, install Remotion if missing, and wire up a `studio` script for launching Remotion Studio:
 
 ```bash
-if [ -f "package.json" ] && grep -q '"remotion"' package.json; then
+# 1. Make sure package.json exists — required for npm install to work
+if [ ! -f "package.json" ]; then
+  echo "No package.json found — initializing..."
+  npm init -y
+fi
+
+# 2. Install Remotion if not already present
+if grep -q '"remotion"' package.json; then
   echo "Remotion already installed — skipping npm install"
 else
   echo "Installing Remotion dependencies..."
   npm install remotion @remotion/cli @remotion/transitions @remotion/fonts @remotion/light-leaks zod
+fi
+
+# 3. Add the 'studio' script so user can launch Remotion Studio with `npm run studio`
+if ! npm pkg get scripts.studio 2>/dev/null | grep -q "remotion studio"; then
+  npm pkg set scripts.studio="remotion studio"
+  echo "Added 'studio' script — run with: npm run studio"
+else
+  echo "'studio' script already configured"
 fi
 ```
 
@@ -309,6 +324,9 @@ if [ -f "tsconfig.json" ]; then
   npx tsc --noEmit
 fi
 ```
+
+**After bootstrap, tell the user:**
+> Remotion is ready. Launch the studio anytime with `npm run studio` — it'll open Remotion Studio in your browser for previewing and editing compositions.
 
 ---
 
