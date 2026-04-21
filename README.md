@@ -44,7 +44,7 @@ A Claude Code plugin for producing on-brand ElevenLabs content -- web apps, land
 **Via marketplace (recommended):**
 
 ```
-/plugin marketplace add jakerains/elevenlabs-brand-kit
+/plugin marketplace add jakeat11labs/elevenlabs-brand-kit
 ```
 
 ```
@@ -54,13 +54,13 @@ A Claude Code plugin for producing on-brand ElevenLabs content -- web apps, land
 **Direct install:**
 
 ```bash
-claude /plugin install https://github.com/jakerains/elevenlabs-brand-kit
+claude /plugin install https://github.com/jakeat11labs/elevenlabs-brand-kit
 ```
 
 **Local development:**
 
 ```bash
-git clone https://github.com/jakerains/elevenlabs-brand-kit.git
+git clone https://github.com/jakeat11labs/elevenlabs-brand-kit.git
 claude --plugin-dir ./elevenlabs-brand-kit
 ```
 
@@ -82,7 +82,7 @@ Individual skills are available as standalone `.skill` files that bundle everyth
 
 | Skill | Download | Size | What's Included |
 |-------|----------|------|----------------|
-| **Branded PPTX** | [eleven-branded-pptx.skill](https://github.com/jakerains/elevenlabs-brand-kit/releases/latest/download/eleven-branded-pptx.skill) | ~11MB | 30-slide ElevenLabs template with 54 embedded media files (backgrounds, voice orbs, icons, logos), brand tokens, layout guide |
+| **Branded PPTX** | [eleven-branded-pptx.skill](https://github.com/jakeat11labs/elevenlabs-brand-kit/releases/latest/download/eleven-branded-pptx.skill) | ~11MB | 30-slide ElevenLabs template with 54 embedded media files (backgrounds, voice orbs, icons, logos), brand tokens, layout guide |
 
 Each `.skill` file is self-contained -- it bundles the template and all reference materials so the agent can create on-brand presentations without any additional downloads.
 
@@ -104,13 +104,13 @@ Each `.skill` file is self-contained -- it bundles the template and all referenc
 
 ### For Presentations
 
-1. Install the plugin (or download the standalone [`eleven-branded-pptx.skill`](https://github.com/jakerains/elevenlabs-brand-kit/releases/latest/download/eleven-branded-pptx.skill) for Claude Desktop)
+1. Install the plugin (or download the standalone [`eleven-branded-pptx.skill`](https://github.com/jakeat11labs/elevenlabs-brand-kit/releases/latest/download/eleven-branded-pptx.skill) for Claude Desktop)
 2. Run `/elevenlabs-brand-kit:asset-setup` to download brand assets (includes the PowerPoint template)
 3. Create branded decks with `/elevenlabs-brand-kit:eleven-branded-pptx` (requires the `/pptx` skill for file tooling)
 
 ## Brand Assets
 
-Brand assets (~75MB optimized) are distributed via [GitHub Releases](https://github.com/jakerains/elevenlabs-brand-kit/releases). The `asset-setup` skill downloads them and supports both project-local and central (`~/.elevenlabs-kit/`) storage.
+Brand assets (~75MB optimized) are distributed via [GitHub Releases](https://github.com/jakeat11labs/elevenlabs-brand-kit/releases). The `asset-setup` skill downloads them and supports both project-local and central (`~/.elevenlabs-kit/`) storage.
 
 **Included:**
 - **52+ background images** -- gradients, agents-themed, Chladni close-ups, shared textures

@@ -1,6 +1,6 @@
 # ElevenLabs Brand Kit — Central Asset Store
 
-This directory is the central, shared store for ElevenLabs brand assets. It is managed by the [elevenlabs-brand-kit](https://github.com/jakerains/elevenlabs-brand-kit) Claude Code plugin.
+This directory is the central, shared store for ElevenLabs brand assets. It is managed by the [elevenlabs-brand-kit](https://github.com/jakeat11labs/elevenlabs-brand-kit) Claude Code plugin.
 
 ## What's Here
 

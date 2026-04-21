@@ -2,7 +2,7 @@
 
 This file provides brand guidelines and asset usage instructions for any AI agent working with ElevenLabs brand materials. Follow these rules to ensure all output is on-brand.
 
-**Source:** [github.com/jakerains/elevenlabs-brand-kit](https://github.com/jakerains/elevenlabs-brand-kit)
+**Source:** [github.com/jakeat11labs/elevenlabs-brand-kit](https://github.com/jakeat11labs/elevenlabs-brand-kit)
 
 ---
 

@@ -15,7 +15,7 @@ Brand assets are distributed as a versioned zip from GitHub Releases. The zip co
 **Note on fonts:** KMR Waldenburg OTFs are bundled inside `brand-assets/fonts/`. During installation they are copied to both `public/brand-assets/fonts/` (for the catalog) and `public/fonts/` (for web font loading / Remotion staticFile()). Both locations are populated automatically.
 
 **Current version:** `v3.1.0`
-**Download URL:** `https://github.com/jakerains/elevenlabs-brand-kit/releases/download/v3.1.0/brand-assets-v3.1.zip`
+**Download URL:** `https://github.com/jakeat11labs/elevenlabs-brand-kit/releases/download/v3.1.0/brand-assets-v3.1.zip`
 
 ---
 
@@ -47,7 +47,7 @@ fi
 
 **Check GitHub for the latest release:**
 ```bash
-LATEST_INFO=$(curl -s https://api.github.com/repos/jakerains/elevenlabs-brand-kit/releases/latest)
+LATEST_INFO=$(curl -s https://api.github.com/repos/jakeat11labs/elevenlabs-brand-kit/releases/latest)
 LATEST_VERSION=$(echo "$LATEST_INFO" | python3 -c "import json,sys; print(json.load(sys.stdin)['tag_name'])" 2>/dev/null)
 ASSET_URL=$(echo "$LATEST_INFO" | python3 -c "import json,sys; assets=json.load(sys.stdin)['assets']; print(next(a['browser_download_url'] for a in assets if a['name'].endswith('.zip')))" 2>/dev/null)
 ```
@@ -181,7 +181,7 @@ Use `$ASSET_URL` and `$LATEST_VERSION` from Step 0. If the pre-flight GitHub che
 ```bash
 # $ASSET_URL and $LATEST_VERSION set in Step 0
 # Fallback if network check failed:
-ASSET_URL="${ASSET_URL:-https://github.com/jakerains/elevenlabs-brand-kit/releases/download/v3.1.0/brand-assets-v3.1.zip}"
+ASSET_URL="${ASSET_URL:-https://github.com/jakeat11labs/elevenlabs-brand-kit/releases/download/v3.1.0/brand-assets-v3.1.zip}"
 LATEST_VERSION="${LATEST_VERSION:-2.1.0}"
 TEMP_ZIP="/tmp/elevenlabs-brand-assets-latest.zip"
 

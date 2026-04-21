@@ -192,7 +192,7 @@ Run `/pptx` QA: `markitdown` for content, convert to images, visual inspection v
 For more backgrounds, icons, voice orbs, and fonts beyond what's embedded in the template, install the full ElevenLabs Brand Kit plugin:
 
 ```
-/plugin marketplace add jakerains/elevenlabs-brand-kit
+/plugin marketplace add jakeat11labs/elevenlabs-brand-kit
 /plugin install elevenlabs-brand-kit@elevenlabs-brand-kit
 ```
 
