@@ -72,10 +72,10 @@ Individual skills are available as standalone `.skill` files that bundle everyth
 
 1. Download the `.skill` file from the table below
 2. Open Claude Desktop or Cowork Desktop
-3. Go to **Customize** (bottom-left)
-4. Under **Personal Plugins**, click the **+** button
-5. Select **Create Plugin**
-6. Choose **Upload plugin file**
+3. Go to **Customize** in the sidebar (towards the top)
+4. Click **Skills** at the very top
+5. Click the **+** button under Skills
+6. Under **Create Skill**, select **Upload a Skill**
 7. Select the downloaded `.skill` file
 
 **Available standalone skills:**
