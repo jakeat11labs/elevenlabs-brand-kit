@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.2.3] - April 21, 2026
+
+### Changed
+- Repo moved from `github.com/jakerains/elevenlabs-brand-kit` to `github.com/jakeat11labs/elevenlabs-brand-kit`. Plugin manifest, marketplace config, asset-setup download URLs, and all README/skill references updated.
+- Brand asset release bumped to `v3.1.1` (filename `brand-assets-v3.1.1.zip`) so the new-repo release is distinct from the old-repo `v3.1.0`. Contents are unchanged from v3.1.0.
+
+### Fixed
+- `/elevenlabs-brand-kit:asset-setup` was 404'ing on both the latest-release API and the hardcoded fallback URL after the repo move. Both now resolve against the new repo and the v3.1.1 release.
+
 ## [3.2.2] - April 14, 2026
 
 ### Added
