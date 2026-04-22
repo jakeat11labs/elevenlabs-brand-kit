@@ -66,6 +66,8 @@ claude --plugin-dir ./elevenlabs-brand-kit
 
 ### For Claude Desktop / Cowork Desktop
 
+> **Note:** Only the **Branded PPTX** skill is currently packaged for Claude Desktop / Cowork Desktop. The rest of the kit (web, Remotion, asset-setup, brand) is Claude Code-only for now. More standalone skills are on the way.
+
 Individual skills are available as standalone `.skill` files that bundle everything needed -- no plugin setup required.
 
 **How to install:**
