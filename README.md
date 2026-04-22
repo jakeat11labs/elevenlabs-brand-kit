@@ -70,15 +70,25 @@ claude --plugin-dir ./elevenlabs-brand-kit
 
 Individual skills are available as standalone `.skill` files that bundle everything needed -- no plugin setup required.
 
-**How to install:**
+**How to install (easy way):**
 
 1. Download the `.skill` file from the table below
-2. Open Claude Desktop or Cowork Desktop
-3. Go to **Customize** in the sidebar (towards the top)
-4. Click **Skills** at the very top
-5. Click the **+** button under Skills
-6. Under **Create Skill**, select **Upload a Skill**
-7. Select the downloaded `.skill` file
+2. **Double-click it** -- Claude Desktop / Cowork Desktop should open and show this dialog:
+
+<p align="center">
+  <img src="docs/images/skill-install-dialog.jpg" alt="Add skill to library dialog" width="700">
+</p>
+
+3. Click **Add to library** and you're done.
+
+**If double-click doesn't open the dialog** (manual install):
+
+1. Open Claude Desktop or Cowork Desktop
+2. Go to **Customize** in the sidebar (towards the top)
+3. Click **Skills** at the very top
+4. Click the **+** button under Skills
+5. Under **Create Skill**, select **Upload a Skill**
+6. Select the downloaded `.skill` file
 
 **Available standalone skills:**
 
