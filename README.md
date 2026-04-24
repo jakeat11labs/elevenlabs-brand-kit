@@ -104,26 +104,45 @@ npx skills add jakeat11labs/elevenlabs-brand-kit
 
 **Install a specific skill:**
 
+_Asset Setup -- bootstrap a project, download brand assets_
+
 ```bash
-# Asset Setup -- bootstrap a project, download brand assets
 npx skills add jakeat11labs/elevenlabs-brand-kit --skill asset-setup
+```
 
-# Brand -- enforce ElevenLabs brand guidelines
+_Brand -- enforce ElevenLabs brand guidelines_
+
+```bash
 npx skills add jakeat11labs/elevenlabs-brand-kit --skill elevenlabs-brand
+```
 
-# Branded Web -- build ElevenLabs-branded web experiences
+_Branded Web -- build ElevenLabs-branded web experiences_
+
+```bash
 npx skills add jakeat11labs/elevenlabs-brand-kit --skill branded-web
+```
 
-# Branded PPTX -- ElevenLabs-branded PowerPoint presentations
+_Branded PPTX -- ElevenLabs-branded PowerPoint presentations_
+
+```bash
 npx skills add jakeat11labs/elevenlabs-brand-kit --skill eleven-branded-pptx
+```
 
-# Remotion Spec -- draft scene-by-scene video blueprints
+_Remotion Spec -- draft scene-by-scene video blueprints_
+
+```bash
 npx skills add jakeat11labs/elevenlabs-brand-kit --skill remotion-spec-builder
+```
 
-# Remotion Builder -- generate Remotion compositions from specs
+_Remotion Builder -- generate Remotion compositions from specs_
+
+```bash
 npx skills add jakeat11labs/elevenlabs-brand-kit --skill remotion-builder
+```
 
-# Remotion Best Practices -- Remotion API reference
+_Remotion Best Practices -- Remotion API reference_
+
+```bash
 npx skills add jakeat11labs/elevenlabs-brand-kit --skill remotion-best-practices
 ```
 
