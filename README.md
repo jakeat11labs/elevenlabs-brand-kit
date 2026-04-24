@@ -51,12 +51,6 @@ A Claude Code plugin for producing on-brand ElevenLabs content -- web apps, land
 /plugin install elevenlabs-brand-kit@elevenlabs-brand-kit
 ```
 
-**Direct install:**
-
-```bash
-claude /plugin install https://github.com/jakeat11labs/elevenlabs-brand-kit
-```
-
 **Local development:**
 
 ```bash
@@ -97,6 +91,43 @@ Individual skills are available as standalone `.skill` files that bundle everyth
 | **Branded PPTX** | [eleven-branded-pptx.skill](https://github.com/jakeat11labs/elevenlabs-brand-kit/releases/latest/download/eleven-branded-pptx.skill) | ~11MB | 30-slide ElevenLabs template with 54 embedded media files (backgrounds, voice orbs, icons, logos), brand tokens, layout guide |
 
 Each `.skill` file is self-contained -- it bundles the template and all reference materials so the agent can create on-brand presentations without any additional downloads.
+
+### For Any Agent (via skills.sh)
+
+Use the [`skills` CLI](https://skills.sh) to install individual skills into any supported agent -- Claude Code, Codex, Cursor, OpenCode, and [40+ others](https://github.com/vercel-labs/skills#available-agents). No plugin required.
+
+**Install everything (all 7 skills):**
+
+```bash
+npx skills add jakeat11labs/elevenlabs-brand-kit
+```
+
+**Install a specific skill:**
+
+```bash
+# Asset Setup -- bootstrap a project, download brand assets
+npx skills add jakeat11labs/elevenlabs-brand-kit --skill asset-setup
+
+# Brand -- enforce ElevenLabs brand guidelines
+npx skills add jakeat11labs/elevenlabs-brand-kit --skill brand
+
+# Branded Web -- build ElevenLabs-branded web experiences
+npx skills add jakeat11labs/elevenlabs-brand-kit --skill branded-web
+
+# Branded PPTX -- ElevenLabs-branded PowerPoint presentations
+npx skills add jakeat11labs/elevenlabs-brand-kit --skill eleven-branded-pptx
+
+# Remotion Spec -- draft scene-by-scene video blueprints
+npx skills add jakeat11labs/elevenlabs-brand-kit --skill remotion-spec
+
+# Remotion Builder -- generate Remotion compositions from specs
+npx skills add jakeat11labs/elevenlabs-brand-kit --skill remotion-builder
+
+# Remotion Best Practices -- Remotion API reference
+npx skills add jakeat11labs/elevenlabs-brand-kit --skill remotion-best-practices
+```
+
+Add `-g` to install globally (available across all projects), or `-a <agent>` to target a specific agent (e.g. `-a claude-code`, `-a codex`, `-a cursor`). See the [`skills` CLI docs](https://skills.sh/docs/cli) for all options.
 
 ## Quick Start
 
