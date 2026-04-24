@@ -109,7 +109,7 @@ npx skills add jakeat11labs/elevenlabs-brand-kit
 npx skills add jakeat11labs/elevenlabs-brand-kit --skill asset-setup
 
 # Brand -- enforce ElevenLabs brand guidelines
-npx skills add jakeat11labs/elevenlabs-brand-kit --skill brand
+npx skills add jakeat11labs/elevenlabs-brand-kit --skill elevenlabs-brand
 
 # Branded Web -- build ElevenLabs-branded web experiences
 npx skills add jakeat11labs/elevenlabs-brand-kit --skill branded-web
@@ -118,7 +118,7 @@ npx skills add jakeat11labs/elevenlabs-brand-kit --skill branded-web
 npx skills add jakeat11labs/elevenlabs-brand-kit --skill eleven-branded-pptx
 
 # Remotion Spec -- draft scene-by-scene video blueprints
-npx skills add jakeat11labs/elevenlabs-brand-kit --skill remotion-spec
+npx skills add jakeat11labs/elevenlabs-brand-kit --skill remotion-spec-builder
 
 # Remotion Builder -- generate Remotion compositions from specs
 npx skills add jakeat11labs/elevenlabs-brand-kit --skill remotion-builder
