@@ -1,6 +1,12 @@
 ---
 name: remotion-builder
-description: "Build Remotion video compositions from spec files for ElevenLabs branded videos. Takes structured spec markdown files and generates React/TypeScript code: scene components, Zod schemas, combined compositions, and Root.tsx registrations. Use when: 'implement a spec', 'build a composition', 'code up the scenes', 'build this spec', 'add this scene', or any task involving writing Remotion React code. Also trigger on 'make the video', 'build the Remotion for this', or when fixing/debugging Remotion rendering issues."
+description: "[DEPRECATED — use hyperframes-builder instead] Build Remotion video compositions from spec files. The Remotion video pipeline has been retired in favor of HyperFrames; use hyperframes-builder for new work. This skill is preserved for reference and for maintaining legacy Remotion code. To re-implement an existing Remotion video in HyperFrames, hand the original spec to hyperframes-builder — the spec format is implementation-agnostic."
+---
+
+> **DEPRECATED**: This skill builds Remotion (React/TypeScript) code from specs. The Remotion-based ElevenLabs video pipeline has been retired in favor of HyperFrames (HTML+GSAP). For new work, use **`hyperframes-builder`** which produces HyperFrames compositions from the same spec format.
+>
+> This skill remains in the plugin only as a historical reference. It will be removed in a future release.
+
 ---
 
 # ElevenLabs Remotion Builder Skill

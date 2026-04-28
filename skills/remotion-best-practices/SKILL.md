@@ -1,8 +1,14 @@
 ---
 name: remotion-best-practices
-description: Best practices for Remotion - Video creation in React
+description: "[DEPRECATED — use hyperframes instead] Best practices for Remotion - Video creation in React. The Remotion video pipeline has been retired in favor of HyperFrames; use the hyperframes skill (also in this plugin) for HTML+GSAP video composition patterns. This skill is preserved for reference and for maintaining legacy Remotion code."
 metadata:
-  tags: remotion, video, react, animation, composition
+  tags: remotion, video, react, animation, composition, deprecated
+---
+
+> **DEPRECATED**: This skill documents Remotion (React video) best practices. The Remotion-based ElevenLabs video pipeline has been retired in favor of HyperFrames (HTML+GSAP). For new work, use the **`hyperframes`** skill (also in this plugin) which is the official HeyGen HyperFrames reference packaged for offline use.
+>
+> This skill remains in the plugin only as a historical reference. It will be removed in a future release.
+
 ---
 
 ## When to use

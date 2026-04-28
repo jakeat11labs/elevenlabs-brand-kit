@@ -1,6 +1,12 @@
 ---
 name: remotion-spec-builder
-description: "Build Remotion video spec files — scene-by-scene blueprints using the ElevenLabs two-mode visual system. Creates structured spec documents for any branded video: product demos, training content, marketing videos, internal communications. Use when: 'draft a spec', 'create a video spec', 'spec out the video', 'plan the scenes', 'write a Remotion spec', 'add scenes', or any Remotion composition planning."
+description: "[DEPRECATED — use hyperframes-spec instead] Build Remotion video spec files — scene-by-scene blueprints using the ElevenLabs two-mode visual system. The Remotion video pipeline has been retired in favor of HyperFrames; use hyperframes-spec for new work. This skill is preserved for reference and for editing legacy Remotion specs. The spec format is implementation-agnostic so existing Remotion specs can be implemented in HyperFrames by hyperframes-builder with minimal translation."
+---
+
+> **DEPRECATED**: This skill drafts Remotion specs. The Remotion-based ElevenLabs video pipeline has been retired in favor of HyperFrames (HTML+GSAP). For new work, use **`hyperframes-spec`** which produces an equivalent spec format. Existing Remotion specs can be re-implemented with **`hyperframes-builder`** without rewriting the spec.
+>
+> This skill remains in the plugin only as a historical reference. It will be removed in a future release.
+
 ---
 
 # ElevenLabs Remotion Spec Drafting Skill (v2)

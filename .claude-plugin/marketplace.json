@@ -10,15 +10,15 @@
     {
       "name": "elevenlabs-brand-kit",
       "source": "./",
-      "description": "ElevenLabs Brand Kit — brand assets, design guidelines, and creative workflows for producing on-brand ElevenLabs content. Includes branded web development, branded presentations, Remotion video production, and universal brand enforcement.",
-      "version": "3.2.3",
+      "description": "ElevenLabs Brand Kit — brand assets, design guidelines, and creative workflows for producing on-brand ElevenLabs content. Includes branded web development, branded presentations, HyperFrames video production (HTML+GSAP), and universal brand enforcement.",
+      "version": "4.0.0",
       "author": {
         "name": "Jake Rains"
       },
       "homepage": "https://github.com/jakeat11labs/elevenlabs-brand-kit",
       "repository": "https://github.com/jakeat11labs/elevenlabs-brand-kit",
       "category": "design",
-      "tags": ["elevenlabs", "brand", "design", "remotion", "web", "pptx", "presentations"]
+      "tags": ["elevenlabs", "brand", "design", "hyperframes", "video", "web", "pptx", "presentations"]
     }
   ]
 }

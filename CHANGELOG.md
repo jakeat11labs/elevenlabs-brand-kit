@@ -5,6 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.0] - April 27, 2026
+
+### Added
+- **`hyperframes`** skill — official HeyGen HyperFrames reference (composition authoring, timing, media, captions, audio-reactive visuals, transitions). Packaged in directly from `~/.agents/skills/hyperframes`, mirroring how the Remotion best-practices skill was bundled.
+- **`hyperframes-cli`** skill — official HeyGen CLI reference (init, lint, preview, render, transcribe, tts, doctor, etc.).
+- **`hyperframes-spec`** skill — drafts spec markdown for HyperFrames branded videos. Replaces `remotion-spec`. Spec format is implementation-agnostic so existing Remotion specs translate directly.
+- **`hyperframes-builder`** skill — builds HTML+GSAP compositions from spec files. Replaces `remotion-builder`. Includes `project-scaffolding.md` for setting up a new HyperFrames project from scratch with brand assets pre-wired. Also notes that ElevenLabs Academy lessons should use the dedicated `academy-hyperframes` skill (lives outside this plugin) instead.
+
+### Changed
+- **Marketplace tags** — replaced `remotion` with `hyperframes`.
+- **Manifest description** — replaced "Remotion video production" with "HyperFrames video production (HTML+GSAP)".
+- **Version bump** — major (3.x → 4.0.0) because the Remotion skills are deprecated and not the recommended path. Existing Remotion code/specs are still readable by the deprecated skills, but new work goes through HyperFrames.
+
+### Deprecated
+- **`remotion-spec`**, **`remotion-builder`**, and **`remotion-best-practices`** skills are now deprecated. Their `SKILL.md` descriptions are prefixed `[DEPRECATED — use hyperframes-* instead]` and a banner at the top of each file directs readers to the HyperFrames replacements. Files are preserved for reference and for editing legacy Remotion projects. They will be removed in a future release.
+
+### Why HyperFrames over Remotion
+
+HyperFrames (HTML+GSAP) gives faster iteration than the Remotion render loop:
+- **Studio-driven preview** with hot reload and audio-drag editing
+- **Snapshot speed** is dramatically faster than draft renders
+- **Per-clip audio** is easier to edit (drag in Studio) than React `<Audio>` components
+- **Simpler dependency surface** — one CSS + one JS + GSAP from CDN, no React/TypeScript/Zod build pipeline
+
+The Remotion skills are kept around so existing customer content stays buildable, but all new branded video work goes through HyperFrames.
+
 ## [3.2.3] - April 21, 2026
 
 ### Changed

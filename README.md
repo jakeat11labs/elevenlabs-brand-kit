@@ -7,13 +7,13 @@
 
 <h1 align="center">ElevenLabs Brand Kit</h1>
 
-A Claude Code plugin for producing on-brand ElevenLabs content -- web apps, landing pages, marketing sites, presentations, and Remotion videos. Brand assets, design guidelines, and creative workflows in one package.
+A Claude Code plugin for producing on-brand ElevenLabs content -- web apps, landing pages, marketing sites, presentations, and HyperFrames videos. Brand assets, design guidelines, and creative workflows in one package.
 
 <p align="center">
   <a href="#for-claude-code"><img src="https://img.shields.io/badge/Claude_Code-Install_Plugin-6B4FBB?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik04IDNoOHYySDh6TTYgN2gxMnYySDZ6TTQgMTFoMTZ2Mkg0eiIvPjwvc3ZnPg==" alt="Claude Code"></a>
   <a href="#for-claude-desktop--cowork-desktop"><img src="https://img.shields.io/badge/Claude_Desktop-Download_.skill-E8491D?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAyTDEyIDE1TTEyIDE1TDcgMTBNMTIgMTVMMTcgMTBNNSAxOEgxOSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48L3N2Zz4=" alt="Claude Desktop"></a>
   <a href="#brand-assets"><img src="https://img.shields.io/badge/Brand_Assets-~75MB-1E1916?style=for-the-badge" alt="Brand Assets"></a>
-  <a href="#whats-included"><img src="https://img.shields.io/badge/Skills-7_Included-F5F3F1?style=for-the-badge&labelColor=1E1916" alt="Skills"></a>
+  <a href="#whats-included"><img src="https://img.shields.io/badge/Skills-8_Included-F5F3F1?style=for-the-badge&labelColor=1E1916" alt="Skills"></a>
 </p>
 
 ## What's Included
@@ -24,9 +24,12 @@ A Claude Code plugin for producing on-brand ElevenLabs content -- web apps, land
 | **Brand** | `/elevenlabs-brand-kit:brand` | Enforce ElevenLabs brand guidelines on any content |
 | **Branded Web** | `/elevenlabs-brand-kit:branded-web` | Build ElevenLabs-branded web experiences (HTML, CSS, React, Tailwind, shadcn/ui) |
 | **Branded PPTX** | `/elevenlabs-brand-kit:eleven-branded-pptx` | Create ElevenLabs-branded PowerPoint presentations from the included 30-slide template |
-| **Remotion Spec Builder** | `/elevenlabs-brand-kit:remotion-spec` | Draft scene-by-scene video blueprints with layouts, modes, backgrounds |
-| **Remotion Builder** | `/elevenlabs-brand-kit:remotion-builder` | Generate React/TypeScript Remotion compositions from spec files |
-| **Remotion Best Practices** | `/elevenlabs-brand-kit:remotion-best-practices` | Remotion API reference -- animations, transitions, audio, video, fonts, 3D |
+| **HyperFrames** | `/elevenlabs-brand-kit:hyperframes` | Official HeyGen HyperFrames reference -- composition authoring, timing, media, captions, audio-reactive visuals, transitions |
+| **HyperFrames CLI** | `/elevenlabs-brand-kit:hyperframes-cli` | HyperFrames CLI commands -- init, lint, preview, render, transcribe, tts, doctor |
+| **HyperFrames Spec Builder** | `/elevenlabs-brand-kit:hyperframes-spec` | Draft scene-by-scene video blueprints with layouts, modes, backgrounds (replaces Remotion Spec Builder) |
+| **HyperFrames Builder** | `/elevenlabs-brand-kit:hyperframes-builder` | Generate HTML+GSAP HyperFrames compositions from spec files (replaces Remotion Builder) |
+
+> **Deprecated (kept for legacy projects)**: `remotion-spec`, `remotion-builder`, and `remotion-best-practices`. The Remotion video pipeline has been retired in favor of HyperFrames (HTML+GSAP) for faster iteration. See the CHANGELOG for the v4.0.0 swap rationale.
 
 ### When to use which
 
@@ -34,8 +37,10 @@ A Claude Code plugin for producing on-brand ElevenLabs content -- web apps, land
 - **"Make a presentation"** -> **Branded PPTX** -- ElevenLabs-branded decks from the included 30-slide template (requires `/pptx` skill)
 - **"Is this on-brand?"** -> **Brand** -- checks content against ElevenLabs brand guidelines
 - **"Set up a new project"** -> **Asset Setup** -- downloads brand assets and bootstraps the project
-- **"Spec out a video"** -> **Remotion Spec Builder** -- creates the video blueprint (scene layouts, modes, durations)
-- **"Implement this spec"** -> **Remotion Builder** -- generates the actual React code from a spec file
+- **"Spec out a video"** -> **HyperFrames Spec Builder** -- creates the video blueprint (scene layouts, modes, durations)
+- **"Implement this spec"** -> **HyperFrames Builder** -- generates the HTML+GSAP composition from a spec file
+- **"What's the HyperFrames runtime contract?"** -> **HyperFrames** -- official framework reference
+- **"How do I run the HyperFrames CLI?"** -> **HyperFrames CLI** -- official CLI reference
 
 ## Installation
 
