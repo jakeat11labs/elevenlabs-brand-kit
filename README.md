@@ -65,7 +65,7 @@ claude --plugin-dir ./elevenlabs-brand-kit
 
 ### For Claude Desktop / Cowork Desktop
 
-> **Note:** Only the **Branded PPTX** skill is currently packaged for Claude Desktop / Cowork Desktop. The rest of the kit (web, Remotion, asset-setup, brand) is Claude Code-only for now. More standalone skills are on the way.
+> **Note:** Only the **Branded PPTX** skill is currently packaged for Claude Desktop / Cowork Desktop. The rest of the kit (web, HyperFrames video, asset-setup, brand) is Claude Code-only for now. More standalone skills are on the way.
 
 Individual skills are available as standalone `.skill` files that bundle everything needed -- no plugin setup required.
 
@@ -101,7 +101,7 @@ Each `.skill` file is self-contained -- it bundles the template and all referenc
 
 Use the [`skills` CLI](https://skills.sh) to install individual skills into any supported agent -- Claude Code, Codex, Cursor, OpenCode, and [40+ others](https://github.com/vercel-labs/skills#available-agents). No plugin required.
 
-**Install everything (all 7 skills):**
+**Install everything (all 8 current skills):**
 
 ```bash
 npx skills add jakeat11labs/elevenlabs-brand-kit
@@ -133,22 +133,28 @@ _Branded PPTX -- ElevenLabs-branded PowerPoint presentations_
 npx skills add jakeat11labs/elevenlabs-brand-kit --skill eleven-branded-pptx
 ```
 
-_Remotion Spec -- draft scene-by-scene video blueprints_
+_HyperFrames -- official framework reference_
 
 ```bash
-npx skills add jakeat11labs/elevenlabs-brand-kit --skill remotion-spec-builder
+npx skills add jakeat11labs/elevenlabs-brand-kit --skill hyperframes
 ```
 
-_Remotion Builder -- generate Remotion compositions from specs_
+_HyperFrames CLI -- init, lint, preview, render, transcribe, tts_
 
 ```bash
-npx skills add jakeat11labs/elevenlabs-brand-kit --skill remotion-builder
+npx skills add jakeat11labs/elevenlabs-brand-kit --skill hyperframes-cli
 ```
 
-_Remotion Best Practices -- Remotion API reference_
+_HyperFrames Spec -- draft scene-by-scene video blueprints_
 
 ```bash
-npx skills add jakeat11labs/elevenlabs-brand-kit --skill remotion-best-practices
+npx skills add jakeat11labs/elevenlabs-brand-kit --skill hyperframes-spec
+```
+
+_HyperFrames Builder -- generate HTML+GSAP compositions from specs_
+
+```bash
+npx skills add jakeat11labs/elevenlabs-brand-kit --skill hyperframes-builder
 ```
 
 Add `-g` to install globally (available across all projects), or `-a <agent>` to target a specific agent (e.g. `-a claude-code`, `-a codex`, `-a cursor`). See the [`skills` CLI docs](https://skills.sh/docs/cli) for all options.
@@ -165,9 +171,10 @@ Add `-g` to install globally (available across all projects), or `-a <agent>` to
 ### For Video Projects
 
 1. Install the plugin
-2. Run `/elevenlabs-brand-kit:asset-setup` -- choose "Remotion video project"
-3. Draft a spec with `/elevenlabs-brand-kit:remotion-spec`
-4. Build it with `/elevenlabs-brand-kit:remotion-builder`
+2. Run `/elevenlabs-brand-kit:asset-setup` -- choose "HyperFrames video project"
+3. Draft a spec with `/elevenlabs-brand-kit:hyperframes-spec`
+4. Build it with `/elevenlabs-brand-kit:hyperframes-builder`
+5. Use `/elevenlabs-brand-kit:hyperframes-cli` for lint, preview, render, transcription, and TTS commands
 
 ### For Presentations
 
@@ -224,15 +231,20 @@ elevenlabs-brand-kit/
 │   │   └── references/          # Template layout guide
 │   ├── branded-web/             # Web development with brand system
 │   │   └── rules/               # CSS tokens, Tailwind, shadcn, cards, backgrounds, typography
-│   ├── remotion-best-practices/ # Remotion API patterns
-│   │   └── rules/               # Animations, timing, transitions, audio, 3D, etc.
-│   ├── remotion-builder/        # Code generation from specs
-│   │   ├── rules/               # Brand system, animations, components, compositions
-│   │   └── references/          # Component inventory, bundled assets
-│   └── remotion-spec/           # Spec drafting
-│       ├── assets/              # Spec templates and examples
-│       ├── rules/               # Scene layouts, modes, backgrounds
-│       └── references/          # Brand guidelines, asset inventory
+│   ├── hyperframes/             # Official HyperFrames framework reference
+│   │   ├── references/          # Runtime, motion, transitions, transcript guidance
+│   │   └── scripts/             # Validation and reporting helpers
+│   ├── hyperframes-cli/         # HyperFrames CLI command reference
+│   ├── hyperframes-builder/     # HTML+GSAP composition generation from specs
+│   │   ├── rules/               # Brand system, animations, scenes, compositions
+│   │   └── references/          # CSS class inventory, bundled assets
+│   ├── hyperframes-spec/        # HyperFrames spec drafting
+│   │   ├── assets/              # Spec templates and examples
+│   │   ├── rules/               # Scene layouts, modes, backgrounds
+│   │   └── references/          # Brand guidelines, asset inventory
+│   ├── remotion-best-practices/ # Deprecated legacy Remotion reference
+│   ├── remotion-builder/        # Deprecated legacy Remotion builder
+│   └── remotion-spec/           # Deprecated legacy Remotion spec drafting
 ├── standalone/
 │   └── eleven-branded-pptx/            # Standalone skill source (packaged into .skill)
 │       ├── SKILL.md

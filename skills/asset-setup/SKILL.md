@@ -12,7 +12,7 @@ This skill downloads the official ElevenLabs brand asset pack and sets up a proj
 Brand assets are distributed as a versioned zip from GitHub Releases. The zip contains:
 - `brand-assets/` — backgrounds, icons, voice orbs, logos, diagrams, screenshots, images, color tokens, brand guidelines, visual catalogs, and fonts
 
-**Note on fonts:** KMR Waldenburg OTFs are bundled inside `brand-assets/fonts/`. During installation they are copied to both `public/brand-assets/fonts/` (for the catalog) and `public/fonts/` (for web font loading / Remotion staticFile()). Both locations are populated automatically.
+**Note on fonts:** KMR Waldenburg OTFs are bundled inside `brand-assets/fonts/`. During installation they are copied to both `public/brand-assets/fonts/` (for the catalog) and `public/fonts/` (for local web and video tooling). Both locations are populated automatically.
 
 **Current version:** `v3.1.1`
 **Download URL:** `https://github.com/jakeat11labs/elevenlabs-brand-kit/releases/download/v3.1.1/brand-assets-v3.1.1.zip`
@@ -79,7 +79,7 @@ AskUserQuestion({
     options: [
       { label: "Just the brand assets", description: "Link brand-assets only — no npm packages, no project-specific guidance" },
       { label: "HTML / web project", description: "Link brand assets and surface web-specific guidance (CSS tokens, React, Tailwind, shadcn)" },
-      { label: "Remotion video project", description: "Link brand assets and bootstrap Remotion dependencies" },
+      { label: "HyperFrames video project", description: "Link brand assets and bootstrap HyperFrames dependencies" },
       { label: "Presentations", description: "Link brand assets for creating branded PowerPoint decks" }
     ],
     multiSelect: false
@@ -87,7 +87,7 @@ AskUserQuestion({
 })
 ```
 
-Store as `PROJECT_TYPE`. Then → **Step 4** (link) → **Step 5** (verify) → project-specific bootstrap if needed.
+Store as `PROJECT_TYPE` (`assets`, `html`, `hyperframes`, or `pptx`). Then → **Step 4** (link) → **Step 5** (verify) → project-specific bootstrap if needed.
 
 ### Path B — Existing install, version outdated
 
@@ -127,7 +127,7 @@ AskUserQuestion({
     options: [
       { label: "Just the brand assets", description: "Install brand-assets only — no npm packages, no project-specific guidance. Good for reference use or pulling individual files. Includes the visual catalog (index.html)" },
       { label: "HTML / web project", description: "Install brand assets and surface web-specific guidance (CSS tokens, React, Tailwind, shadcn)" },
-      { label: "Remotion video project", description: "Install brand assets and bootstrap Remotion dependencies" },
+      { label: "HyperFrames video project", description: "Install brand assets and bootstrap HyperFrames dependencies" },
       { label: "Presentations", description: "Install brand assets for creating branded PowerPoint decks" }
     ],
     multiSelect: false
@@ -135,7 +135,7 @@ AskUserQuestion({
 })
 ```
 
-Store as `PROJECT_TYPE`. If the user picks "Other" (the auto-provided escape hatch), treat it as `assets`.
+Store as `PROJECT_TYPE` (`assets`, `html`, `hyperframes`, or `pptx`). If the user picks "Other" (the auto-provided escape hatch), treat it as `assets`.
 
 **C2: Storage Preference**
 
@@ -199,7 +199,7 @@ unzip -o "$TEMP_ZIP" -d /tmp/elevenlabs-assets-extract
 # Copy all brand assets (fonts are inside brand-assets/fonts/)
 cp -r /tmp/elevenlabs-assets-extract/brand-assets/* public/brand-assets/
 
-# Also copy fonts to public/fonts/ — required for Remotion's staticFile() font loading
+# Also copy fonts to public/fonts/ for local web and video tooling
 cp -r /tmp/elevenlabs-assets-extract/brand-assets/fonts/* public/fonts/
 
 # Clean up
@@ -353,93 +353,43 @@ Delete existing assets/symlinks and re-run asset-setup. The pre-flight check wil
 
 ---
 
-## Remotion Project Bootstrap
+## HyperFrames Project Bootstrap
 
-**Only run this section if `PROJECT_TYPE` is `remotion` (set in Step 1).**
+**Only run this section if `PROJECT_TYPE` is `hyperframes` (set in Step 1).**
 
-Delegate to Remotion's official scaffolder to create a working project structure, then layer brand assets on top. This keeps the setup future-proof — when Remotion bumps its scaffold, the skill stays correct.
+Asset setup prepares dependencies and scripts. The actual composition scaffold belongs to `/elevenlabs-brand-kit:hyperframes-builder`, which reads the spec and creates the right `index.html`, `meta.json`, `assets/brand-kit.{css,js}`, VO manifest, and timing scripts.
 
-### Scaffold with create-video
-
-```bash
-# Scaffold into a temp directory using Remotion's official CLI
-SCAFFOLD_DIR="/tmp/remotion-scaffold-$$"
-npx create-video@latest "$SCAFFOLD_DIR" --blank
-```
-
-If `--blank` is not recognized, try `--template blank`. If the scaffolder prompts interactively, choose the blank/empty template.
-
-### Merge scaffold into the project
-
-Copy source files and config from the scaffold. Do **not** overwrite any existing files:
-
-```bash
-# Copy source files (src/index.ts, src/Root.tsx, etc.)
-for f in $(find "$SCAFFOLD_DIR/src" -type f 2>/dev/null); do
-  REL="${f#$SCAFFOLD_DIR/}"
-  if [ ! -f "$REL" ]; then
-    mkdir -p "$(dirname "$REL")"
-    cp "$f" "$REL"
-  fi
-done
-
-# Copy config files if they don't exist
-for f in remotion.config.ts tsconfig.json; do
-  [ ! -f "$f" ] && [ -f "$SCAFFOLD_DIR/$f" ] && cp "$SCAFFOLD_DIR/$f" "$f"
-done
-```
-
-### Install dependencies
+### Install HyperFrames
 
 ```bash
 # Ensure package.json exists
 [ ! -f "package.json" ] && npm init -y
 
-# Install runtime + dev deps from the scaffold's package.json
-DEPS=$(python3 -c "import json; d=json.load(open('$SCAFFOLD_DIR/package.json')); print(' '.join(d.get('dependencies',{}).keys()))" 2>/dev/null)
-DEV_DEPS=$(python3 -c "import json; d=json.load(open('$SCAFFOLD_DIR/package.json')); print(' '.join(d.get('devDependencies',{}).keys()))" 2>/dev/null)
-[ -n "$DEPS" ] && npm install $DEPS
-[ -n "$DEV_DEPS" ] && npm install -D $DEV_DEPS
-
-# Clean up scaffold directory
-rm -rf "$SCAFFOLD_DIR"
+# Install the HyperFrames CLI/runtime locally
+npm install -D hyperframes
 ```
 
-**Fallback** — if the scaffolder fails or is unavailable, install manually:
+### Wire up scripts
 
 ```bash
-# Runtime deps — include React peers explicitly
-npm install remotion @remotion/cli @remotion/transitions @remotion/fonts @remotion/light-leaks zod react react-dom
-
-# Dev deps — TypeScript + React types (Remotion entry files are .tsx)
-npm install -D typescript @types/react @types/react-dom
-```
-
-Then write the minimum scaffold files: `src/index.ts` (calls `registerRoot()`), `src/Root.tsx` (at least one `<Composition>`), `remotion.config.ts`, and `tsconfig.json` (with `"jsx": "react-jsx"`).
-
-### Wire up the studio script
-
-```bash
-if ! npm pkg get scripts.studio 2>/dev/null | grep -q "remotion studio"; then
-  npm pkg set scripts.studio="remotion studio"
-  echo "Added 'studio' script"
-else
-  echo "'studio' script already configured"
-fi
+npm pkg get scripts.doctor 2>/dev/null | grep -qv undefined || npm pkg set scripts.doctor="hyperframes doctor"
+npm pkg get scripts.lint 2>/dev/null | grep -qv undefined || npm pkg set scripts.lint="hyperframes lint"
+npm pkg get scripts.preview 2>/dev/null | grep -qv undefined || npm pkg set scripts.preview="hyperframes preview --port 3002"
+npm pkg get scripts.render 2>/dev/null | grep -qv undefined || npm pkg set scripts.render="hyperframes render"
 ```
 
 ### Smoke test
 
 ```bash
-# Verify React is resolvable (the most common failure mode)
-node -e "require('react/jsx-runtime')" && echo "✓ React OK" || echo "✗ React missing — run: npm install react react-dom"
+# Verify the package is installed
+node -e "require.resolve('hyperframes/package.json')" && echo "✓ HyperFrames package OK" || echo "✗ HyperFrames missing — run: npm install -D hyperframes"
 
-# Verify Remotion CLI is working
-npx remotion versions && echo "✓ Remotion OK" || echo "✗ Remotion broken"
+# Check the local environment
+npx hyperframes doctor || true
 ```
 
 **After bootstrap, tell the user:**
-> Remotion is ready. Launch the studio anytime with `studio` — it'll open Remotion Studio in your browser for previewing and editing compositions.
+> HyperFrames is ready. Next: draft the spec with `/elevenlabs-brand-kit:hyperframes-spec`, then build it with `/elevenlabs-brand-kit:hyperframes-builder`. Preview with `npm run preview` once the composition exists.
 
 ---
 
@@ -497,11 +447,11 @@ This file is read by all ElevenLabs Brand Kit skills to locate brand assets. Whe
 > Use `/elevenlabs-brand-kit:branded-web` for guidance on implementing brand patterns in CSS/React/Tailwind.
 > Use `/elevenlabs-brand-kit:brand` to check brand compliance on anything you build.
 
-**If Remotion (`PROJECT_TYPE=remotion`):**
+**If HyperFrames (`PROJECT_TYPE=hyperframes`):**
 > You're ready to build. The typical flow:
-> 1. `/elevenlabs-brand-kit:remotion-spec-builder` — plan your scenes (layout, mode, content, duration)
-> 2. `/elevenlabs-brand-kit:remotion-builder` — generate the React/TypeScript code from the spec
-> 3. `/elevenlabs-brand-kit:remotion-best-practices` — load if you need Remotion API reference while building
+> 1. `/elevenlabs-brand-kit:hyperframes-spec` — plan your scenes (layout, mode, content, duration)
+> 2. `/elevenlabs-brand-kit:hyperframes-builder` — generate the HTML+GSAP composition from the spec
+> 3. `/elevenlabs-brand-kit:hyperframes-cli` — load if you need lint, preview, render, transcription, or TTS command help
 
 **If presentations (`PROJECT_TYPE=pptx`):**
 > You're ready to create branded decks. The typical flow:
