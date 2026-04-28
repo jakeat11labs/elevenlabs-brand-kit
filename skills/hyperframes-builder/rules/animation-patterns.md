@@ -1,6 +1,6 @@
 # Animation Patterns for HyperFrames
 
-All motion lives in `assets/academy-kit.js` inside `createAcademyTimeline()`. The timeline is built paused; the HyperFrames runtime registers it and drives playback.
+All motion lives in `assets/brand-kit.js` inside `createBrandTimeline()`. The timeline is built paused; the HyperFrames runtime registers it and drives playback.
 
 ## Remotion → GSAP Conversion
 
@@ -19,7 +19,7 @@ Remotion's source animates with `useCurrentFrame()` + `spring()` at 30fps. In Hy
 
 ## The `SCENES` Array
 
-`assets/academy-kit.js` exports no ES module; it wraps an IIFE that exposes `window.createAcademyTimeline`, `window.__academyScenes`, and `window.__academyTotalDuration`. The shape:
+`assets/brand-kit.js` exports no ES module; it wraps an IIFE that exposes `window.createBrandTimeline`, `window.__brandScenes`, and `window.__brandTotalDuration`. The shape:
 
 ```js
 (function () {
@@ -31,11 +31,11 @@ Remotion's source animates with `useCurrentFrame()` + `spring()` at 30fps. In Hy
   ];
   const TOTAL_DURATION = 195.96;
 
-  // helpers + createAcademyTimeline below
+  // helpers + createBrandTimeline below
 
-  window.__academyScenes = SCENES;
-  window.__academyTotalDuration = TOTAL_DURATION;
-  window.createAcademyTimeline = createAcademyTimeline;
+  window.__brandScenes = SCENES;
+  window.__brandTotalDuration = TOTAL_DURATION;
+  window.createBrandTimeline = createBrandTimeline;
 })();
 ```
 
@@ -144,10 +144,10 @@ function animateSplitScene(tl, id, start) {
 
 ## Orchestration
 
-Inside `createAcademyTimeline()`:
+Inside `createBrandTimeline()`:
 
 ```js
-function createAcademyTimeline() {
+function createBrandTimeline() {
   const tl = gsap.timeline({ paused: true });
 
   // Set initial state for scenes + dividers (transform origins, opacity 0)
@@ -162,7 +162,7 @@ function createAcademyTimeline() {
   });
 
   // Title card custom entrances (lockup + hero-title + subtitle stagger)
-  fromToIf(tl, "#title-card .academy-lockup",
+  fromToIf(tl, "#title-card .brand-lockup",
     { opacity: 0, y: 16 },
     { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" },
     1.1);
@@ -303,7 +303,7 @@ Note the large `stagger: 1.33` — rows reveal one per VO beat, not in rapid suc
 
 ## When to Use `gsap.timeline` vs. Single Tweens
 
-All animations live in one master timeline built by `createAcademyTimeline`.not create additional `gsap.timeline` instances — the HyperFrames runtime registers exactly one timeline per composition-id.
+All animations live in one master timeline built by `createBrandTimeline`.not create additional `gsap.timeline` instances — the HyperFrames runtime registers exactly one timeline per composition-id.
 
 If a scene needs a sub-sequence (e.g., the quiz cursor flow), order the tweens on the master timeline using absolute time positions. Nested timelines are not needed for this project's complexity.
 
@@ -373,7 +373,7 @@ The "boom" is the moment the card lands on its word. Everything about the patter
 
 6. **Caption / trailing line** (e.g. "At a scale no human team could match alone.") anchors on the first word of that phrase: `captionStart = firstWordTime - 0.3`.
 
-7. **Skip `baseEntrances` card stagger** — add the scene id to the `useCustomContentTiming` list at the top of `baseEntrances()` in `academy-kit.js`. Otherwise the generic 90ms `.dark-card` stagger fires alongside your custom timing and they fight.
+7. **Skip `baseEntrances` card stagger** — add the scene id to the `useCustomContentTiming` list at the top of `baseEntrances()` in `brand-kit.js`. Otherwise the generic 90ms `.dark-card` stagger fires alongside your custom timing and they fight.
 
 8. **Add HTML hooks**: `data-beat="1/2/3"` on each `<article class="dark-card feature-card">` and `data-arrow="1/2"` + `class="card-arrow"` on arrow divs (if the scene has arrows). Remove `data-rise` from any element you're custom-animating so `baseEntrances` doesn't double-up.
 
@@ -417,7 +417,7 @@ function animate<Scene>(tl) {
 }
 ```
 
-Then call `animate<Scene>(tl)` inside `createAcademyTimeline()`.
+Then call `animate<Scene>(tl)` inside `createBrandTimeline()`.
 
 ### Shorthand the user may use
 

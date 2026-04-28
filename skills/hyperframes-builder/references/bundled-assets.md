@@ -82,7 +82,7 @@ Used in phone deployment / integration scenes. One asset currently; extend if ne
 |------|---------|
 | `ElevenLabs_Icon_White.svg` | White II icon — Hero watermarks |
 | `ElevenLabs_Icon_Black.svg` | Black II icon — Content watermarks |
-| `academy-elevenlabs-icon-white.svg` | Academy lockup icon (white) |
+| `elevenlabs-icon-white.svg` | Brand lockup icon (white) |
 | Other logos as needed | Module-specific or lesson-specific variants |
 
 ### Fonts
@@ -152,7 +152,7 @@ The `id` matches the MP3 filename without extension. The `scenes` array lists wh
 
 ## Asset Rules
 
-1. **Never reference assets outside `assets/`** from `index.html` or `academy-kit.css` — HyperFrames won't bundle external paths.
+1. **Never reference assets outside `assets/`** from `index.html` or `brand-kit.css` — HyperFrames won't bundle external paths.
 2. **Use relative paths** (`assets/brand-assets/...`) not absolute (`/assets/...` or `file:///...`).
 3. **Colocate fonts, images, and audio** — the compiler bundles from `assets/` only.
 4. **White icons on Hero, black/graphite on Content.** If the exact icon doesn't exist in the needed color, apply CSS filter:

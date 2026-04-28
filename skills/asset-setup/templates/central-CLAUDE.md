@@ -15,7 +15,7 @@ Projects using central storage have `public/brand-assets` and `public/fonts` sym
 
 ElevenLabs is a voice AI company. The visual identity is **minimal, monochrome, and warm** — color comes from imagery, not UI palettes. Two visual modes:
 
-- **Core Brand** — gradient imagery backgrounds, white text, darkflat cards. For marketing, educational, product, training, and academy content.
+- **Core Brand** — gradient imagery backgrounds, white text, darkflat cards. For marketing, educational, product, training, and onboarding content.
 - **Monochrome** — black/white/gray only. Reserved strictly for developer API documentation and technical reference.
 
 ## Brand Rules (Non-Negotiable)

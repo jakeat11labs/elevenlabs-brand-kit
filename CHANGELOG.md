@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **`hyperframes`** skill — official HeyGen HyperFrames reference (composition authoring, timing, media, captions, audio-reactive visuals, transitions). Packaged in directly from `~/.agents/skills/hyperframes`, mirroring how the Remotion best-practices skill was bundled.
 - **`hyperframes-cli`** skill — official HeyGen CLI reference (init, lint, preview, render, transcribe, tts, doctor, etc.).
 - **`hyperframes-spec`** skill — drafts spec markdown for HyperFrames branded videos. Replaces `remotion-spec`. Spec format is implementation-agnostic so existing Remotion specs translate directly.
-- **`hyperframes-builder`** skill — builds HTML+GSAP compositions from spec files. Replaces `remotion-builder`. Includes `project-scaffolding.md` for setting up a new HyperFrames project from scratch with brand assets pre-wired. Also notes that ElevenLabs Academy lessons should use the dedicated `academy-hyperframes` skill (lives outside this plugin) instead.
+- **`hyperframes-builder`** skill — builds HTML+GSAP compositions from spec files. Replaces `remotion-builder`. Includes `project-scaffolding.md` for setting up a new HyperFrames project from scratch with brand assets pre-wired.
 
 ### Changed
 - **Marketplace tags** — replaced `remotion` with `hyperframes`.
@@ -34,7 +34,7 @@ The Remotion skills are kept around so existing customer content stays buildable
 ## [3.2.3] - April 21, 2026
 
 ### Changed
-- Repo moved from `github.com/jakerains/elevenlabs-brand-kit` to `github.com/jakeat11labs/elevenlabs-brand-kit`. Plugin manifest, marketplace config, asset-setup download URLs, and all README/skill references updated.
+- Repo moved from `the previous GitHub namespace` to `github.com/jakeat11labs/elevenlabs-brand-kit`. Plugin manifest, marketplace config, asset-setup download URLs, and all README/skill references updated.
 - Brand asset release bumped to `v3.1.1` (filename `brand-assets-v3.1.1.zip`) so the new-repo release is distinct from the old-repo `v3.1.0`. Contents are unchanged from v3.1.0.
 
 ### Fixed
@@ -111,7 +111,7 @@ The Remotion skills are kept around so existing customer content stays buildable
 ## [1.1.0] - April 9, 2026
 
 ### Changed
-- Rebrand from "ElevenLabs Academy Plugin" to "ElevenLabs Remotion Kit"
+- Rebrand from "ElevenLabs Plugin" to "ElevenLabs Remotion Kit"
 - Update README to reflect current skills (removed lesson-builder and project-context references)
 - Update plugin.json name, description, and repo URL
 - Consolidate skills: merge lesson-author into lesson-builder, rename remotion-spec to remotion-spec-builder
@@ -122,7 +122,7 @@ The Remotion skills are kept around so existing customer content stays buildable
 ## [1.0.0] - April 4, 2026
 
 ### Added
-- Initial release as ElevenLabs Academy plugin for Claude Code
+- Initial release as ElevenLabs plugin for Claude Code
 - 5 skills: asset-setup, remotion-spec, remotion-builder, remotion-best-practices, brand
 - V2 design system with hero, content, and hybrid modes
 - Brand asset distribution via GitHub Releases (~278MB optimized)

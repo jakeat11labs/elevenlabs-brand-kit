@@ -9,7 +9,7 @@ This document covers all ElevenLabs brand assets available for Remotion video pr
 | **Skill assets** (`assets/`) | Logos, II icons, fonts, Chladni covers, gradient backgrounds |
 | **Remotion project** (`public/brand-assets/`) | 34 backgrounds, 8 voice orbs, 400+ icons, diagrams, color tokens, textures |
 
-The Remotion project path is `/Users/jakerains/Projects/remotion/`. Assets in `public/brand-assets/` are referenced with `staticFile("brand-assets/...")` in code.
+The Remotion project path is `/path/to/remotion-project/`. Assets in `public/brand-assets/` are referenced with `staticFile("brand-assets/...")` in code.
 
 ---
 

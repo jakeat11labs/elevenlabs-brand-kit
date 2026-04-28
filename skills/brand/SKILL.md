@@ -1,6 +1,6 @@
 ---
 name: elevenlabs-brand
-description: "Enforce ElevenLabs brand guidelines when creating any content — presentations, documents, HTML pages, social graphics, emails, landing pages, or marketing materials for ElevenLabs. Use this skill whenever creating or reviewing content that represents ElevenLabs, including slide decks, one-pagers, partner materials, certification pages, university content, blog posts, or any asset that carries the ElevenLabs name. Also trigger when the user mentions 'on-brand', 'brand check', 'ElevenLabs style', 'brand guidelines', or asks to make something look like ElevenLabs. Even if the user just says 'make a deck for ElevenLabs' or 'create an ElevenLabs landing page', use this skill to ensure brand compliance."
+description: "Enforce ElevenLabs brand guidelines when creating any content — presentations, documents, HTML pages, social graphics, emails, landing pages, or marketing materials for ElevenLabs. Use this skill whenever creating or reviewing content that represents ElevenLabs, including slide decks, one-pagers, partner materials, certification pages, educational content, blog posts, or any asset that carries the ElevenLabs name. Also trigger when the user mentions 'on-brand', 'brand check', 'ElevenLabs style', 'brand guidelines', or asks to make something look like ElevenLabs. Even if the user just says 'make a deck for ElevenLabs' or 'create an ElevenLabs landing page', use this skill to ensure brand compliance."
 ---
 
 # ElevenLabs Brand Guidelines
@@ -85,7 +85,7 @@ The palette is **minimal and monochrome** at its foundation, with color coming f
 
 | Mode | Colors | Applications | Examples |
 |------|--------|-------------|----------|
-| Core Brand | Black, white, off-white + image-based accents | General, marketing, educational | Product launches, partnerships, courses, certifications, academy content, training videos, onboarding |
+| Core Brand | Black, white, off-white + image-based accents | General, marketing, educational | Product launches, partnerships, courses, certifications, training content, training videos, onboarding |
 | Monochrome | Black, white, grays only | Developer reference | API documentation, SDK guides, technical specs, changelogs |
 
 **Key distinction:** Monochrome mode is specifically for developer reference documentation (API docs, SDK references, technical specs) — not for educational or training content. If the content teaches, inspires, or onboards users, use Core Brand mode with full imagery. Third-party photos, logos, or assets may be included when relevant.

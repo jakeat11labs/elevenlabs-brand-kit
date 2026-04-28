@@ -93,7 +93,7 @@ For **manual ducking** (rarely needed at `data-volume="0.08"`): split the music 
     {
       "id": "01-opener",
       "scenes": ["title-card"],
-      "text": "Welcome back to ElevenLabs Academy. Today we're going to..."
+      "text": "Welcome back to ElevenLabs. Today we're going to..."
     },
     {
       "id": "02-research",
@@ -352,7 +352,7 @@ The user can drag `<audio>` clips directly in Hyperframes Studio — Studio edit
    - Scene `data-start` values anchored to VO word starts
    - Scene durations based on VO phrase ends (+ 1.5s crossfade tail)
    - Boom-pattern `wordTime` values in `animateTextReveal`, `animateEvolution`, `animateChannels`, etc.
-   - Hard-coded absolute cues in `academy-kit.js` entrance tweens
+   - Hard-coded absolute cues in `brand-kit.js` entrance tweens
 
 4. **Re-align** using the usual formulas:
    - `scene.data-start = wordAbsStart` (for the scene's entry word)
@@ -381,7 +381,7 @@ Users often direct timing by spoken word ("start this when they say scale", "bri
 The composition's timing lives in three places — all must agree:
 
 1. **`<section>` `data-start`/`data-duration`** in `index.html` (Studio reads these)
-2. **`SCENES` array** in `assets/academy-kit.js` (GSAP timeline reads these)
+2. **`SCENES` array** in `assets/brand-kit.js` (GSAP timeline reads these)
 3. **Hard-coded absolute cues** inside `fromToIf`/`toIf` calls (e.g., `22.88`, `85.63`, `169.38`) for bespoke per-scene choreography
 
 Change any one → update the others. Running `npm run timing:vo:<lc>` after an audio-start change keeps the VO cue sheet in sync, but it does NOT update the `SCENES` array or hard-coded cues — you must edit those by hand.
@@ -394,7 +394,7 @@ TOTAL_DURATION = sum(scene_i.duration) - sum(crossfade_overlap_i)
 
 With a 1.5s crossfade overlap between every pair of adjacent scenes, a composition with N scenes has `N - 1` overlaps. Example: 19 scenes with durations summing to ~210s and 18 overlaps of 1.5s each → total ~183s. The reference project (M01L01v6) totals 195.96s with less overlap discipline — match your spec, not blindly the reference.
 
-Set `TOTAL_DURATION` in `academy-kit.js` and the root `<div data-duration>` in `index.html` to the same value.
+Set `TOTAL_DURATION` in `brand-kit.js` and the root `<div data-duration>` in `index.html` to the same value.
 
 ## Render Pipeline
 
@@ -412,7 +412,7 @@ npm run validate:<lc>
 
 ## Font Loading
 
-Fonts at `assets/fonts/` are embedded by the HyperFrames compiler automatically — just reference `font-family: 'KMR Waldenburg'` in `academy-kit.css`. No `@font-face` rules needed.
+Fonts at `assets/fonts/` are embedded by the HyperFrames compiler automatically — just reference `font-family: 'KMR Waldenburg'` in `brand-kit.css`. No `@font-face` rules needed.
 
 If a weight is missing, `npx hyperframes validate` surfaces a warning. Match the weight names used by the font files:
 
@@ -425,10 +425,10 @@ If a weight is missing, `npx hyperframes validate` surfaces a warning. Match the
 When starting a new lesson build, run the scaffolding workflow in `rules/lesson-scaffolding.md`. In short:
 
 1. Create `<DIR>/` (e.g., `M02L01/`) under the monorepo root with `index.html`, `meta.json` (id set), `hyperframes.json`, and an `assets/voiceover/<ID>/manifest.json` shell
-2. Symlink `<DIR>/shared → ../shared` so brand assets (`shared/academy-kit.{css,js}`, `assets/brand-assets/`, `assets/fonts/`, `assets/logos/`, `assets/icons/`, `assets/generated/`) are reachable inside the lesson root
+2. Symlink `<DIR>/shared → ../shared` so brand assets (`shared/brand-kit.{css,js}`, `assets/brand-assets/`, `assets/fonts/`, `assets/logos/`, `assets/icons/`, `assets/generated/`) are reachable inside the lesson root
 3. Append per-lesson npm scripts (`preview:<lc>`, `lint:<lc>`, `render:<lc>`, etc.) to root `package.json`
 4. Create `assets/voiceover/<comp-id>/` with the VO MP3s and `manifest.json`
 5. Update `scripts/transcribe-voiceover.sh`'s `audio_dir` to the new path
 6. Write `index.html` with all scenes + VO clips
-7. Replace `SCENES` array in `academy-kit.js` to match
+7. Replace `SCENES` array in `brand-kit.js` to match
 8. Run the full validation loop: `npm run lint:<lc> && npm run timing:vo:<lc> && npx hyperframes snapshot --at 2`

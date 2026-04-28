@@ -40,7 +40,7 @@ Every piece of ElevenLabs content uses one of two modes:
 - White text on dark/gradient backgrounds
 - Noise texture overlay (70% opacity, overlay blend)
 - Blur treatment on imagery
-- **Use for:** marketing, educational content, product launches, training, academy content, onboarding, partnerships, internal communications
+- **Use for:** marketing, educational content, product launches, training, onboarding, partnerships, internal communications
 
 ### Monochrome Mode (developer content only)
 

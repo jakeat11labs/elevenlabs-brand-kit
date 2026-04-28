@@ -11,7 +11,7 @@ Scaffold automatically (without asking) when:
 
 Skip scaffolding (proceed straight to scene building) when the project directory already exists with `index.html` and `meta.json`.
 
-> **For Academy lessons specifically**, do NOT use this skill — switch to `academy-hyperframes`, which scaffolds inside the dedicated `~/Projects/hyperframes/` monorepo with the per-lesson directory + `shared/` symlink layout. This skill is for standalone branded videos.
+> If the video belongs to an existing shared HyperFrames monorepo, follow that repo's local scaffolding workflow. This skill is for standalone branded videos.
 
 ## Composition ID vs Project Directory Name
 
@@ -114,12 +114,12 @@ Then `npm install`.
 
 ### 6. Drop in the brand surface
 
-The `assets/academy-kit.css` and `assets/academy-kit.js` files are the universal ElevenLabs HyperFrames brand surface. Copy them from a known-good source:
+The `assets/brand-kit.css` and `assets/brand-kit.js` files are the universal ElevenLabs HyperFrames brand surface. Copy them from a known-good source:
 
-- If you have an Academy project at `~/Projects/hyperframes/` — copy from `~/Projects/hyperframes/shared/academy-kit.{css,js}`.
+- If you have a branded video project at `~/Projects/hyperframes/` — copy from `~/Projects/hyperframes/shared/brand-kit.{css,js}`.
 - Otherwise copy from a previous standalone project, or generate fresh based on the patterns in `rules/brand-system.md` and `rules/animation-patterns.md`.
 
-(The "academy-kit" naming is historical — these files apply to any ElevenLabs branded video, not just Academy lessons. You can rename them per-project but be sure to update `index.html` references too.)
+(The "brand-kit" naming is historical — these files apply to any ElevenLabs branded video, not just course videos. You can rename them per-project but be sure to update `index.html` references too.)
 
 ### 7. Write `assets/voiceover/<ID>/manifest.json`
 
@@ -140,15 +140,15 @@ Empty chunk list to start. Populate it after VO generation.
 
 ### 8. Write `index.html` skeleton
 
-The skeleton is title-card + outro pre-wired with the academy-lockup pattern. The middle scenes get added during the spec build.
+The skeleton is title-card + outro pre-wired with the brand-lockup pattern. The middle scenes get added during the spec build.
 
-Reference any existing branded-video `index.html` for the working pattern — title-card lines (academy-lockup, hero-title with small/big/small wrap, accent-line, hero-subtitle, bottom-bar, full-bleed background) and outro (mirrors title-card with "Up Next" framing or similar). Key elements:
+Reference any existing branded-video `index.html` for the working pattern — title-card lines (brand-lockup, hero-title with small/big/small wrap, accent-line, hero-subtitle, bottom-bar, full-bleed background) and outro (mirrors title-card with "Up Next" framing or similar). Key elements:
 
-- `<link rel="stylesheet" href="assets/academy-kit.css" />`
+- `<link rel="stylesheet" href="assets/brand-kit.css" />`
 - `<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>`
-- `<script src="assets/academy-kit.js"></script>`
+- `<script src="assets/brand-kit.js"></script>`
 - Root `<div id="root" data-composition-id="main" data-start="0" data-duration="<TOTAL>" data-width="1920" data-height="1080" data-fps="30">`
-- Title-card `<section>` with hero-title (multi-line), academy-lockup at top, bottom-bar, full-bleed background
+- Title-card `<section>` with hero-title (multi-line), brand-lockup at top, bottom-bar, full-bleed background
 - Outro `<section>` with similar structure, closing copy
 - Music bed `<audio id="music-bed">` at `data-volume="0.08"` covering full composition
 
@@ -176,7 +176,7 @@ Expect `0 errors` (the two pre-existing `duplicate_media_discovery_risk` warning
 
 A short message like:
 
-> Scaffolded `<DIR>/`. Skeleton has title-card + outro pre-wired with the academy-lockup pattern. Next: drop the spec at `<spec-path>`, or paste it inline. I'll read it (`rules/spec-reading.md`) and start building scenes per the spec's component list.
+> Scaffolded `<DIR>/`. Skeleton has title-card + outro pre-wired with the brand-lockup pattern. Next: drop the spec at `<spec-path>`, or paste it inline. I'll read it (`rules/spec-reading.md`) and start building scenes per the spec's component list.
 
 ## After Scaffolding
 

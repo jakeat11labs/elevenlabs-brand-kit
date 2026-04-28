@@ -3,9 +3,9 @@
 Specs come from one of two sources:
 
 - **`hyperframes-spec`** (this plugin) — drafts spec markdown for general ElevenLabs branded videos (product demos, marketing, internal comms, etc.). Output: `{ProjectCode}-spec.md` with the standard Hero/Content scene blocks.
-- **`academy-lesson-builder`** (separate skill, only relevant for ElevenLabs Academy lessons) — produces Remotion-format specs at `10 - Remotion/specs/M{XX}L{YY}v{Z}v2-spec.md`. Designed for the legacy Remotion builder but also drive HyperFrames builds — the spec format is implementation-agnostic.
+- **`lesson-spec-builder`** (separate skill, only relevant for ElevenLabs lessons) — produces Remotion-format specs at `10 - Remotion/specs/M{XX}L{YY}v{Z}v2-spec.md`. Designed for the legacy Remotion builder but also drive HyperFrames builds — the spec format is implementation-agnostic.
 
-Both flavors follow the same Hero/Content scene block format. For Academy lessons, the canonical reference spec is `10 - Remotion/specs/M01L01v5v2-spec.md`.
+Both flavors follow the same Hero/Content scene block format. For course videos, the canonical reference spec is `10 - Remotion/specs/M01L01v5v2-spec.md`.
 
 This document explains how to translate either flavor of spec into HyperFrames code.
 
@@ -58,7 +58,7 @@ The spec names a Remotion React component (e.g., `WaveformSceneV2`). Map these t
 
 | Remotion component | HyperFrames equivalent | Scene type |
 |--------------------|------------------------|------------|
-| `WaveformSceneV2` | `#title-card` section, full gradient, `.hero-content` with academy lockup | Title card |
+| `WaveformSceneV2` | `#title-card` section, full gradient, `.hero-content` with brand lockup | Title card |
 | `OutroSceneV2` | `#outro` section, full gradient, `.logo-icon--white` + "Up Next" | Outro |
 | `WelcomeCardV2` | `#welcome` section, `.hero-centered` with hero title | Centered hero |
 | `OriginStoryV2` | `#origin`-style section, `.hero-content` with `.tracking-title` | Concept reveal |
@@ -73,12 +73,12 @@ The spec names a Remotion React component (e.g., `WaveformSceneV2`). Map these t
 | `IIWatermark` | `.watermark` (`color="white"` → `.watermark.white`) | Persistent mark |
 | `NoiseOverlay` | `.noise` class on `<section>` (drives `.noise::before`) | Ambient texture |
 | `FullBleedPlaceholder` | Empty `<section class="scene">` with placeholder color/class — marked in HTML comment `<!-- PLACEHOLDER: replace in Premiere -->` | Screen-recording slot |
-| `ConversationLoop` / `DecisionMatrix` / `RecapGrid` / etc. | Content-mode scene with custom `.scene-panel` layout — extend `academy-kit.css` | Custom Content scene |
+| `ConversationLoop` / `DecisionMatrix` / `RecapGrid` / etc. | Content-mode scene with custom `.scene-panel` layout — extend `brand-kit.css` | Custom Content scene |
 
 If the spec names a component not in this table, it's one of the Remotion "v1 → v2 upgrade" scenes or a new scene pattern. Approach:
 
 1. Read the Remotion source at `~/Projects/remotion/src/components/v2/<ComponentName>.tsx` to understand the structure and props
-2. Translate the JSX tree to equivalent HTML using existing `academy-kit.css` classes where possible
+2. Translate the JSX tree to equivalent HTML using existing `brand-kit.css` classes where possible
 3. Only introduce new CSS classes if genuinely new layout is required — prefer extending what's there
 
 ### `Mode`
@@ -105,7 +105,7 @@ If the spec references a background that doesn't exist in `assets/brand-assets/`
 
 Straight number of seconds. Set both:
 - `<section data-duration="<s>">` in `index.html`
-- Matching `SCENES[i].duration` in `assets/academy-kit.js`
+- Matching `SCENES[i].duration` in `assets/brand-kit.js`
 
 If the spec says "8–10 seconds", pick based on VO length + 1.5s crossfade margins at each end.
 
@@ -129,7 +129,7 @@ Take snapshots of every `Screengrab: Yes` scene as part of the output checklist.
 
 Work top-down through the spec's Scene Plan section:
 
-1. **Scene 1** → write the first `<section>` in `index.html`, add `SCENES[0]` to `academy-kit.js`
+1. **Scene 1** → write the first `<section>` in `index.html`, add `SCENES[0]` to `brand-kit.js`
 2. **Scene 2** → write the second `<section>` with `data-start = SCENES[0].start + SCENES[0].duration - 1.5` (the crossfade overlap), add `SCENES[1]`
 3. Continue...
 
@@ -162,7 +162,7 @@ The spec includes a "Sizing Reference" section; treat these as the source of tru
 - Split left: 45%, split right: 55%
 - Watermark: 32px from edges, ~20px height (title card may use larger per spec)
 
-If the spec overrides any of these, follow the spec. Otherwise match `academy-kit.css` defaults.
+If the spec overrides any of these, follow the spec. Otherwise match `brand-kit.css` defaults.
 
 ## Verification Loop
 

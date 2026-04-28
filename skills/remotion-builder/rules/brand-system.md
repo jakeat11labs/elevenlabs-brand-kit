@@ -2,7 +2,7 @@
 
 ## Color Palette (Monochrome Mode)
 
-All ElevenLabs University content uses monochrome mode. No color. Ever.
+All ElevenLabs learning content uses monochrome mode. No color. Ever.
 
 ```typescript
 // src/brand.ts — import as: import { BRAND } from "../brand";

@@ -1,6 +1,6 @@
 # ElevenLabs Brand System for HyperFrames
 
-This is the HyperFrames translation of the Remotion v2 two-mode brand system. Same colors, same typography, same rules — implemented as CSS classes in `assets/academy-kit.css` rather than React components.
+This is the HyperFrames translation of the Remotion v2 two-mode brand system. Same colors, same typography, same rules — implemented as CSS classes in `assets/brand-kit.css` rather than React components.
 
 ## Color Palette
 
@@ -131,7 +131,7 @@ The Remotion `BrandedCard` component exposes 8 variants. Translate to CSS modifi
 | `acrylic` | `rgba(245,243,241,0.45)` | `blur(12px)` | `1px solid rgba(255,255,255,0.15)` | Fluent-inspired with noise texture |
 | `gradientborder` | `rgba(0,0,0,0.15)` | `blur(20px)` | gradient stroke | Shimmer gradient border accent |
 
-Add as modifier classes: `class="dark-card dark-card--glass"` etc. Extend `academy-kit.css` with the modifier; don't inline the style block.
+Add as modifier classes: `class="dark-card dark-card--glass"` etc. Extend `brand-kit.css` with the modifier; don't inline the style block.
 
 ## Mode 2 — Content
 
@@ -241,7 +241,7 @@ Bottom-right, 32px from edges, ~20px icon height. Title card currently uses 42px
 
 ### Noise overlay
 
-Add `class="noise"` to every `<section class="scene">`. Driven by `.noise::before` in `academy-kit.css` (SVG fractal noise at 7% opacity, `mix-blend-mode: overlay`).
+Add `class="noise"` to every `<section class="scene">`. Driven by `.noise::before` in `brand-kit.css` (SVG fractal noise at 7% opacity, `mix-blend-mode: overlay`).
 
 ### Chladni patterns (optional)
 
@@ -269,7 +269,7 @@ Every Hero scene typically:
 - **"ElevenLabs"** — one word, capital E, capital L. Never "Eleven Labs", "Elevenlabs", "elevenlabs", "ELEVENLABS", "IIElevenLabs", "11ElevenLabs".
 - **Three platforms** — ElevenCreative (The Studio, orange accent), ElevenAgents (The Agent Platform, blue, cert focus), ElevenAPI (The Developer Toolkit, monochrome). **Never "pillars"** when referring to the three products.
 - **Three pillars of trust** (distinct concept) — Research-backed, Configurable, Trusted. OK to call these "pillars."
-- **"ElevenLabs Academy"** — the subtitle on title cards.
+- **"ElevenLabs"** — the subtitle on title cards.
 - **Credential name** — "ElevenLabs Certified ElevenAgent Builder".
 - **II symbol** — visual only. Never typed in content text. Never use "I I" or "11" to recreate it.
 - **Origin story** — ElevenLabs was founded as a research company to solve **dubbing**. Agents came later. Never write "built to solve the conversation volume problem."
@@ -307,4 +307,4 @@ Inline `<svg>` icons inside `.grid-feature` use `stroke="currentColor"` and pick
 4. **Black or cream icons on Hero scenes** — always use white variants from `shared/brand-assets/icons/white/`, or apply `filter: brightness(0) invert(1)` to product icons (tts, stt, convai, etc.). See "Product Icon Rule" above — `.grid-feature img` MUST have the filter or PNG product icons render as black silhouettes on dark cards.
 5. **Generic blue/purple gradients in place of brand imagery** — use the copied `brand-assets/backgrounds/` library. Don't CSS-gradient your way out of picking a background.
 6. **Viewport-scaled font sizes (`vw`, `vh`)** — breaks at non-1920×1080 preview/snapshot sizes. Use fixed `px`.
-7. **Inline scene-specific styles in `index.html`** — extend `academy-kit.css` instead. The composition stays readable in Studio.
+7. **Inline scene-specific styles in `index.html`** — extend `brand-kit.css` instead. The composition stays readable in Studio.

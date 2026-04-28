@@ -35,7 +35,7 @@ const TRANSITION_FRAMES = 20;
 
 export const M01L01v3: React.FC<z.infer<typeof M01L01v3Schema>> = ({
   // Scene 1 — Title Card
-  titleCard_title = "Welcome to\nElevenUniversity",
+  titleCard_title = "Welcome to\nElevenLabs",
   titleCard_subtitle = "Module 1 — The Platform\nAgent Builder Certification",
 
   // Scene 2 — Some Scene
@@ -140,7 +140,7 @@ The combined composition MUST be registered with its schema and defaultProps so 
   durationInFrames={sec(totalDuration)}
   fps={FPS} width={W} height={H}
   defaultProps={{
-    titleCard_title: 'Welcome to\nElevenUniversity',
+    titleCard_title: 'Welcome to\nElevenLabs',
     titleCard_subtitle: 'Module 1 — The Platform\nAgent Builder Certification',
     someScene_sectionLabel: 'Default Label',
     someScene_headline: 'Default Headline',
@@ -163,7 +163,7 @@ Each scene also gets registered individually for preview/editing in Remotion Stu
   durationInFrames={sec(8)}
   fps={FPS} width={W} height={H}
   defaultProps={{
-    title: 'Welcome to\nElevenUniversity',
+    title: 'Welcome to\nElevenLabs',
     subtitle: 'Module 1 — The Platform\nAgent Builder Certification',
   }}
 />

@@ -5,7 +5,7 @@ HTML templates for every scene type in the v2 ElevenLabs visual system. All scen
 - Live inside `<body>` inside the root `<div id="root" data-composition-id="main">`
 - Are `<section>` elements with `class="clip scene noise"` and full `data-start`/`data-duration`/`data-track-index` + explicit `z-index`
 - Carry a `.watermark` (white on Hero, default on Content/Hybrid)
-- Never use inline scene-specific CSS — extend `assets/academy-kit.css`
+- Never use inline scene-specific CSS — extend `assets/brand-kit.css`
 
 ## Root Composition Shell
 
@@ -15,10 +15,10 @@ HTML templates for every scene type in the v2 ElevenLabs visual system. All scen
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1920, height=1080" />
-    <title>ElevenLabs Academy - M{XX}L{YY}v{Z} HyperFrames Port</title>
-    <link rel="stylesheet" href="assets/academy-kit.css" />
+    <title>ElevenLabs - M{XX}L{YY}v{Z} HyperFrames Port</title>
+    <link rel="stylesheet" href="assets/brand-kit.css" />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
-    <script src="assets/academy-kit.js"></script>
+    <script src="assets/brand-kit.js"></script>
   </head>
   <body>
     <div
@@ -36,7 +36,7 @@ HTML templates for every scene type in the v2 ElevenLabs visual system. All scen
 
     <script>
       window.__timelines = window.__timelines || {};
-      window.__timelines["main"] = window.createAcademyTimeline();
+      window.__timelines["main"] = window.createBrandTimeline();
     </script>
   </body>
 </html>
@@ -54,12 +54,12 @@ The standalone root does **not** use `<template>`. Only sub-compositions loaded 
     <img src="assets/brand-assets/backgrounds/general/general-bg-01-blue-cyan-chladni.jpg" alt="" />
   </div>
   <div class="hero-content">
-    <div class="academy-lockup" aria-label="ElevenLabs Academy">
-      <img class="academy-lockup-icon" src="assets/logos/academy-elevenlabs-icon-white.svg" alt="" />
-      <span>Academy</span>
+    <div class="brand-lockup" aria-label="ElevenLabs">
+      <img class="brand-lockup-icon" src="assets/logos/elevenlabs-icon-white.svg" alt="" />
+      <span>ElevenLabs</span>
     </div>
     <div>
-      <h1 class="hero-title">Welcome to<br />ElevenLabs Academy</h1>
+      <h1 class="hero-title">Welcome to<br />ElevenLabs</h1>
       <div class="accent-line"></div>
       <div class="hero-subtitle">Module {X} - {Module Title}<br />Agent Builder Certification</div>
     </div>
@@ -69,8 +69,8 @@ The standalone root does **not** use `<template>`. Only sub-compositions loaded 
 ```
 
 Notes:
-- Title cards typically omit the watermark, relying on the academy lockup — match the spec.
-- `.academy-lockup-icon` is the ElevenLabs II icon in white on the Academy lockup.
+- Title cards typically omit the watermark, relying on the brand lockup — match the spec.
+- `.brand-lockup-icon` is the ElevenLabs II icon in white on the Brand lockup.
 - Split title card variant: `WaveformSceneV2` lives full-gradient in v2 — do not recreate the v1 split. Keep full gradient.
 
 ### 2. Origin / One-Goal / Concept Reveal (`OriginStoryV2` equivalent)
@@ -127,7 +127,7 @@ The `tracking-title` class gets a letter-spacing entrance (`letterSpacing: 0.45e
 </section>
 ```
 
-`data-beat="N"` drives per-beat entrance timing in `academy-kit.js` (see `animateTextReveal` in the reference implementation).
+`data-beat="N"` drives per-beat entrance timing in `brand-kit.js` (see `animateTextReveal` in the reference implementation).
 
 ### 4. Three-card Flow with Arrows (`PlatformEvolutionV2` / `ChannelStripV2` equivalent)
 
@@ -347,7 +347,7 @@ Watermark on hybrid scenes is **graphite**, not white (it sits on the white left
   </div>
   <div class="split-right cert-right">
     <img class="bg" src="assets/brand-assets/backgrounds/gradient/<bg>.jpg" alt="" />
-    <img class="cert-logo" src="assets/logos/academy-elevenlabs-icon-white.svg" alt="" />
+    <img class="cert-logo" src="assets/logos/elevenlabs-icon-white.svg" alt="" />
     <div class="shield-stage">
       <img src="assets/shield-trimmed.png" alt="" />
       <div class="shield-caption" data-rise>Agent Builder</div>
@@ -387,7 +387,7 @@ Then in `index.html`:
      data-start="100" data-duration="12" data-track-index="10"></div>
 ```
 
-For the Academy Remotion port we've stayed in one `index.html` so far — only factor out a sub-composition when a pattern is used in 3+ lessons.
+For the branded video port we've stayed in one `index.html` so far — only factor out a sub-composition when a pattern is used in 3+ lessons.
 
 ## Watermark Numbering
 

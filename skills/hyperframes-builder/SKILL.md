@@ -1,6 +1,6 @@
 ---
 name: hyperframes-builder
-description: "Build HyperFrames video compositions from spec files for ElevenLabs branded videos. Takes structured spec markdown files (from the hyperframes-spec skill) and generates HyperFrames code: an index.html composition, GSAP timeline factory, scene-specific CSS, manifest.json, and meta.json. Use when: 'implement a spec', 'build a composition', 'code up the scenes', 'build this spec in hyperframes', 'add this scene', 'scaffold a new HyperFrames project', or any task involving writing HyperFrames composition code. Also trigger on 'make the video', 'build the HyperFrames for this', or when fixing/debugging HyperFrames rendering issues. Operates on the v2 ElevenLabs two-mode visual system (Hero/Content/Hybrid), KMR Waldenburg typography, brand terminology (platforms not pillars, ElevenLabs one word), deterministic GSAP motion, and the two-source-of-truth timing rule between index.html data-* attrs and the SCENES array in academy-kit.js. Note: for ElevenLabs Academy lessons going into the dedicated ~/Projects/hyperframes/ monorepo, prefer the academy-hyperframes skill which knows the per-lesson directory + shared/ structure. Use this skill for any other branded ElevenLabs video (product demos, marketing, internal comms, etc.)."
+description: "Build HyperFrames video compositions from spec files for ElevenLabs branded videos. Takes structured spec markdown files (from the hyperframes-spec skill) and generates HyperFrames code: an index.html composition, GSAP timeline factory, scene-specific CSS, manifest.json, and meta.json. Use when: 'implement a spec', 'build a composition', 'code up the scenes', 'build this spec in hyperframes', 'add this scene', 'scaffold a new HyperFrames project', or any task involving writing HyperFrames composition code. Also trigger on 'make the video', 'build the HyperFrames for this', or when fixing/debugging HyperFrames rendering issues. Operates on the v2 ElevenLabs two-mode visual system (Hero/Content/Hybrid), KMR Waldenburg typography, brand terminology (platforms not pillars, ElevenLabs one word), deterministic GSAP motion, and the two-source-of-truth timing rule between index.html data-* attrs and the SCENES array in brand-kit.js. Use this skill for branded ElevenLabs videos such as product demos, marketing, internal comms, customer videos, and training content."
 ---
 
 # ElevenLabs HyperFrames Builder
@@ -9,28 +9,28 @@ This skill takes a completed branded-video spec (from `hyperframes-spec` or writ
 
 For framework fundamentals — `data-*` semantics, `class="clip"` visibility, scene-transition rules, captions, audio handling — load the `hyperframes` skill (also in this plugin). For CLI commands (init, lint, preview, render, transcribe, tts), load `hyperframes-cli`.
 
-## Two-Project Decision: Standalone vs Academy Monorepo
+## Project Structure Decision
 
 Before scaffolding, decide which project structure fits:
 
 | Type | Use For | Skill |
 |---|---|---|
-| **Academy monorepo** (`~/Projects/hyperframes/M01L01/...`) | ElevenLabs Academy lessons (M01L01, M01L02, M02L01, etc.) | Use **`academy-hyperframes`** instead — it knows the per-lesson directory + `shared/` symlink layout |
-| **Standalone project** | Product demos, marketing videos, internal comms, customer videos, any branded ElevenLabs video that's not an Academy lesson | This skill |
+| **Shared monorepo project** (`~/Projects/hyperframes/<ProjectCode>/...`) | Teams that already keep videos in a shared HyperFrames root with `shared/` symlinks | Follow the local project-specific workflow for that monorepo |
+| **Standalone project** | Product demos, marketing videos, internal comms, customer videos, training content, and other branded ElevenLabs videos | This skill |
 
-If the spec is for an Academy lesson, hand off to `academy-hyperframes`. Otherwise stay here and scaffold a standalone HyperFrames project.
+If the spec belongs to an existing shared monorepo workflow, follow that workflow. Otherwise stay here and scaffold a standalone HyperFrames project.
 
 ## Your Role
 
 You are the code agent. You receive a completed `{ProjectCode}-spec.md` file describing every scene in a video and produce inside the project root:
 
 1. **`index.html`** — root composition with one `<section class="clip scene">` per spec scene, `data-start`/`data-duration`/`data-track-index` per scene, plus the VO `<audio>` clips and music bed at the bottom
-2. **`assets/academy-kit.js`** — `SCENES` array matching `index.html` starts/durations, plus GSAP entrance tweens per scene (paused timeline registered on `window.createAcademyTimeline`)
-3. **`assets/academy-kit.css`** — any new scene-specific classes the spec requires (extend, don't inline)
+2. **`assets/brand-kit.js`** — `SCENES` array matching `index.html` starts/durations, plus GSAP entrance tweens per scene (paused timeline registered on `window.createBrandTimeline`)
+3. **`assets/brand-kit.css`** — any new scene-specific classes the spec requires (extend, don't inline)
 4. **`meta.json`** — project id set to the composition id (e.g., `MarketingDemo2026v1`)
 5. **`assets/voiceover/{composition-id}/manifest.json`** + VO MP3s — one per VO paragraph/beat
 
-(The "academy-kit" naming is a historical artifact from this skill's origin in the Academy port. The CSS/JS files are the universal ElevenLabs HyperFrames brand surface — they apply to any branded video, not just Academy lessons. You can keep the names or rename them per-project.)
+(The "brand-kit" naming is a historical artifact from this skill's origin in the branded video port. The CSS/JS files are the universal ElevenLabs HyperFrames brand surface — they apply to any branded video, not just course videos. You can keep the names or rename them per-project.)
 
 ## Design Principle — VO and Visuals Align Word-for-Word
 
@@ -73,8 +73,8 @@ Key facts for any HyperFrames project:
 ├── hyperframes.json         # Registry/paths config
 ├── package.json             # Scripts: preview, lint, render, timing:vo
 ├── assets/
-│   ├── academy-kit.css      # Visual system — extend with new classes here
-│   ├── academy-kit.js       # SCENES array + GSAP timeline factory
+│   ├── brand-kit.css      # Visual system — extend with new classes here
+│   ├── brand-kit.js       # SCENES array + GSAP timeline factory
 │   ├── brand-assets/        # Backgrounds, icons, fonts (from this plugin's brand-assets/)
 │   ├── logos/               # ElevenLabs marks, product logos
 │   ├── voiceover/<id>/      # 01-*.mp3 ... NN-*.mp3 + manifest.json
@@ -148,7 +148,7 @@ Generate a track ~10s longer than the composition (`music_length_ms` in the API 
 
 Load `rules/scene-patterns.md` for the per-mode HTML templates (Hero/Content/Hybrid) and CSS class usage.
 
-### Step 4 — Update `assets/academy-kit.js`
+### Step 4 — Update `assets/brand-kit.js`
 
 Keep `SCENES` in sync with the `<section>` starts/durations you wrote in `index.html`:
 
@@ -161,7 +161,7 @@ const SCENES = [
 const TOTAL_DURATION = <sum minus overlaps>;
 ```
 
-Build entrance animations inside `createAcademyTimeline()` using `fromToIf()`/`toIf()` helpers (see reference implementation). Load `rules/animation-patterns.md` for GSAP timing patterns.
+Build entrance animations inside `createBrandTimeline()` using `fromToIf()`/`toIf()` helpers (see reference implementation). Load `rules/animation-patterns.md` for GSAP timing patterns.
 
 ### Step 5 — Wire VO
 
@@ -197,7 +197,7 @@ Load `rules/` files for detailed patterns. Essentials:
 
 1. Every timed element needs `data-start`, `data-duration`, `data-track-index`
 2. Visible timed elements MUST have `class="clip"` — the runtime uses it for visibility
-3. GSAP timelines must be paused; expose via `window.createAcademyTimeline` (the HyperFrames runtime registers it on `window.__timelines`)
+3. GSAP timelines must be paused; expose via `window.createBrandTimeline` (the HyperFrames runtime registers it on `window.__timelines`)
 4. `<video>` uses `muted`; audio goes on a separate `<audio>` clip
 5. Deterministic only — no `Date.now()`, `Math.random()`, network fetches
 6. Animate opacity + transforms only — NEVER `display` or `visibility`
@@ -207,7 +207,7 @@ Load `rules/` files for detailed patterns. Essentials:
 ### Two-source-of-truth — keep in sync
 
 - `<section>` `data-start`/`data-duration` in `index.html` drive the runtime
-- `SCENES` array in `assets/academy-kit.js` drives the GSAP timeline
+- `SCENES` array in `assets/brand-kit.js` drives the GSAP timeline
 - Hard-coded absolute cue times inside `fromToIf`/`toIf` (e.g., `22.88`, `85.63`) drive specific entrance timing
 
 Change any one → update the others. Run `npm run timing:vo` after any audio-start change.
@@ -242,7 +242,7 @@ Rules:
 
 - "ElevenLabs" — one word, capital E, capital L — never "Eleven Labs", "Elevenlabs", "ELEVENLABS"
 - Three **platforms** (never "pillars"): ElevenCreative, ElevenAgents, ElevenAPI
-- "ElevenLabs Academy" for the subtitle on title cards (when relevant — for Academy content only)
+- "ElevenLabs" for the subtitle on title cards when relevant
 - The II symbol is visual only — never typed as text
 
 For complete brand terminology, invoke the `brand` skill in this plugin.
@@ -257,14 +257,14 @@ Load the file that matches what you're building:
 | `rules/brand-system.md` | Creating any visual element — colors, typography, card patterns, watermark rules, mode switch |
 | `rules/scene-patterns.md` | Writing a new scene — HTML templates for Hero/Content/Hybrid, `.split-scene`, card grids, product banners |
 | `rules/animation-patterns.md` | Adding GSAP tweens — Remotion frames → GSAP seconds, entrance patterns, crossfade rules |
-| `rules/composition-patterns.md` | Building `index.html` end-to-end — track layout, z-index stacking, audio track, `createAcademyTimeline` structure, `meta.json`, `hyperframes.json` |
+| `rules/composition-patterns.md` | Building `index.html` end-to-end — track layout, z-index stacking, audio track, `createBrandTimeline` structure, `meta.json`, `hyperframes.json` |
 | `rules/spec-reading.md` | Parsing a HyperFrames-spec output (or legacy Remotion spec) — mapping component names to scene patterns |
 
 ## References Directory
 
 | File | Purpose |
 |------|---------|
-| `references/existing-classes.md` | Full inventory of `assets/academy-kit.css` classes with use notes |
+| `references/existing-classes.md` | Full inventory of `assets/brand-kit.css` classes with use notes |
 | `references/bundled-assets.md` | Brand asset library map (backgrounds, voice-orbs, icons, logos) |
 
 ## Related Skills
@@ -292,9 +292,9 @@ These skills aren't HyperFrames-specific but are essential to the audio side of 
 8. **Using `repeat: -1`** — breaks capture. Always calculate finite repeat counts from duration.
 9. **Hardcoding a pixel viewport width** in CSS — scenes must fill via percentages/padding so Studio resizing works.
 10. **`<br>` in wrapping body text** — produces unexpected breaks at rendered font size. Use `max-width` on the container and let text wrap naturally. Exception: short display titles where each word is deliberately on its own line.
-11. **Inline scene-specific styles in `index.html`** — extend `assets/academy-kit.css` instead. Inline style blocks bloat the composition and lose reusability.
+11. **Inline scene-specific styles in `index.html`** — extend `assets/brand-kit.css` instead. Inline style blocks bloat the composition and lose reusability.
 12. **Dimming the II icon on Hero** — title/welcome/outro watermarks are full opacity. Never apply `opacity: 0.4` to the logo mark.
-13. **Confusing this skill with `academy-hyperframes`** — for Academy lessons in the dedicated `~/Projects/hyperframes/` monorepo, use `academy-hyperframes` (it knows about per-lesson dirs and the `shared/` symlink). Use this skill only for standalone branded videos.
+13. **Ignoring an existing monorepo workflow** — for videos already managed inside a shared HyperFrames monorepo, follow that repo's local scaffolding rules. Use this skill for standalone branded videos.
 
 ## Output Checklist
 
@@ -314,4 +314,4 @@ Before presenting work to the user:
 
 This skill replaces `remotion-builder` (deprecated). The HyperFrames runtime gives faster iteration (Studio playback, hot reload, snapshot speed) and easier audio editing than the Remotion render loop. New branded videos go through `hyperframes-spec` to produce the spec, then this skill to build the composition.
 
-If you're building an ElevenLabs Academy lesson specifically, prefer `academy-hyperframes` instead — that skill knows about the dedicated `~/Projects/hyperframes/` monorepo with per-lesson directories and a `shared/` symlink for the brand surface. This skill is for everything else.
+If you're building inside an existing shared HyperFrames monorepo, follow that repo's local scaffolding workflow. This skill is for standalone branded videos.

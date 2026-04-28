@@ -71,7 +71,7 @@ Simple CSS animations for decorative orbs:
 
 ## Three.js / React Three Fiber
 
-For an interactive 3D orb (as used in AcademyLab), use a shader-based approach with `@react-three/fiber`:
+For an interactive 3D orb (as used in the existing product demo implementation), use a shader-based approach with `@react-three/fiber`:
 
 ```tsx
 import { Canvas } from '@react-three/fiber';

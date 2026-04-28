@@ -1,8 +1,8 @@
-# academy-kit.css Class Inventory
+# brand-kit.css Class Inventory
 
-Complete reference of CSS classes available in `assets/academy-kit.css`. Use these before inventing new ones. Extend the kit when new layout is genuinely needed — don't inline scene-specific styles in `index.html`.
+Complete reference of CSS classes available in `assets/brand-kit.css`. Use these before inventing new ones. Extend the kit when new layout is genuinely needed — don't inline scene-specific styles in `index.html`.
 
-The reference implementation is at `~/Projects/hyperframes/assets/academy-kit.css`. When porting a new lesson, copy this file verbatim into the new project and extend it.
+The reference implementation is at `~/Projects/hyperframes/assets/brand-kit.css`. When porting a new lesson, copy this file verbatim into the new project and extend it.
 
 ## Scene Shell
 
@@ -50,8 +50,8 @@ The reference implementation is at `~/Projects/hyperframes/assets/academy-kit.cs
 | `.logo-wordmark` | Full ElevenLabs wordmark |
 | `.logo-icon` | ElevenLabs II icon (default graphite) |
 | `.logo-icon--white` | White variant for Hero scenes |
-| `.academy-lockup` | "II Academy" lockup for title cards |
-| `.academy-lockup-icon` | Icon inside the academy lockup |
+| `.brand-lockup` | "II ElevenLabs" lockup for title cards |
+| `.brand-lockup-icon` | Icon inside the brand lockup |
 | `.watermark` | Bottom-right corner 32px from edges, ~20px height, graphite at 35% opacity |
 | `.watermark.white` | White variant at 25% opacity (Hero scenes) |
 
@@ -141,7 +141,7 @@ The reference implementation is at `~/Projects/hyperframes/assets/academy-kit.cs
 | `.cert-copy` | Left-side text container on certification scene |
 | `.cert-right` | Right-side shield + logo container |
 | `.cert-right img.bg` | Background image inside cert-right |
-| `.cert-logo` | Academy logo above the shield |
+| `.cert-logo` | ElevenLabs logo above the shield |
 | `.shield-stage` | Shield + caption stage |
 | `.shield-caption` | Text label under the shield |
 
@@ -153,7 +153,7 @@ The reference implementation is at `~/Projects/hyperframes/assets/academy-kit.cs
 | `.module-item` | Individual module card |
 | `.badge-card` | Small badge-style card used in module grid |
 
-## Entrance Attributes (read by academy-kit.js)
+## Entrance Attributes (read by brand-kit.js)
 
 These are not CSS classes but `data-*` attributes that opt elements into `baseEntrances()`:
 
@@ -165,7 +165,7 @@ These are not CSS classes but `data-*` attributes that opt elements into `baseEn
 
 ## When to Add a New Class
 
-Add a new CSS class to `academy-kit.css` when:
+Add a new CSS class to `brand-kit.css` when:
 
 1. The same visual treatment appears on 2+ scenes
 2. Scene-specific layout would otherwise require inline `style=""` on more than a handful of elements
@@ -179,4 +179,4 @@ Add a new CSS class to `academy-kit.css` when:
 
 ## When to Update This Reference
 
-If you extend `academy-kit.css`, update this file in the skill so future lessons can find the new classes. Treat it as documentation that earns its keep — stale class references waste more time than missing ones.
+If you extend `brand-kit.css`, update this file in the skill so future lessons can find the new classes. Treat it as documentation that earns its keep — stale class references waste more time than missing ones.

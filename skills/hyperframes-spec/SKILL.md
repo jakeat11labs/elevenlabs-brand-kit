@@ -9,7 +9,7 @@ This skill drafts structured spec files for ElevenLabs branded videos that get i
 
 ## What a Spec File Is
 
-A spec file is a markdown document that describes every scene in a video: what layout it uses, what mode it's in (Hero or Content), what text appears on screen, how long it lasts, and what VO line it accompanies. The hyperframes-builder skill reads this file and generates the `index.html`, GSAP timeline cues in `academy-kit.js` (or your project's equivalent), and any new CSS classes from it.
+A spec file is a markdown document that describes every scene in a video: what layout it uses, what mode it's in (Hero or Content), what text appears on screen, how long it lasts, and what VO line it accompanies. The hyperframes-builder skill reads this file and generates the `index.html`, GSAP timeline cues in `brand-kit.js` (or your project's equivalent), and any new CSS classes from it.
 
 The spec is **NOT code**. It's a creative/structural document that maps content to visuals using the ElevenLabs two-mode design system.
 
@@ -22,7 +22,7 @@ The spec format mirrors the older Remotion spec format (which this skill replace
 1. **Read the brief or script first.** The source document contains the VO, production notes, and objectives. The spec translates that content into scenes.
 2. **Load the visual reference:** Read `references/brand-guidelines.md` for the ElevenLabs design system — colors, typography, animation patterns, scene template diagrams. Cross-reference `references/bundled-assets.md` for the brand asset inventory you can call out by name.
 3. **Load an example spec** from a recent project to see how a completed spec looks.
-4. **Draft the spec** following the template format below and save to the project's spec directory as `{ProjectCode}-spec.md` (e.g., `M01L02v1-spec.md` for an Academy lesson).
+4. **Draft the spec** following the template format below and save to the project's spec directory as `{ProjectCode}-spec.md` (e.g., `ProductDemo2026v1-spec.md`).
 
 ### When Updating an Existing Spec
 
@@ -31,11 +31,11 @@ The spec format mirrors the older Remotion spec format (which this skill replace
 3. Make the changes — add/remove/reorder scenes, update content, adjust durations.
 4. Update the Scene Flow Summary table and total duration.
 
-### When the Lesson Will Be Built in HyperFrames
+### When the Project Will Be Built in HyperFrames
 
-If the spec is for an Academy lesson going into the `~/Projects/hyperframes/` monorepo, the **hyperframes-builder** skill will scaffold a new lesson directory (`M01L02/`, etc.) and implement the scenes against the shared `shared/academy-kit.{css,js}` brand surface. The spec should call out the lesson id (e.g., `M01L02v1`) so the builder knows what to create.
+If the spec is going into an existing shared HyperFrames monorepo, the **hyperframes-builder** skill should follow that repo's local scaffolding workflow and implement the scenes against the shared `shared/brand-kit.{css,js}` brand surface. The spec should call out the project id (e.g., `ProductDemo2026v1`) so the builder knows what to create.
 
-For non-Academy branded videos, `hyperframes-builder` builds a standalone HyperFrames project using the shared brand kit assets in this plugin.
+For standalone branded videos, `hyperframes-builder` builds a standalone HyperFrames project using the shared brand kit assets in this plugin.
 
 ## Two-Mode Scene System
 
@@ -138,7 +138,7 @@ The hyperframes-builder skill recognizes these scene patterns. See `hyperframes-
 
 | Layout | Use For | Key Elements |
 |---|---|---|
-| `title-card` | Lesson/video opener | Academy lockup top-left, multi-line `hero-title` (small/big/small wrap), accent-line, hero-subtitle, bottom-bar, full-bleed background |
+| `title-card` | Lesson/video opener | Brand lockup top-left, multi-line `hero-title` (small/big/small wrap), accent-line, hero-subtitle, bottom-bar, full-bleed background |
 | `concept-reveal` | Single-statement moment | One large `.section-headline` centered over full-bleed background; optional sub-headline |
 | `text-reveal-3` | "Three things" reveal sequence | Three `.dark-card` boxes appearing in sequence aligned to VO words |
 | `evolution` | Three-card flow with arrows | Cards labeled (e.g., "Research → Platform → Agents") connected by `.card-arrow` SVGs |
@@ -222,4 +222,4 @@ Some rule files were copied from the Remotion spec skill verbatim because the ca
 
 This skill replaces `remotion-spec` (deprecated). The output spec format is intentionally similar so prior Remotion specs can be implemented in HyperFrames without rewriting.
 
-After drafting a spec, hand it to **hyperframes-builder** which scaffolds the project (or lesson dir for Academy lessons), drops in the `index.html` skeleton, and starts building scenes. For framework-specific patterns and CLI commands, the **hyperframes** and **hyperframes-cli** skills (also in this plugin) cover the runtime contract and CLI invocation.
+After drafting a spec, hand it to **hyperframes-builder** which scaffolds the project (or lesson dir for course videos), drops in the `index.html` skeleton, and starts building scenes. For framework-specific patterns and CLI commands, the **hyperframes** and **hyperframes-cli** skills (also in this plugin) cover the runtime contract and CLI invocation.
