@@ -56,6 +56,24 @@ A Claude Code plugin for producing on-brand ElevenLabs content -- web apps, land
 /plugin install elevenlabs-brand-kit@elevenlabs-brand-kit
 ```
 
+**Via `npx plugins` (cross-tool, no slash commands):**
+
+The [`plugins`](https://www.npmjs.com/package/plugins) CLI from Vercel Labs installs into Claude Code (and Cursor, if detected) in one shot. It reads this repo's `.claude-plugin/marketplace.json` directly -- no extra setup on the author side.
+
+```bash
+npx plugins add jakeat11labs/elevenlabs-brand-kit
+```
+
+Useful flags:
+
+```bash
+# Preview without installing
+npx plugins discover jakeat11labs/elevenlabs-brand-kit
+
+# Force a specific target / scope, skip the confirmation prompt
+npx plugins add jakeat11labs/elevenlabs-brand-kit -t claude-code -s user -y
+```
+
 **Local development:**
 
 ```bash
