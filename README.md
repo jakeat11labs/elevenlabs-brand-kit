@@ -83,9 +83,23 @@ claude --plugin-dir ./elevenlabs-brand-kit
 
 ### For Claude Desktop / Cowork Desktop
 
-> **Note:** Only the **Branded PPTX** skill is currently packaged for Claude Desktop / Cowork Desktop. The rest of the kit (web, HyperFrames video, asset-setup, brand) is Claude Code-only for now. More standalone skills are on the way.
+You have two options: install the full plugin (all skills) or install a single skill.
 
-Individual skills are available as standalone `.skill` files that bundle everything needed -- no plugin setup required.
+#### Option A: Full plugin (recommended)
+
+Upload the bundled plugin to Claude Cowork to get every skill in this kit at once.
+
+1. Download [elevenlabs-brand-kit.zip](https://github.com/jakeat11labs/elevenlabs-brand-kit/releases/latest/download/elevenlabs-brand-kit.zip) (~57MB)
+2. Open Claude Desktop → **Cowork** tab → **Customize** in the sidebar → **Plugins**
+3. Click **Upload local plugin** → drag in the zip → **Upload**
+
+> **Note:** The official extension for plugin bundles is `.plugin`, but Cowork's upload backend currently only accepts `.zip` ([bug #40414](https://github.com/anthropics/claude-code/issues/40414)). The release ships the `.zip` form so it just works today.
+
+Brand assets aren't bundled in the zip -- run `/asset-setup` once after install to download them into your project.
+
+#### Option B: Individual skill (`.skill` file)
+
+For users who only want one skill, standalone `.skill` files bundle everything that skill needs -- no plugin setup required.
 
 **How to install (easy way):**
 
